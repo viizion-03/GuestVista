@@ -19,7 +19,6 @@
   align-items: center;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   transform: scale(0.95);
-  animation: pulse 1s ease-in-out infinite alternate;
   max-width: 400px;
   margin: auto;
 }
