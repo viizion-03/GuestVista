@@ -4,8 +4,7 @@ function Bookings() {
     return (
         <div>
             <MySideNav />
-            <div className='dashboard'>Bookings
-            </div>
+            <div className='dashboard'>Bookings</div>
         </div>
     )
 

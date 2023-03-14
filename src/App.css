@@ -90,6 +90,19 @@ button:hover {
 }
 
 .mysidenav {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   background: color #16a5dd; ;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+}
+
+.dashboard {
+  font-size: 5rem;
+  text-align: center;
+}
+
+.btn-logout{
+  margin-bottom: 100%;
+
 }
