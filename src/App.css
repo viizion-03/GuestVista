@@ -93,3 +93,8 @@ button:hover {
   background: color #16a5dd; ;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
 }
+
+.dashboard {
+  font-size: 5rem;
+  text-align: center;
+}
