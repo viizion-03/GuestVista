@@ -5,12 +5,24 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router,Routes,Route } from 'react-router-dom';
+import AdminLogin from './AdminLogin'
+import DashboardOverview from './Dashboard/DashboardOverview'
+import GuestHouses from './Dashboard/GuestHouses'
+import Bookings from './Dashboard/Bookings'
+import MySideNav from './MySideNav';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
  <Router >
   <Routes>
     <Route path='/' element={<App/>}/>
+    <Route path='/admin-login' element={<AdminLogin/>}/>
+    <Route path='/mysidenav' element={<MySideNav/>}/>
+    <Route path='/dashboard-overview' element={<DashboardOverview/>}/>
+    <Route path='/guest-houses' element={<GuestHouses/>}/>
+    <Route path='/bookings' element={<Bookings/>}/>
+  
 
   </Routes>
  </Router>

@@ -9,7 +9,7 @@ function AdminLogin(){
   const navigate = useNavigate();
 
 function handleClick(){
-  navigate("/mySideNav")
+  navigate("/dashboard-overview")
 
 }
 
