@@ -1,0 +1,37 @@
+.nav{
+    display: flex;
+   justify-content: space-between;
+   background-color: black;
+   width: 100%;
+  
+
+   .logo {
+    margin-left: 1rem;
+    color: white;
+    font-size: 35px;
+    font-weight: bolder;
+   }
+
+   .item{
+    display: flex;
+
+
+    .ul {
+        display: flex;
+        margin: 25px;
+
+
+        li{
+            margin: 0 1rem ;
+
+            a{
+                text-decoration:  none;
+                color: white;
+                font-weight: bolder;
+            }
+        }
+       }
+   } 
+   
+   
+}
