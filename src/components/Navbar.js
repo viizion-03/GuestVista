@@ -1,14 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import './styles/Navbar.scss'
-import logo from './pictures/logo.jpeg'
+import homelogo from './pictures/homelogo.png'
 
 const Navbar = () => {
     return (
         <div className="nav">
-            <div className="logo"> <img src={logo} alt="" style={{ maxWidth: "50px" }}/>
-                GuestVista
-            </div>
+            <img src={homelogo} alt="" style={{ maxHeight: "100px"}}/>
             <nav className="item">
                 <ul className="ul">
                     <li>
