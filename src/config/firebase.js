@@ -1,15 +1,15 @@
-import { getAuth } from "firebase/auth";
+import { getAuth} from "firebase/auth"
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_API_KEY,
-  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.FIREBASE_PROJECT_ID,
-  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.envFIREBASE_APP_ID
+  apiKey: "AIzaSyBehIS7f7RnBCvmVKvBFUQ9f0tbqpwvvwY",
+  authDomain: "guest-vista-e47a4.firebaseapp.com",
+  projectId: "guest-vista-e47a4",
+  storageBucket: "guest-vista-e47a4.appspot.com",
+  messagingSenderId: "791250202823",
+  appId: "1:791250202823:web:34e8524b1bede0ba478ee2"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app)
+
+export const auth = getAuth()
