@@ -11,7 +11,7 @@ import GuestHouses from './Dashboard/GuestHouses'
 import Bookings from './Dashboard/Bookings'
 import MySideNav from './MySideNav';
 import { Authprovider, AuthProvider } from './contexts/AuthContext'
-import { AuthLayout } from './components/AuthLayout';
+import { AuthLayout } from './layouts/AuthLayout';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -23,7 +23,7 @@ root.render(
         <Route path='/' element={<App />} />
 
         <Route element={<AuthLayout />}>
-          <Route path='/dashboard-overview' element={<DashboardOverview />} />
+          <Route path='/admin' element={<DashboardOverview />} />
           <Route path='/guest-houses' element={<GuestHouses />} />
           <Route path='/bookings' element={<Bookings />} />
         </Route>

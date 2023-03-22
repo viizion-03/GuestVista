@@ -15,8 +15,8 @@ function MySideNav () {
          className='mysidenav'
          >
           <SideNav.Toggle />
-          <SideNav.Nav defaultSelected="/dashboard-overview" >
-            <NavItem eventKey="dashboard-overview">
+          <SideNav.Nav defaultSelected="/admin" >
+            <NavItem eventKey="admin">
                 <NavIcon ><i className='fa-solid fa-globe' style={{fontSize: "1.5rem", color: "white"}}></i></NavIcon>
                 <NavText >Dashboard Overview</NavText>
             </NavItem>

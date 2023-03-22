@@ -1,6 +1,7 @@
 import React, {useContext} from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
 import { AuthContext } from '../contexts/AuthContext'
+import AdminNav from '../components/AdminNav'
 
 export const AuthLayout = () => {
 
@@ -15,6 +16,13 @@ export const AuthLayout = () => {
         )
     }
 
-    return <Outlet/>
+    return (
+        <div className='admin--page'>
+        <AdminNav />
+        <main>
+            <Outlet />
+        </main>
+        </div>
+    )
 
 }

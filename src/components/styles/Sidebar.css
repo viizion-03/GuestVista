@@ -1,0 +1,142 @@
+/* viizion's side navi */
+
+.side-nav {
+    height: 100%;
+    width: 350px;
+    position: absolute;
+    top: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 35px 24px;
+    z-index:1;
+    left: 0;
+    background-color: #F5F5F7;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 34px;
+  
+    font-family: 'Inter', sans-serif;
+  }
+  
+  li>a,
+  li>a:hover {
+    text-decoration: none;
+    display: block;
+    transition: 0.3s;
+    font-family: Inter, sans-serif;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 36px;
+    color: #000;
+  }
+  
+  .sn--close {
+    font-size: 40px;
+    cursor: pointer;
+    color: gray;
+    padding: 10px 15px;
+    border: none;
+    align-self: flex-end;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  
+  .sn--open {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+  }
+  
+  
+  .sn--user {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top:20px;
+    min-height: 250px;
+    justify-content: space-between;
+  }
+  
+  .sn--user>img {
+    width: 110px;
+    border-radius: 56px;
+  }
+  
+  .sn--username {
+  
+    width: 278px;
+    height: 30px;
+  
+    font-style: normal;
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 39px;
+  
+    color: #5A5A5A;
+  }
+  
+  .sn--user>h5 {
+    width: 277px;
+    height: 28px;
+    margin-top:0px;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 22px;
+  
+    color: #5A5A5A;
+  }
+  
+  .sn--nav-links-container {
+    margin-bottom: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+    width: 100%;
+    margin-top: 30px;
+    justify-content: space-between;
+  }
+  
+  .sn--links,
+  .sn--links-home {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 20px;
+    margin-bottom: 15px;
+  
+    width: 300px;
+    height: 69px;
+  
+    background: #FFFFFF;
+    box-shadow: 3px 4px 21px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+  
+  }
+  .sn--links:hover{
+    background-color: #0ca1f815;
+  }
+  
+  .sn--links-home, .sn--links-home>a {
+    background: #063956;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .sn--links-home>a:hover {
+    color: white;
+  }
+  
+  .sn--logout{
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    border-radius: 15px;
+  }

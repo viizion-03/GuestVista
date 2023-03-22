@@ -17,7 +17,7 @@ export function Authprovider(props){
                 setIsLoggedIn(false)
             }
         })
-    })
+    }, [])
 
     const value ={
         authUser,

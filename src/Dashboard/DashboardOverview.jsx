@@ -12,9 +12,10 @@ function DashboardOverview() {
 
     return (
         <div>
-            <MySideNav />
-            <button onClick={logout}>Log the fuck out!</button>
-            <div className='dashboard'>Dashboard Overview</div>
+            {/* <MySideNav /> */}
+            <div className='dashboard'>
+                <h1>Dashboard</h1>
+            </div>
         </div>
     )
 }

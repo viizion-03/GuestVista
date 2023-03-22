@@ -38,7 +38,7 @@ const AdminLogin = () => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      navigate("/dashboard-overview")
+      navigate("/admin")
     }
   })
 
