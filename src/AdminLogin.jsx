@@ -3,7 +3,7 @@ import logo from "./images/logo.jpeg";
 import { AuthContext } from './contexts/AuthContext';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from './config/firebase';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
 const AdminLogin = () => {
@@ -15,6 +15,7 @@ const AdminLogin = () => {
   const { isLoggedIn } = useContext(AuthContext)
 
   const navigate = useNavigate()
+  const location = useLocation()
 
 
   function handleSubmit(e) {
@@ -45,6 +46,11 @@ const AdminLogin = () => {
     <div className="auth-form-container">
       <img src={logo} alt="" />
       <h1>GuestVista</h1>
+      {
+        location.state?.message && 
+        <h3 className="login-error">{location.state.message}</h3>
+      }
+
       <form className="login-form" onSubmit={handleSubmit} >
         <label htmlFor="Email">Email:</label>
         <input
