@@ -1,17 +1,25 @@
 /* viizion's side navi */
 
-.side-nav {
+.nav-ghost{
+    background-color: #063956;
     height: 100%;
     width: 350px;
-    position: absolute;
-    top: 0;
+}
+/* .root{
+    display: absolute;
+} */
 
+.side-nav {
+    height: 100%;
+    width: 20%;
+    z-index: 1;
+    float: left;
+    position: fixed;
+    left:0;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     padding: 35px 24px;
-    z-index:1;
-    left: 0;
     background-color: #F5F5F7;
     overflow-x: hidden;
     transition: 0.5s;

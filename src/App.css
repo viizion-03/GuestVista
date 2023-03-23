@@ -116,20 +116,99 @@ button:hover {
   height: 600px;
 }
 
+/* 
 main {
   width: 100%;
   padding: 16px;
-  height: 3000px;
+  height: 100%;
   background-color: whitesmoke;
   display: flex;
-  margin-left: 350px;
-  position: static;
+  position: relative;
+  float: left;
+} */
+
+main {
+  background-color: white;
+  /* height: 3000px; */
+  width: 80%;
+  float: right;
 }
 
-.admin--page{
-  display: flex;
-  flex-direction: row;
+.admin--page {
   background-color: red;
-  height: 100vh;
+  height: 100%;
+}
 
+.dashboard {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin--header {
+  /* background: linear-gradient(180deg,
+      rgba(0, 0, 0, 0.2) 0%,
+      rgba(198, 190, 190, 0) 78.65%),
+    rgba(102, 103, 171, 0.22); */
+
+  background-color: #063956;
+  padding: 20px 60px;
+  text-align: left;
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: 32px;
+  color: rgb(212, 211, 211);
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+/* Dashboard css styles */
+
+
+.dash--content {
+  display: flex;
+  flex-direction: column;
+  min-width: 1300px;
+  align-self: center;
+
+}
+
+.dash--cards {
+  display: flex;
+  padding: 10px;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+}
+
+.dash--header {
+  align-self: flex-start;
+  padding-left: 100px;
+  padding-top: 20px;
+  font-weight: bold;
+  font-size: 35px;
+}
+
+.dash--card-image {
+  border-radius: 16px 16px 0px 0px;
+  margin-bottom: 20px;
+  width: 100%;
+  box-shadow: inset 0px -7px 10px rgba(34, 87, 122, 0.23);
+}
+
+.dash--card {
+  margin: 20px;
+  border-radius: 16px;
+  background-color: white;
+  box-shadow: 4px 4px 17px rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+  width: 300px;
+}
+
+.dash--card-info {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px 20px;
+  font-family: Junge;
+  font-size: 28px;
+  font-weight: 400;
 }

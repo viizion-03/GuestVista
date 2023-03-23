@@ -34,6 +34,8 @@ const AdminNav = () => {
 
   return (
     <>
+
+      <div className='nav-ghost'></div>
       <div id="mySideNav" className="side-nav">
 
         <div className='sn--user'>
