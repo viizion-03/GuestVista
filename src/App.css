@@ -212,3 +212,120 @@ main {
   font-size: 28px;
   font-weight: 400;
 }
+
+
+/* guest house list Admin */
+
+.admin--container{
+  width: 90%;
+  background-color: lightblue;
+  height: 80vh;
+  margin: 50px;
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  flex-direction:row;
+
+}
+
+.admin--filters{
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+}
+
+.admin--radios{
+  display:flex;
+  flex-direction: column;
+  align-items:start;
+  margin-left:20px;
+  margin-bottom: 20px;
+  width: fit-content;
+}
+.admin--radio{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 3px;
+  height: fit-content;
+}
+.admin--radio > label{
+  font-size: 16px;
+  margin-top: 0;
+  text-indent: 10px;
+  color:rgb(77, 77, 77);
+}
+.admin--radio > input{
+  width:fit-content;
+  height: fit-content;
+}
+
+
+.table--container{
+  background-color: white;
+  padding: 30px;
+  flex-grow: 1;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.table{
+  width: auto;
+  border-collapse:collapse;
+  border-spacing: 20px;
+}
+
+.table--actions{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  border:transparent;
+}
+
+.ghl--name-container{
+  display: flex;
+  align-items: center;
+}
+
+.table--logo{
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  margin-right: 20px;
+}
+
+.table-head{
+  font-size: 30px;
+  font-family:Inter;
+  font-weight: bold;
+  color:rgb(42, 42, 42);
+  background-color: lightblue;
+ 
+};
+
+.table-row{
+  padding: 35px 15px;
+  /* background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #E9E9E9 100%); */
+  border: transparent;
+}
+.table-row:hover{
+  background-color: #0ca1f815;
+}
+
+.ghl--name-container, .table--actions{
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.ghl--new-button{
+  align-self: flex-end;
+  justify-self: flex-end;
+}
+.ghl--new-button > button{
+  width: 100%;
+  border-radius: 15px;
+  padding:15px 30px;
+}
+
