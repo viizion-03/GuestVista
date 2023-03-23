@@ -12,7 +12,7 @@ const AdminLogin = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const { isLoggedIn } = useContext(AuthContext)
+  const { isLoggedIn, setAuthUser, setIsLoggedIn } = useContext(AuthContext)
 
   const navigate = useNavigate()
   const location = useLocation()
@@ -24,9 +24,10 @@ const AdminLogin = () => {
     setErrorMsg('')
     setLoading(true)
     signInWithEmailAndPassword(auth, email, pass)
-      .then(() => {
-        console.log(auth)
+      .then((user) => {
         setLoading(false)
+        console.log("user signed in")
+        console.log(user)
       })
       .catch((e) => {
         setErrorMsg("Wrong email or password")

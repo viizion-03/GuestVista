@@ -1,5 +1,7 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../config/firebase";
+import { AuthContext } from "../contexts/AuthContext";
 import MySideNav from "../MySideNav";
 
 
@@ -9,6 +11,7 @@ function DashboardOverview() {
     function logout() {
         navigate('/')
         auth.signOut()
+        console.log("user signed out")
     }
 
     function HouseCard(props){
