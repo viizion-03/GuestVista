@@ -63,14 +63,14 @@ const AdminNav = () => {
 
           <li className='sn--links'>
             <img src="./icons/subs-ico.svg" />
-            <Link to="/admin/subscribers">
+            <Link to="/subscribers">
               Subscribers
             </Link>
           </li>
 
           <li className='sn--links'>
             <img src="./icons/requests-ico.svg" />
-            <Link to="/admin/requests">
+            <Link to="/requests">
               Requests
             </Link>
           </li>

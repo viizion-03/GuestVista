@@ -6,12 +6,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AdminLogin from './AdminLogin'
-import DashboardOverview from './Dashboard/DashboardOverview'
-import GuestHouses from './Dashboard/GuestHouses'
-import Bookings from './Dashboard/Bookings'
+import DashboardOverview from './AdminPages/DashboardOverview'
+import GuestHouses from './AdminPages/GuestHouses'
+import Bookings from './AdminPages/Bookings'
 import MySideNav from './MySideNav';
 import { Authprovider, AuthProvider } from './contexts/AuthContext'
 import { AuthLayout } from './layouts/AuthLayout';
+import GuestHouseData from './AdminPages/GuestHouseData';
+import Subcribers from './AdminPages/Subcribers';
+import Requests from './AdminPages/Requests';
+import Settings from './AdminPages/Settings';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -24,8 +28,12 @@ root.render(
 
         <Route element={<AuthLayout />}>
           <Route path='/admin' element={<DashboardOverview />} />
-          <Route path='/guest-houses' element={<GuestHouses />} />
-          <Route path='/bookings' element={<Bookings />} />
+          <Route path='/admin/guest-houses' element={<GuestHouses />} />
+          <Route path='/admin/guest-houses/house' element={<GuestHouseData />} />
+          <Route path='/subscribers' element={<Subcribers />} />
+          <Route path='/requests' element={<Requests />} />
+          <Route path='/admin/settings' element={<Settings />} />
+          {/* <Route path='/bookings' element={<Bookings />} /> */}
         </Route>
 
         <Route path='/admin-login' element={<AdminLogin />} />
