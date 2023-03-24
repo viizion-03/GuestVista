@@ -13,10 +13,10 @@ const AdminNav = () => {
   const {authUser} = useContext(AuthContext)
 
   function logout() {
-    navigate('/')
     auth.signOut()
     console.log("signed out")
     console.log(authUser)
+    navigate('/')
   }
 
   // function openNav() {
