@@ -1,10 +1,11 @@
 import MySideNav from "../MySideNav";
+import AddingGuesthouse from "./AddingGueshouse";
 
 function GuestHouses() {
     return (
         <div>
             <MySideNav />
-            <div className='dashboard'>Guest Houses</div>
+            <AddingGuesthouse/>
         </div>
     )
 }
