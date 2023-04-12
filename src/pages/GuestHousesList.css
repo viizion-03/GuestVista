@@ -1,0 +1,122 @@
+body{
+    background-color: rgb(233, 230, 230);
+}
+
+.ghl--container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80vw;
+    margin-left:auto;
+    margin-right: auto;
+}
+
+nav {
+    background-color: rgb(10, 23, 44);
+    color: white;
+    display: flex;
+    padding: 4px 20px;
+    align-items: center;
+}
+
+.ghl--home-icon {
+    margin-right: auto;
+}
+
+nav>ul {
+    list-style: none;
+    display: flex;
+    font-size: 18px;
+    align-items: center;
+}
+
+nav>ul>li {
+    padding: 5px 10px;
+}
+
+.ghl--photos-grid {
+    width: 80vw;
+    margin-bottom: 50px
+}
+
+.ghl--photo-grid-col{
+    height: 100%;
+    display: flex;
+}
+
+.ghl--photo-grid-col>img {
+    object-fit: cover;
+    height: 180px;
+    width: 50%;
+}
+
+.ghl--house-card{
+    display: flex;
+    align-items: flex-start;
+    width: 70vw;
+    margin-top: 25px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.house-card-image{
+    width: 40%;
+    max-height: 250px;
+    min-width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.house-card-image > img{
+    object-fit: fill;
+    flex-shrink: 0;
+    min-width: 100%;
+    min-width: 100%;
+}
+
+.house-card-header{
+    display: flex;
+    justify-content: space-between;
+    align-self: stretch;
+}
+.house-card-rating{
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+}
+.house-card-rating > h4{
+    margin:0px;
+    margin-left: 10px;
+}
+
+.house-card-distance{
+    display: flex;
+    align-items: center;
+    padding-top: 15px;
+}
+.house-card-distance > h4{
+    margin:0px;
+    margin-left: 10px;
+}
+
+.ghl--view-house-btn{
+    align-self: flex-end;
+    margin:0px;
+    width: auto;
+    padding: 10px;
+}
+
+.house-card-details{
+    display: flex;
+    flex-direction: column;
+    padding :20px 20px;
+    align-items: flex-start;
+}
+
+.ghl--houses{
+    padding :15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    border-radius: 10px;
+}
