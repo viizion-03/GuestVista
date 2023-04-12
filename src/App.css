@@ -8,6 +8,13 @@
   font-family: 'Segoe UI', sans-serif;
 }
 
+.go-to-guesthouses{
+  /* margin-top: 1px; */
+  width: auto;
+  padding: 15px 40px;
+  float: right;
+}
+
 .auth-form-container {
   background-color: white;
   border-radius: 10px;

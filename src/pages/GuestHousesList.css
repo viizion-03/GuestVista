@@ -23,6 +23,11 @@ nav {
     margin-right: auto;
 }
 
+.ghl--heading{
+    align-self: flex-start;
+    padding: 20px 0px;
+}
+
 nav>ul {
     list-style: none;
     display: flex;
@@ -46,8 +51,9 @@ nav>ul>li {
 
 .ghl--photo-grid-col>img {
     object-fit: cover;
-    height: 180px;
+    height: 220px;
     width: 50%;
+    margin:4px;
 }
 
 .ghl--house-card{
@@ -66,6 +72,9 @@ nav>ul>li {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    border-radius: 10px;
+    align-self: center;
+    margin-left: 8px
 }
 
 .house-card-image > img{
@@ -79,6 +88,9 @@ nav>ul>li {
     display: flex;
     justify-content: space-between;
     align-self: stretch;
+}
+.house-card-header > h4{
+    color: rgb(64, 134, 111);
 }
 .house-card-rating{
     display: flex;
@@ -120,3 +132,147 @@ nav>ul>li {
     background-color: white;
     border-radius: 10px;
 }
+
+
+/* Styling for GuestHouse Details page */
+
+.ghd--container{
+    display: flex;
+    flex-direction: column;
+    width: 70vw;
+    margin-right: auto;
+    margin-left: auto;
+    align-items: flex-start;
+}
+
+
+.ghd--photos-grid{
+    display: flex;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 45px;
+    justify-content: space-around;
+}
+
+.photo-grid-col1{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 40%;
+    max-width: 350px;
+}
+
+.photo-grid-col2{
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    flex-basis: 60%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    
+}
+
+.photo-grid-col1 > img{
+    height: 160px;
+    max-width: 350px;
+    margin:5px;
+    
+    /* object-fit: fill; */
+}
+.photo-grid-col2 > img{
+    height: 160px;
+    width: 170px;
+    margin: 5px;
+}
+
+.photo-grid-col2 :nth-child(1){
+    height: 100%;
+    width: 100%;
+    max-height: 330px;
+    
+    /* align-self: stretch; */
+    
+
+}
+
+.ghd--name{
+    margin-bottom: 15px;
+    margin-top :20px;
+}
+
+.ghd--description{
+    width: 50%;
+    text-align: justify;
+    margin-bottom: 50px;
+    padding :0px, 10px;
+    margin-left: 20px;
+}
+
+.ghd--amenities{
+    float: right;
+    margin-right: 30px;
+    /* background-color: antiquewhite; */
+}
+
+.ghd--packages{
+    width: 100%;
+}
+
+.ghd--table-container{
+    background-color: blue;
+    padding: 3px 20px;
+    margin-bottom: 50px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.ghd--table-container >table> thead > td{
+    font-size: 20px;
+    font-weight: bold;
+    align-self: center;
+    color: white;
+    background-color: rgb(7, 7, 94);
+}
+.ghd--reviews-section{
+    width: 100%;
+}
+
+.ghd--reviews{
+    display: flex;
+    justify-content: space-between;
+    /* margin-top: 100dp; */
+}
+
+.ghd--review-card{
+    border: 2px solid grey;
+    padding: 10px;
+    display: flex;
+    width: 300px;
+    flex-direction: column;
+    align-items: flex-start;
+
+
+}
+
+.review-card-name{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.review-card-name > h4{
+    margin:0px;
+    margin-left:5px;
+}
+
+.ghd--more-reviews-btn{
+    background-color:transparent;
+    color: rgb(0, 177, 253);
+    border: 2px rgb(0, 177, 253) solid;
+    font-weight: normal;
+    font-size: 14px;
+    width: auto;
+    padding :10px 40px;
+}
+

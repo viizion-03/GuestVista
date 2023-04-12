@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faMagic } from '@fortawesome/free-solid-svg-icons';
 import GuestHouseTile from '../components/GuestHouseTile';
@@ -7,11 +8,17 @@ import "./GuestHousesList.css"
 
 const GuestHousesList = () => {
 
+  
+  const navigate = useNavigate();
+
+  function goHome(){
+    navigate('/')
+  }
   return (
 
     <>
       <nav >
-        <FontAwesomeIcon icon={faHome} size='2x' className='ghl--home-icon' />
+        <FontAwesomeIcon icon={faHome} size='2x' className='ghl--home-icon' onClick={goHome}/>
 
         <ul>
           <li>Sign In</li>
@@ -21,7 +28,10 @@ const GuestHousesList = () => {
         </ul>
       </nav>
 
+ 
+
       <div className='ghl--container'>
+      <h3 className='ghl--heading'>Guest Houses</h3>
         {/* Decoration Grid */}
         <div className='ghl--photos-grid'>
 
