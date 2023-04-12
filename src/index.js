@@ -10,6 +10,8 @@ import DashboardOverview from './Dashboard/DashboardOverview'
 import GuestHouses from './Dashboard/GuestHouses'
 import Bookings from './Dashboard/Bookings'
 import MySideNav from './MySideNav';
+import GuestHouseDetails from './pages/GuestHouseDetails';
+import GuestHousesList from "./pages/GuestHousesList";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -22,7 +24,8 @@ root.render(
     <Route path='/dashboard-overview' element={<DashboardOverview/>}/>
     <Route path='/guest-houses' element={<GuestHouses/>}/>
     <Route path='/bookings' element={<Bookings/>}/>
-  
+    <Route path='/view-guesthouses' element ={<GuestHousesList/>} />
+    <Route path='/guesthouse' element = {<GuestHouseDetails/>} />
 
   </Routes>
  </Router>

@@ -6,13 +6,23 @@ import direct from "./pictures/direct.jpeg";
 import zenzo from "./pictures/zenzo.jpeg";
 import thato from "./pictures/thato.jpeg";
 import tshephang from "./pictures/tshephang.jpeg";
+import { useNavigate } from "react-router-dom";
 
 
 
 function Content (){
+    
+  const navigate = useNavigate()
+
+  function seeGuestHouses(){
+    navigate("/view-guesthouses");
+  }
+
     return(
        
         <div>
+
+<button onClick={seeGuestHouses} >see all guest houses</button>
       <section className="my-5" id="about">
         <div className="container">
         <div class="row">
