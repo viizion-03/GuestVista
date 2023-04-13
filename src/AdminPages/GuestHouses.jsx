@@ -83,41 +83,7 @@ const GuestHouses = () => {
           <input type="text" value={numGuesthouses} readOnly />
         </div>
 
-      </div>
-      <div className='admin--container'>
-        {/* Filters Section */}
-        <div className='admin--filters'>
-          <h3>Sort by</h3>
-          <div className='admin--radios'>
-            <div className='admin--radio'>
-              <input type="radio" id="name" />
-              <label htmlfor="name">Name</label>
-            </div>
-            {/* <br /> */}
-
-            <div className='admin--radio'>
-              <input type="radio" id="price" />
-              <label htmlfor="price">Price</label>
-            </div>
-            {/* <br /> */}
-
-            <div className='admin--radio'>
-              <input type="radio" id="rating" />
-              <label htmlfor="rating">Rating</label>
-            </div>
-            {/* <br /> */}
-
-            <div className='admin--radio'>
-              <input type="radio" id="location" />
-              <label htmlfor="location">Location</label>
-            </div>
-            {/* <br /> */}
-          </div>
-        </div>
-
-        {/* Table Section */}
-        <div className='table--container'>
-          <div>
+        <div>
             <input
               type="text"
               placeholder="Search Guesthouses"
@@ -127,6 +93,42 @@ const GuestHouses = () => {
             />
             <button className="search-button">Search</button>
           </div>
+
+      </div>
+      <div className='admin--container'>
+        {/* Filters Section */}
+        <div className='admin--filters'>
+          <h3>Sort by</h3>
+          <div className='admin--radios'>
+            <div className='admin--radio'>
+              <input type="radio" id="name" name='sort' />
+              <label htmlfor="name">Name</label>
+            </div>
+            {/* <br /> */}
+
+            <div className='admin--radio'>
+              <input type="radio" id="price" name='sort' />
+              <label htmlfor="price">Price</label>
+            </div>
+            {/* <br /> */}
+
+            <div className='admin--radio'>
+              <input type="radio" id="rating" name='sort' />
+              <label htmlfor="rating">Rating</label>
+            </div>
+            {/* <br /> */}
+
+            <div className='admin--radio'>
+              <input type="radio" id="location" name='sort' />
+              <label htmlfor="location">Location</label>
+            </div>
+            {/* <br /> */}
+          </div>
+        </div>
+
+        {/* Table Section */}
+        <div className='table--container'>
+
           <table className='table'>
             <thead className='table-head'>
               <td style={{ textIndent: "10px" }}>Name</td>

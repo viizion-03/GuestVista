@@ -34,8 +34,6 @@ const AdminNav = () => {
 
   return (
     <>
-
-      <div className='nav-ghost'></div>
       <div id="mySideNav" className="side-nav">
 
         <div className='sn--user'>
@@ -83,7 +81,7 @@ const AdminNav = () => {
           </li>
         </ul>
 
-        <button className="sn--logout" onClick={logout}>Log the fuck out!</button>
+        <button className="sn--logout" onClick={logout}>Logout</button>
       </div>
 
       {/* <main>

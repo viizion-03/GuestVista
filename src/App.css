@@ -134,16 +134,23 @@ main {
   float: left;
 } */
 
-main {
-  background-color: white;
-  /* height: 3000px; */
-  width: 80%;
-  float: right;
-}
+/* Admin side UI */
+
+
 
 .admin--page {
-  background-color: red;
-  height: 100%;
+  /* background */
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+
+}
+
+main {
+  background-color: white;
+  flex-grow: 1;
+  overflow-y: visible;
 }
 
 .dashboard {
@@ -226,7 +233,7 @@ main {
 .admin--container{
   width: 90%;
   background-color: lightblue;
-  height: 80vh;
+  height: 60vh;
   margin: 50px;
   border-radius: 15px;
   padding: 20px;

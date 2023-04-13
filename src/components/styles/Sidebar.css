@@ -1,30 +1,17 @@
 /* viizion's side navi */
 
-.nav-ghost{
-    background-color: #063956;
-    height: 100%;
-    width: 350px;
-}
-/* .root{
-    display: absolute;
-} */
-
 .side-nav {
     height: 100%;
-    width: 20%;
-    z-index: 1;
-    float: left;
-    position: fixed;
-    left:0;
+    min-width: 300px;
+    max-width: 300px;
+
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 35px 24px;
+    justify-content: space-between;
+    padding: 15px 24px;
     background-color: #F5F5F7;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 34px;
-  
+    overflow: hidden;
     font-family: 'Inter', sans-serif;
   }
   
@@ -35,7 +22,7 @@
     transition: 0.3s;
     font-family: Inter, sans-serif;
     font-weight: 400;
-    font-size: 30px;
+    font-size: 20px;
     line-height: 36px;
     color: #000;
   }
@@ -66,33 +53,33 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    padding-top:20px;
-    min-height: 250px;
-    justify-content: space-between;
+    padding-top: 10px;
+    min-height: 210px;
+
   }
   
   .sn--user>img {
-    width: 110px;
+    width: 100px;
     border-radius: 56px;
   }
   
   .sn--username {
   
-    width: 278px;
+    align-self: flex-start;
     height: 30px;
   
     font-style: normal;
     font-weight: 800;
-    font-size: 32px;
+    font-size: 28px;
     line-height: 39px;
   
     color: #5A5A5A;
   }
   
   .sn--user>h5 {
-    width: 277px;
+    align-self: flex-start;
     height: 28px;
     margin-top:0px;
     font-style: italic;
@@ -108,7 +95,7 @@
     flex-direction: column;
     padding: 0px;
     width: 100%;
-    margin-top: 30px;
+    margin-top: 10px;
     justify-content: space-between;
   }
   
@@ -119,15 +106,18 @@
     align-items: center;
     padding: 10px 20px;
     margin-bottom: 15px;
-  
-    width: 300px;
-    height: 69px;
-  
+
     background: #FFFFFF;
     box-shadow: 3px 4px 21px rgba(0, 0, 0, 0.25);
     border-radius: 15px;
-  
   }
+
+  .sn--links > img,
+  .sn--links-home > img{
+    width: 30px;
+    margin-right: 10px;
+  }
+
   .sn--links:hover{
     background-color: #0ca1f815;
   }
@@ -144,7 +134,6 @@
   
   .sn--logout{
     width: 100%;
-    position: relative;
-    bottom: 0;
-    border-radius: 15px;
+    margin:0px;
+    border-radius: 10px;
   }
