@@ -1,6 +1,6 @@
 import MySideNav from "../MySideNav";
 import { useEffect, useState } from "react";
-import "./addingGuesthouse.scss";
+import "../AdminPages/addingGuesthouse.scss";
 
 function DashboardOverview() {
   const [guesthouses, setGuesthouses] = useState([]);

@@ -1,4 +1,3 @@
-
 .App {
   margin: 0;
   padding: 0;
@@ -32,6 +31,7 @@
   from {
     transform: scale(0.95);
   }
+
   to {
     transform: scale(1);
   }
@@ -81,7 +81,7 @@ button:hover {
 
 .link-btn {
   background: none;
-  color:black;
+  color: black;
   text-decoration: underline;
   margin-top: 1rem;
   font-size: 0.9rem;
@@ -99,17 +99,19 @@ button:hover {
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: color #16a5dd; ;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+  background: color #16a5dd;
+  ;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .dashboard {
   font-size: 5rem;
   text-align: center;
 }
+
 .homepage {
   flex-direction: column;
-  
+
 }
 
 .homepic {
@@ -121,6 +123,218 @@ button:hover {
   height: 600px;
 }
 
+/* 
+main {
+  width: 100%;
+  padding: 16px;
+  height: 100%;
+  background-color: whitesmoke;
+  display: flex;
+  position: relative;
+  float: left;
+} */
+
+main {
+  background-color: white;
+  /* height: 3000px; */
+  width: 80%;
+  float: right;
+}
+
+.admin--page {
+  background-color: red;
+  height: 100%;
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin--header {
+  /* background: linear-gradient(180deg,
+      rgba(0, 0, 0, 0.2) 0%,
+      rgba(198, 190, 190, 0) 78.65%),
+    rgba(102, 103, 171, 0.22); */
+
+  background-color: #063956;
+  padding: 20px 60px;
+  text-align: left;
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: 32px;
+  color: rgb(212, 211, 211);
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+/* Dashboard css styles */
 
 
+.dash--content {
+  display: flex;
+  flex-direction: column;
+  min-width: 1300px;
+  align-self: center;
+
+}
+
+.dash--cards {
+  display: flex;
+  padding: 10px;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+}
+
+.dash--header {
+  align-self: flex-start;
+  padding-left: 100px;
+  padding-top: 20px;
+  font-weight: bold;
+  font-size: 35px;
+}
+
+.dash--card-image {
+  border-radius: 16px 16px 0px 0px;
+  margin-bottom: 20px;
+  width: 100%;
+  box-shadow: inset 0px -7px 10px rgba(34, 87, 122, 0.23);
+}
+
+.dash--card {
+  margin: 20px;
+  border-radius: 16px;
+  background-color: white;
+  box-shadow: 4px 4px 17px rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+  width: 300px;
+}
+
+.dash--card-info {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px 20px;
+  font-family: Junge;
+  font-size: 28px;
+  font-weight: 400;
+}
+
+
+/* guest house list Admin */
+
+.admin--container{
+  width: 90%;
+  background-color: lightblue;
+  height: 80vh;
+  margin: 50px;
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  flex-direction:row;
+
+}
+
+.admin--filters{
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  margin-top: 40px;
+  padding-left: 20px;
+}
+
+.admin--radios{
+  display:flex;
+  flex-direction: column;
+  align-items:start;
+  margin-left:20px;
+  margin-bottom: 20px;
+  width: fit-content;
+}
+.admin--radio{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 3px;
+  height: fit-content;
+}
+.admin--radio > label{
+  font-size: 16px;
+  margin-top: 0;
+  text-indent: 10px;
+  color:rgb(77, 77, 77);
+}
+.admin--radio > input{
+  width:fit-content;
+  height: fit-content;
+}
+
+
+.table--container{
+  background-color: white;
+  padding: 30px;
+  flex-grow: 1;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.table{
+  width: auto;
+  border-collapse:collapse;
+  border-spacing: 20px;
+}
+
+.table--actions{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  border:transparent;
+}
+
+.ghl--name-container{
+  display: flex;
+  align-items: center;
+}
+
+.table--logo{
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  margin-right: 20px;
+}
+
+.table-head{
+  font-size: 30px;
+  font-family:Inter;
+  font-weight: bold;
+  color:rgb(42, 42, 42);
+  background-color: lightblue;
+ 
+};
+
+.table-row{
+  padding: 35px 15px;
+  /* background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #E9E9E9 100%); */
+  border: transparent;
+}
+.table-row:hover{
+  background-color: #0ca1f815;
+}
+
+.ghl--name-container, .table--actions{
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.ghl--new-button{
+  align-self: flex-end;
+  justify-self: flex-end;
+}
+.ghl--new-button > button{
+  width: 100%;
+  border-radius: 15px;
+  padding:15px 30px;
+}
 

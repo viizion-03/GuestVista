@@ -2,7 +2,7 @@ import SideNav,{NavItem, NavIcon, NavText} from "@trendmicro/react-sidenav"
 import '@fortawesome/fontawesome-free/css/all.css';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import { useNavigate } from "react-router-dom";
-import auth from './config/firebase'
+import {auth} from './config/firebase'
 
 function MySideNav () {
     const navigate = useNavigate();

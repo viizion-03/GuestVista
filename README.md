@@ -68,3 +68,21 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+### Dependency scripts
+
+This section lists the scripts for any dependencies needed
+by the web application which includes icons and firebase
+
+
+### `npm install firebase` to install firebase
+
+for Fontawsome icons:
+
+install core:
+### `npm i --save @fortawesome/fontawesome-svg-core`
+
+get icon packages
+### `npm i --save @fortawesome/free-solid-svg-icons`
+### `npm i --save @fortawesome/free-regular-svg-icons`
