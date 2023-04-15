@@ -7,7 +7,7 @@
   font-family: 'Segoe UI', sans-serif;
 }
 
-.go-to-guesthouses{
+.go-to-guesthouses {
   /* margin-top: 1px; */
   width: auto;
   padding: 15px 40px;
@@ -104,10 +104,10 @@ button:hover {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.dashboard {
+/* .dashboard {
   font-size: 5rem;
   text-align: center;
-}
+} */
 
 .homepage {
   flex-direction: column;
@@ -142,39 +142,42 @@ main {
   /* background */
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
   display: flex;
 
 }
 
 main {
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   flex-grow: 1;
-  overflow-y: visible;
+  overflow: auto;
 }
 
-.dashboard {
+/* .dashboard {
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+  margin: 0px;
+} */
+
+.main--dashboard {
   display: flex;
   flex-direction: column;
 }
 
 .admin--header {
-  /* background: linear-gradient(180deg,
-      rgba(0, 0, 0, 0.2) 0%,
-      rgba(198, 190, 190, 0) 78.65%),
-    rgba(102, 103, 171, 0.22); */
 
   background-color: #063956;
-  padding: 20px 60px;
+  padding: 20px 30px;
   text-align: left;
   font-family: 'Inter', sans-serif;
-  font-weight: 800;
   font-size: 32px;
-  color: rgb(212, 211, 211);
+  color: rgb(248, 248, 248);
+  font-weight: bold;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
 }
+
 
 /* Dashboard css styles */
 
@@ -182,21 +185,20 @@ main {
 .dash--content {
   display: flex;
   flex-direction: column;
-  min-width: 1300px;
-  align-self: center;
-
+  overflow-y: auto;
+  padding: 20px;
 }
 
 .dash--cards {
   display: flex;
   padding: 10px;
-  justify-content: space-evenly;
+  justify-content: space-between;
   margin-bottom: 20px;
 }
 
 .dash--header {
-  align-self: flex-start;
-  padding-left: 100px;
+  align-self: stretch;  
+  padding-left: 30px;
   padding-top: 20px;
   font-weight: bold;
   font-size: 35px;
@@ -215,7 +217,7 @@ main {
   background-color: white;
   box-shadow: 4px 4px 17px rgba(0, 0, 0, 0.25);
   border-radius: 12px;
-  width: 300px;
+  flex-basis: 390px;
 }
 
 .dash--card-info {
@@ -230,118 +232,194 @@ main {
 
 /* guest house list Admin */
 
-.admin--container{
-  width: 90%;
+
+.admin-ghl--content {
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  overflow-y: hidden;
+  padding: 20px;
+}
+
+.admin--container {
   background-color: lightblue;
-  height: 60vh;
-  margin: 50px;
+  flex-basis: 100%;
+  max-height: 80vh;
+  margin: 20px;
   border-radius: 15px;
   padding: 20px;
   display: flex;
-  flex-direction:row;
+  flex-direction: row;
 
 }
 
-.admin--filters{
+.admin--filters {
+  /* display: flex;
+  flex-direction: column; */
+  min-width: 150px;
+  margin-top: 20px;
+  padding-left: 10px;
+}
+
+.admin--radio{
+  display: flex;
+  flex-direction: row;
   display: flex;
   flex-direction: column;
-  min-width: 200px;
-  margin-top: 40px;
-  padding-left: 20px;
 }
 
-.admin--radios{
-  display:flex;
-  flex-direction: column;
-  align-items:start;
-  margin-left:20px;
-  margin-bottom: 20px;
-  width: fit-content;
-}
 .admin--radio{
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 3px;
-  height: fit-content;
+  justify-content: flex-start;
+}
+
+.admin--radio > input{
+  width: fit-content;
+  align-self: center;
 }
 .admin--radio > label{
-  font-size: 16px;
-  margin-top: 0;
-  text-indent: 10px;
-  color:rgb(77, 77, 77);
-}
-.admin--radio > input{
-  width:fit-content;
-  height: fit-content;
+  margin:0px;
+  padding:0px;
+  font-weight: 500;
 }
 
-
-.table--container{
-  background-color: white;
-  padding: 30px;
+.table-section{
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
+}
+
+.table--container {
+  background-color: white;
+  padding: 18px;
+  padding-top: 0px;
+  flex-grow: 1;
+  height: 70%;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.table{
+.admin--searchbar{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  height: fit-content;
+  padding: 0px;
+  margin:0px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  /* border: 2px solid #063956; */
+}
+
+.admin--search-input{
+  max-width: 50%;
+  height: 30px;
+  margin:0px;
+  padding: 0px;
+  text-indent: 15px;
+}
+.admin--search-button{
+  width: 50px;
+  height: 30px;
+  margin:0px;
+  padding: 0px;
+  margin-left: 10px;
+  border-radius: 0px;
+}
+
+.table--scroller{
+  width: 100%;
+  height: auto;
+  overflow: auto;
+}
+
+.table {
   width: auto;
-  border-collapse:collapse;
+  border-collapse: collapse;
   border-spacing: 20px;
 }
 
-.table--actions{
-  display:flex;
+.table--actions {
+  display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  border:transparent;
+  border: transparent;
 }
 
-.ghl--name-container{
+.ghl--name-container {
   display: flex;
   align-items: center;
 }
 
-.table--logo{
+.table--logo {
   width: 50px;
   height: 50px;
   border-radius: 50px;
   margin-right: 20px;
 }
 
-.table-head{
+.table-head {
   font-size: 30px;
-  font-family:Inter;
+  font-family: Inter;
   font-weight: bold;
-  color:rgb(42, 42, 42);
+  color: rgb(0, 45, 112);
   background-color: lightblue;
- 
-};
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
 
-.table-row{
+.table-head:first-child{
+  border-radius: 10px 0 0 10px;
+}
+
+.table-head:last-child{
+  border-radius: 10px 10px 10px 10px;
+}
+
+
+.table-row {
   padding: 35px 15px;
   /* background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #E9E9E9 100%); */
   border: transparent;
 }
-.table-row:hover{
+
+.table-row:hover {
   background-color: #0ca1f815;
 }
 
-.ghl--name-container, .table--actions{
+.ghl--name-container,
+.table--actions {
   margin-top: 10px;
   cursor: pointer;
 }
 
-.ghl--new-button{
+.ghl--new-button {
   align-self: flex-end;
   justify-self: flex-end;
-}
-.ghl--new-button > button{
-  width: 100%;
-  border-radius: 15px;
-  padding:15px 30px;
+  width: fit-content;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
 }
 
+.ghl--new-button > h5{
+  margin: 0px;
+  margin-right: 10px;
+
+}
+
+
+
+tr > td{
+  color: rgb(44, 91, 74);
+  font-size: 27px;
+  font-weight: 600;
+}

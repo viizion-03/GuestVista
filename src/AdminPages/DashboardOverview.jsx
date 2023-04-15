@@ -19,8 +19,7 @@ function DashboardOverview() {
 
     return (
         <div>
-            {/* <MySideNav /> */}
-            <div className='dashboard'>
+            <div className='main--dashboard'>
                 <h1 className="admin--header">Dashboard</h1>
                 <div className="dash--content">
                     <h3 className="dash--header">Highest Rated</h3>
@@ -44,6 +43,7 @@ function DashboardOverview() {
                         />
 
                     </div>
+
 
                     <h3 className="dash--header">Recently Created</h3>
                     <div className="dash--cards">

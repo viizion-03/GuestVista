@@ -1,3 +1,5 @@
+import { faPlus, faPlusSquare, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -72,18 +74,19 @@ const GuestHouses = () => {
 
   return (
     <>
-      <div className='admin--header'>
-        <h1>Registered Guest Houses</h1>
-      </div>
 
-      <div>
-        {/* summary data section */}
-        <div className="guesthouses-count">
-          <span>Total Guesthouses: </span>
-          <input type="text" value={numGuesthouses} readOnly />
-        </div>
+      <h1 className='admin--header'>Registered Guest Houses</h1>
 
+      <div className='admin-ghl--content'>
         <div>
+          {/* summary data section */}
+          {/* <div className="guesthouses-count">
+            <span>Total Guesthouses: </span>
+            <input type="text" value={numGuesthouses} readOnly />
+          </div> */}
+
+          {/* searchbar */}
+          {/* <div>
             <input
               type="text"
               placeholder="Search Guesthouses"
@@ -92,62 +95,82 @@ const GuestHouses = () => {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
             <button className="search-button">Search</button>
-          </div>
+          </div> */}
 
-      </div>
-      <div className='admin--container'>
-        {/* Filters Section */}
-        <div className='admin--filters'>
-          <h3>Sort by</h3>
-          <div className='admin--radios'>
-            <div className='admin--radio'>
-              <input type="radio" id="name" name='sort' />
-              <label htmlfor="name">Name</label>
-            </div>
-            {/* <br /> */}
-
-            <div className='admin--radio'>
-              <input type="radio" id="price" name='sort' />
-              <label htmlfor="price">Price</label>
-            </div>
-            {/* <br /> */}
-
-            <div className='admin--radio'>
-              <input type="radio" id="rating" name='sort' />
-              <label htmlfor="rating">Rating</label>
-            </div>
-            {/* <br /> */}
-
-            <div className='admin--radio'>
-              <input type="radio" id="location" name='sort' />
-              <label htmlfor="location">Location</label>
-            </div>
-            {/* <br /> */}
-          </div>
         </div>
+        <div className='admin--container'>
+          {/* Filters Section */}
+          <div className='admin--filters'>
+            <h3>Sort by</h3>
+            <div className='admin--radios'>
+              <div className='admin--radio'>
+                <input type="radio" id="name" name='sort' />
+                <label htmlfor="name">Name</label>
+              </div>
+              {/* <br /> */}
 
-        {/* Table Section */}
-        <div className='table--container'>
+              <div className='admin--radio'>
+                <input type="radio" id="price" name='sort' />
+                <label htmlfor="price">Price</label>
+              </div>
+              {/* <br /> */}
 
-          <table className='table'>
-            <thead className='table-head'>
-              <td style={{ textIndent: "10px" }}>Name</td>
-              <td>Location</td>
-              <td style={{ textAlign: "center" }}>Actions</td>
-            </thead>
-            <tbody>
-              {filteredGuesthouses.map((guesthouse) => (
-                <HouseItem
-                  id={guesthouse.id}
-                  gName={guesthouse.gName}
-                  location={guesthouse.location}
-                />
-              ))}
-            </tbody>
-          </table>
+              <div className='admin--radio'>
+                <input type="radio" id="rating" name='sort' />
+                <label htmlfor="rating">Rating</label>
+              </div>
+              {/* <br /> */}
 
-          <div className='ghl--new-button'>
-            <button onClick={createNew} >New Entry</button>
+              <div className='admin--radio'>
+                <input type="radio" id="location" name='sort' />
+                <label htmlfor="location">Location</label>
+              </div>
+              {/* <br /> */}
+            </div>
+          </div>
+          <div className='table-section'>
+            {/* searchbar */}
+            <div className='admin--searchbar'>
+              <input
+                type="text"
+                placeholder="Search Guesthouses"
+                className="admin--search-input"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              <button className="admin--search-button">
+                <FontAwesomeIcon icon={faSearch} />
+              </button>
+            </div>
+            {/* Table Section */}
+            <div className='table--container'>
+
+
+              <div className='table--scroller'>
+                <table className='table'>
+                  <thead className='table-head'>
+                    <td style={{ textIndent: "10px" }}>Name</td>
+                    <td>Location</td>
+                    <td style={{ textAlign: "center" }}>Actions</td>
+                  </thead>
+                  <tbody>
+                    {filteredGuesthouses.map((guesthouse) => (
+                      <HouseItem
+                        id={guesthouse.id}
+                        gName={guesthouse.gName}
+                        location={guesthouse.location}
+                      />
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+            
+                <button onClick={createNew} className='ghl--new-button' >
+                  <h5>New</h5>   
+                <FontAwesomeIcon icon={faPlusSquare} />
+                </button>
+            </div>
           </div>
         </div>
       </div>
