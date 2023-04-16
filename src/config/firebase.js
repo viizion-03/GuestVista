@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+// import { getAnalytics } from "firebase/analytics";
 import {getAuth} from "firebase/auth";
 
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -19,4 +19,4 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-export const analytics = getAnalytics(app);
+// export const analytics = getAnalytics(app);

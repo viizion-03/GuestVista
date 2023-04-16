@@ -85,18 +85,6 @@ const GuestHouses = () => {
             <input type="text" value={numGuesthouses} readOnly />
           </div> */}
 
-          {/* searchbar */}
-          {/* <div>
-            <input
-              type="text"
-              placeholder="Search Guesthouses"
-              className="search-input"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <button className="search-button">Search</button>
-          </div> */}
-
         </div>
         <div className='admin--container'>
           {/* Filters Section */}
@@ -129,6 +117,7 @@ const GuestHouses = () => {
             </div>
           </div>
           <div className='table-section'>
+            
             {/* searchbar */}
             <div className='admin--searchbar'>
               <input
