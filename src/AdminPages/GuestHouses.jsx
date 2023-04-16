@@ -144,15 +144,18 @@ const GuestHouses = () => {
             </div>
             {/* Table Section */}
             <div className='table--container'>
-
-
+              <div className='table--headings'>
+                <h2>Name</h2>
+                <h2>Location</h2>
+                <h2>Actions</h2>
+              </div>
               <div className='table--scroller'>
                 <table className='table'>
-                  <thead className='table-head'>
+                  {/* <thead className='table-head'>
                     <td style={{ textIndent: "10px" }}>Name</td>
                     <td>Location</td>
                     <td style={{ textAlign: "center" }}>Actions</td>
-                  </thead>
+                  </thead> */}
                   <tbody>
                     {filteredGuesthouses.map((guesthouse) => (
                       <HouseItem
@@ -165,11 +168,11 @@ const GuestHouses = () => {
                 </table>
               </div>
 
-            
-                <button onClick={createNew} className='ghl--new-button' >
-                  <h5>New</h5>   
+
+              <button onClick={createNew} className='ghl--new-button' >
+                <h5>New</h5>
                 <FontAwesomeIcon icon={faPlusSquare} />
-                </button>
+              </button>
             </div>
           </div>
         </div>

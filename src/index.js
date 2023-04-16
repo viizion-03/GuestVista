@@ -50,9 +50,12 @@ root.render(
           <Route path='/subscribers' element={<Subcribers />} />
           <Route path='/requests' element={<Requests />} />
           <Route path='/admin/settings' element={<Settings />} />
-          <Route path='/admin/new-guesthouse' element = {<AddingGuesthouse />} />
+          {/* <Route path='/admin/new-guesthouse' element = {<AddingGuesthouse />} /> */}
+
+          
 
         </Route>
+        <Route path='/admin/new-guesthouse' element = {<GuestHouseData/>} />
       </Routes>
     </Router >
   </Authprovider>

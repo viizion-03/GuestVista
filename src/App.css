@@ -8,7 +8,6 @@
 }
 
 .go-to-guesthouses {
-  /* margin-top: 1px; */
   width: auto;
   padding: 15px 40px;
   float: right;
@@ -104,10 +103,6 @@ button:hover {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* .dashboard {
-  font-size: 5rem;
-  text-align: center;
-} */
 
 .homepage {
   flex-direction: column;
@@ -123,20 +118,8 @@ button:hover {
   height: 600px;
 }
 
-/* 
-main {
-  width: 100%;
-  padding: 16px;
-  height: 100%;
-  background-color: whitesmoke;
-  display: flex;
-  position: relative;
-  float: left;
-} */
 
-/* Admin side UI */
-
-
+/* ADMIN SIDE STYLES */
 
 .admin--page {
   /* background */
@@ -151,13 +134,6 @@ main {
   flex-grow: 1;
   overflow: auto;
 }
-
-/* .dashboard {
-  display: flex;
-  flex-direction: column;
-  padding: 0px;
-  margin: 0px;
-} */
 
 .main--dashboard {
   display: flex;
@@ -179,8 +155,7 @@ main {
 }
 
 
-/* Dashboard css styles */
-
+/*ADMIN Dashboard css styles */
 
 .dash--content {
   display: flex;
@@ -232,7 +207,6 @@ main {
 
 /* guest house list Admin */
 
-
 .admin-ghl--content {
   display: flex;
   flex-direction: column;
@@ -254,8 +228,6 @@ main {
 }
 
 .admin--filters {
-  /* display: flex;
-  flex-direction: column; */
   min-width: 150px;
   margin-top: 20px;
   padding-left: 10px;
@@ -300,7 +272,7 @@ main {
   border-radius: 15px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .admin--searchbar{
@@ -313,15 +285,17 @@ main {
   margin:0px;
   margin-bottom: 10px;
   margin-right: 10px;
-  /* border: 2px solid #063956; */
 }
 
 .admin--search-input{
-  max-width: 50%;
+  max-width: 35%;
   height: 30px;
   margin:0px;
   padding: 0px;
   text-indent: 15px;
+  border-radius: 5px;
+  background-color: white;
+  font-style: italic;
 }
 .admin--search-button{
   width: 50px;
@@ -336,12 +310,14 @@ main {
   width: 100%;
   height: auto;
   overflow: auto;
+  margin-top:20px;
+  margin-bottom: auto;
 }
 
 .table {
   width: auto;
   border-collapse: collapse;
-  border-spacing: 20px;
+  margin-top: 0px;
 }
 
 .table--actions {
@@ -361,6 +337,23 @@ main {
   height: 50px;
   border-radius: 50px;
   margin-right: 20px;
+}
+
+.table--headings{
+  display: flex;
+  justify-content: flex-start;
+  color: lightblue;
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 15px;
+  align-self:stretch;
+  background-color: #063956;
+}
+.table--headings> h2:first-child{
+  width: 52%;
+}
+.table--headings> h2:nth-child(2){
+  width: 33%;
 }
 
 .table-head {
@@ -385,7 +378,6 @@ main {
 
 .table-row {
   padding: 35px 15px;
-  /* background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #E9E9E9 100%); */
   border: transparent;
 }
 
@@ -416,10 +408,111 @@ main {
 
 }
 
-
-
 tr > td{
   color: rgb(44, 91, 74);
   font-size: 27px;
   font-weight: 600;
 }
+
+/* Creating New Guest House */
+
+.admin--ghd-content{
+  padding: 20px;
+  display: flex;
+
+}
+
+.ghd--details{
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 30px;
+}
+
+.text-fields{
+display: flex;
+}
+
+.input--fields{
+  position: relative;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  min-width: 40%;
+}
+
+.input--fields > input{
+  padding-left: 50px;
+  background-color: white;
+  border-radius: 30px;
+  font-style: italic;
+}
+
+.input--fields > select{
+  background-color: white;
+  margin: 10px;
+  margin-left: 35px;
+  width: 80%;
+  padding: 5px;
+  border-radius: 30px;
+}
+
+.input--fields > label:first-child{
+  margin: 16px; 
+}
+
+.input--fields label :nth-child(1){
+  margin-right: 5px;
+  margin-left: 16px;
+}
+
+
+.icon{
+  position: absolute;
+  left: 30px;
+  top: 20px;
+}
+
+.ghd--gallery{
+  background-color: gold;
+  height: 100vh;
+}
+
+.gallery--image-container{
+  background-color: #206abe;
+  height: 150px;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.change--logo{
+  background-color: white;
+  border-radius: 50px;
+  padding : 3px;
+  margin-top: -15px;
+  margin-right: -40px;
+  margin-bottom: 10px;
+}
+
+.gallery--image-container > img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50px;
+}
+
+.file-chooser{
+  display: none;
+}
+
+.packages > select{
+  background-color: white;
+  margin: 10px;
+  margin-left: 35px;
+  width: 300px;
+  padding: 5px;
+  border-radius: 30px;
+}
+
