@@ -1,24 +1,69 @@
-import React from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faMagic } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faSearch } from '@fortawesome/free-solid-svg-icons';
 import GuestHouseTile from '../components/GuestHouseTile';
 import "./GuestHousesList.css"
 
 
 const GuestHousesList = () => {
 
-  
+
+  const [guesthouses, setGuesthouses] = useState([]);
+  const [filteredGuestHouses, setFilteredGuestHouses] = useState([]);
+  const [searchName, setSearchName] = useState('');
+  const [sortBy, setSortBy] = useState('');
+
+
+  useEffect(() => {
+    fetch("https://guestvista-4308f-default-rtdb.firebaseio.com/addGuesthouses.json")
+      .then((res) => res.json())
+      .then((data) => {
+        const loadedGuesthouses = [];
+
+        for (const key in data) {
+          loadedGuesthouses.push({
+            id: key,
+            ...data[key],
+          });
+        }
+
+        setGuesthouses(loadedGuesthouses);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+
+  useEffect(() => {
+    let tempGuesthouses = [...guesthouses];
+
+    // Filter by name
+    if (searchName) {
+      tempGuesthouses = tempGuesthouses.filter((guestHouse) => guestHouse.gName.toLowerCase().includes(searchName.toLowerCase()));
+    }
+
+    // Sort by price or rating
+    if (sortBy === 'high-price') {
+      tempGuesthouses.sort((a, b) => b.price - a.price);
+    } else if (sortBy === 'low-price') {
+      tempGuesthouses.sort((a, b) => a.price - b.price);
+    } else if (sortBy === 'high-rating') {
+      tempGuesthouses.sort((a, b) => b.ratings - a.ratings);
+    }
+
+    setFilteredGuestHouses(tempGuesthouses);
+  }, [searchName, sortBy, guesthouses]);
+
   const navigate = useNavigate();
 
-  function goHome(){
+  function goHome() {
     navigate('/')
   }
   return (
 
     <>
       <nav >
-        <FontAwesomeIcon icon={faHome} size='2x' className='ghl--home-icon' onClick={goHome}/>
+        <FontAwesomeIcon icon={faHome} size='2x' className='ghl--home-icon' onClick={goHome} />
 
         <ul>
           <li>Sign In</li>
@@ -28,12 +73,12 @@ const GuestHousesList = () => {
         </ul>
       </nav>
 
- 
+
 
       <div className='ghl--container'>
-      <h3 className='ghl--heading'>Guest Houses</h3>
+        <h3 className='ghl--heading'>Guest Houses</h3>
         {/* Decoration Grid */}
-        <div className='ghl--photos-grid'>
+        {/* <div className='ghl--photos-grid'>
 
           <div className='ghl--photo-grid-col'>
             <img src="/images/img1.jpg" alt="guesthouse" />
@@ -44,47 +89,54 @@ const GuestHousesList = () => {
             <img src="./images/img3.jpg" alt="guesthouse" />
             <img src="./images/img4.jpg" alt="guesthouse" />
           </div>
-        </div>
+        </div> */}
 
         {/* Displayin list of guest houses */}
 
+        {/* searchbar */}
+        <div className='admin--searchbar'>
+          <input
+            type="text"
+            name="searchName"
+            placeholder="Search Guesthouses"
+            className="admin--search-input"
+            value={searchName}
+            onChange={(text) => {
+              setSearchName(text.target.value)
+            }}
+          />
+          <button className="admin--search-button">
+            <FontAwesomeIcon icon={faSearch} />
+          </button>
+        </div>
+
+        <div>
+          <select
+            name="sort"
+            id="sort"
+            onChange={(value) => setSortBy(value.target.value)}
+            value={sortBy}
+          >
+            <option value="default">Sort by</option>
+            <option value="low-price">Price: Low to High</option>
+            <option value="high-price">Price: High to Low</option>
+            <option value="high-rating">Rating: High to Low</option>
+          </select>
+        </div>
+
         <div className='ghl--houses'>
-          <GuestHouseTile
-            img="./images/img3.jpg"
-            name="Apical Guesthoue"
-            price="500"
-            rating="5.0"
-            distance="3.8"
-            description="Welcome to our guest house located just3.8 km away from the bustling city center. Our charming guest house offers a peaceful and comfortable retreat for travelers seeking a quiet getaway. "
 
-          />
-          <GuestHouseTile
-            img="./images/img4.jpg"
-            name="Apical Guesthoue"
-            price="500"
-            rating="5.0"
-            distance="3.8"
-            description="Welcome to our guest house located just3.8 km away from the bustling city center. Our charming guest house offers a peaceful and comfortable retreat for travelers seeking a quiet getaway. "
-
-          />
-          <GuestHouseTile
-            img="./images/img2.jpg"
-            name="Apical Guesthoue"
-            price="500"
-            rating="5.0"
-            distance="3.8"
-            description="Welcome to our guest house located just3.8 km away from the bustling city center. Our charming guest house offers a peaceful and comfortable retreat for travelers seeking a quiet getaway. "
-
-          />
-          <GuestHouseTile
-            img="./images/img1.jpg"
-            name="Apical Guesthoue"
-            price="500"
-            rating="5.0"
-            distance="3.8"
-            description="Welcome to our guest house located just3.8 km away from the bustling city center. Our charming guest house offers a peaceful and comfortable retreat for travelers seeking a quiet getaway. "
-
-          />
+          {filteredGuestHouses.map((house) => {
+            return (
+              <GuestHouseTile
+                img={house.photos[0].src}
+                name={house.gName}
+                price={house.price}
+                rating={house.ratings}
+                description={house.description}
+              />
+            )
+          })}
 
         </div>
       </div>

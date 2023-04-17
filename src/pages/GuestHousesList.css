@@ -65,23 +65,21 @@ nav>ul>li {
 }
 
 .house-card-image{
-    width: 40%;
-    max-height: 250px;
-    min-width: 300px;
+    background-color: black;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
     border-radius: 10px;
     align-self: center;
-    margin-left: 8px
+    margin-left: 8px;
 }
 
 .house-card-image > img{
-    object-fit: fill;
-    flex-shrink: 0;
-    min-width: 100%;
-    min-width: 100%;
+    object-fit: contain;
+    width: 300px;
+    height: 300px;
+
 }
 
 .house-card-header{

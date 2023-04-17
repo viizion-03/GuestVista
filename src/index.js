@@ -10,7 +10,7 @@ import DashboardOverview from './AdminPages/DashboardOverview'
 import GuestHouses from './AdminPages/GuestHouses'
 import Bookings from './AdminPages/Bookings'
 import MySideNav from './MySideNav';
-import { Authprovider, AuthProvider } from './contexts/AuthContext'
+import { Authprovider} from './contexts/AuthContext'
 import { AuthLayout } from './layouts/AuthLayout';
 import GuestHouseData from './AdminPages/GuestHouseData';
 import Subcribers from './AdminPages/Subcribers';
@@ -50,13 +50,15 @@ root.render(
           <Route path='/subscribers' element={<Subcribers />} />
           <Route path='/requests' element={<Requests />} />
           <Route path='/admin/settings' element={<Settings />} />
-          {/* <Route path='/admin/new-guesthouse' element = {<AddingGuesthouse />} /> */}
 
           
 
         </Route>
         <Route path='/admin/new-guesthouse' element = {<GuestHouseData/>} />
+        
+        <Route path='/new-guesthouse' element = {<AddingGuesthouse />} />
       </Routes>
+      
     </Router >
   </Authprovider>
 );
