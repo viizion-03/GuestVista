@@ -1,67 +1,60 @@
-
+import { useState, useEffect } from 'react';
+import './addingGuesthouse.scss';
+import Chart from 'chart.js/auto';
 
 function DashboardOverview() {
+    const [numGuesthouses, setNumGuesthouses] = useState(0);
+    const [recentGuesthouses, setRecentGuesthouses] = useState([]);
+    const [guesthousePrices, setGuesthousePrices] = useState({});
+
+    useEffect(() => {
+        fetch("https://guestvista-4308f-default-rtdb.firebaseio.com/addGuesthouses.json?orderBy=\"$key\"")
+            .then(response => response.json())
+            .then(data => {
+                 
+
+                setRecentGuesthouses(Object.values(data).reverse().slice(0, 3));
+                setNumGuesthouses(Object.keys(data).length);
+            })
+            .catch(error => console.log(error));
+    }, []);
 
     function HouseCard(props) {
         return (
             <div className="dash--card">
                 <img className="dash--card-image" src={props.img} />
                 <div className="dash--card-info">
-                    <h4 className={props.rating ? "card--rated" : "card--created"}
-                    >
-                        {props.name}
-                    </h4>
+                    <h4 className={props.ratings ? "card--rated" : "card--created"}>
+                        {props.name}</h4>
                     {props.rating && <h4>{props.rating + "⭐"}</h4>}
+
                 </div>
             </div>
-        )
+            
+        );
     }
+    
 
     return (
         <div>
             <div className='main--dashboard'>
                 <h1 className="admin--header">Dashboard</h1>
                 <div className="dash--content">
-                    <h3 className="dash--header">Highest Rated</h3>
-                    <div className="dash--cards">
-                        <HouseCard
-                            img="./icons/house.png"
-                            name="Guest house Name here"
-                            rating={5}
-                        />
-
-                        <HouseCard
-                            img="./icons/house.png"
-                            name="Guest house Name here"
-                            rating={5}
-                        />
-
-                        <HouseCard
-                            img="./icons/house.png"
-                            name="Guest house Name here"
-                            rating={5}
-                        />
-
+                    <div className="counter-wrapper">
+                        <h3 className="dash--header"> Total Active Guesthouses:</h3>
+                        <span className="counter">{numGuesthouses}</span>
                     </div>
-
 
                     <h3 className="dash--header">Recently Created</h3>
                     <div className="dash--cards">
-                        <HouseCard
-                            img="./icons/house.png"
-                            name="Guest house Name here"
-                        />
-
-                        <HouseCard
-                            img="./icons/house.png"
-                            name="Guest house Name here"
-                        />
-
-                        <HouseCard
-                            img="./icons/house.png"
-                            name="Guest house Name here"
-                        />
-
+                        {recentGuesthouses.map(guesthouse => (
+                            <HouseCard
+                                key={guesthouse.id}
+                                img={guesthouse.photos[0].src}
+                                name={guesthouse.gName}
+                                rating={guesthouse.ratings}
+                            />
+                        ))}
                     </div>
                 </div>
             </div>
@@ -69,4 +62,4 @@ function DashboardOverview() {
     )
 }
 
-export default DashboardOverview; 
+export default DashboardOverview;

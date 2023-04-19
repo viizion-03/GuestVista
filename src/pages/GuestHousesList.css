@@ -57,9 +57,11 @@ nav>ul>li {
 }
 
 .ghl--house-card{
+    position: relative;
     display: flex;
     align-items: flex-start;
-    width: 70vw;
+    width: 1200px;
+    height: 400px;
     margin-top: 25px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
@@ -69,17 +71,26 @@ nav>ul>li {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
     border-radius: 10px;
     align-self: center;
     margin-left: 8px;
+    width: 400px;
+    height: 100%;
 }
 
 .house-card-image > img{
-    object-fit: contain;
-    width: 300px;
-    height: 300px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
+.house-card-details{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    align-items: flex-start;
+    flex-grow: 1;
+    width: calc(100% - 300px);
 }
 
 .house-card-header{
@@ -105,24 +116,33 @@ nav>ul>li {
     align-items: center;
     padding-top: 15px;
 }
+.house-card-description{
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    padding-top: 15px;
+}
 .house-card-distance > h4{
     margin:0px;
     margin-left: 10px;
 }
 
+.ghl--view-house-btn-container{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 10px;
+  }
+
 .ghl--view-house-btn{
     align-self: flex-end;
+    right: 0px;
     margin:0px;
+    margin-bottom: 40px;
     width: auto;
     padding: 10px;
 }
 
-.house-card-details{
-    display: flex;
-    flex-direction: column;
-    padding :20px 20px;
-    align-items: flex-start;
-}
 
 .ghl--houses{
     padding :15px;
@@ -273,4 +293,42 @@ nav>ul>li {
     width: auto;
     padding :10px 40px;
 }
+
+.search-bar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .search-bar {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-right: 10px;
+    flex: 1;
+  }
+  
+  .search-input {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 1.2rem;
+  }
+  
+
+  
+  .sort-dropdown {
+    font-size: 1.2rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .sort-dropdown:hover {
+    background-color: #f5f5f5;
+  }
 

@@ -36,17 +36,19 @@ const GuestHouseTile = (props) => {
 
         <span className='house-card-distance'>
           <FontAwesomeIcon icon={faMapMarker} />
-          <h4>{props.distance} </h4>
+          <h4>{props.location} </h4>
         </span>
 
         <p className='house-card-description'>
           {props.description}
         </p>
 
-        <button className='ghl--view-house-btn' onClick={seeGuestHouses}>View Details</button>
+        <div className='ghl--view-house-btn-container'>
+          <button className='ghl--view-house-btn' onClick={seeGuestHouses}>View Details</button>
+        </div>
       </div>
     </div>
-  )
+)
 }
 
 export default GuestHouseTile

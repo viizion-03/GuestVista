@@ -94,35 +94,32 @@ const GuestHousesList = () => {
         {/* Displayin list of guest houses */}
 
         {/* searchbar */}
-        <div className='admin--searchbar'>
-          <input
-            type="text"
-            name="searchName"
-            placeholder="Search Guesthouses"
-            className="admin--search-input"
-            value={searchName}
-            onChange={(text) => {
-              setSearchName(text.target.value)
-            }}
-          />
-          <button className="admin--search-button">
-            <FontAwesomeIcon icon={faSearch} />
-          </button>
-        </div>
-
-        <div>
-          <select
-            name="sort"
-            id="sort"
-            onChange={(value) => setSortBy(value.target.value)}
-            value={sortBy}
-          >
-            <option value="default">Sort by</option>
-            <option value="low-price">Price: Low to High</option>
-            <option value="high-price">Price: High to Low</option>
-            <option value="high-rating">Rating: High to Low</option>
-          </select>
-        </div>
+        <div className='search-bar-container'>
+  <div className='search-bar'>
+    <input
+      type="text"
+      name="searchName"
+      placeholder="Search Guesthouses"
+      className="search-input"
+      value={searchName}
+      onChange={(text) => {
+        setSearchName(text.target.value)
+      }}
+    />
+  </div>
+  <select
+    name="sort"
+    id="sort"
+    onChange={(value) => setSortBy(value.target.value)}
+    value={sortBy}
+    className='sort-dropdown'
+  >
+    <option value="default">Sort by</option>
+    <option value="low-price">Price: Low to High</option>
+    <option value="high-price">Price: High to Low</option>
+    <option value="high-rating">Rating: High to Low</option>
+  </select>
+</div>
 
         <div className='ghl--houses'>
 
@@ -133,6 +130,7 @@ const GuestHousesList = () => {
                 name={house.gName}
                 price={house.price}
                 rating={house.ratings}
+                location={house.location}
                 description={house.description}
               />
             )
