@@ -22,7 +22,7 @@ function Content (){
        
         <div>
 
-<button className="go-to-guesthouses" onClick={seeGuestHouses} >see all guest houses</button>
+<button className="go-to-guesthouses" onClick={seeGuestHouses} style={{position: "fixed", bottom: "0", right: "0"}}>see all guest houses</button>
       <section className="my-5" id="about">
         <div className="container">
         <div class="row">

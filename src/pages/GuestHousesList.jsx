@@ -81,35 +81,32 @@ const GuestHousesList = () => {
         <h3 className='ghl--heading'>Guest Houses</h3>
 
         {/* searchbar */}
-        <div className='ghl--searchbar'>
-          <input
-            type="text"
-            name="searchName"
-            placeholder="Search Guesthouses"
-            className="admin--search-input"
-            value={searchName}
-            onChange={(text) => {
-              setSearchName(text.target.value)
-            }}
-          />
-          <button className="ghl--search-button">
-            <FontAwesomeIcon icon={faSearch} />
-          </button>
-        </div>
-
-        <div>
-          <select
-            name="sort"
-            id="sort"
-            onChange={(value) => setSortBy(value.target.value)}
-            value={sortBy}
-          >
-            <option value="default">Sort by</option>
-            <option value="low-price">Price: Low to High</option>
-            <option value="high-price">Price: High to Low</option>
-            <option value="high-rating">Rating: High to Low</option>
-          </select>
-        </div>
+        <div className='search-bar-container'>
+  <div className='search-bar'>
+    <input
+      type="text"
+      name="searchName"
+      placeholder="Search Guesthouses"
+      className="search-input"
+      value={searchName}
+      onChange={(text) => {
+        setSearchName(text.target.value)
+      }}
+    />
+  </div>
+  <select
+    name="sort"
+    id="sort"
+    onChange={(value) => setSortBy(value.target.value)}
+    value={sortBy}
+    className='sort-dropdown'
+  >
+    <option value="default">Sort by</option>
+    <option value="low-price">Price: Low to High</option>
+    <option value="high-price">Price: High to Low</option>
+    <option value="high-rating">Rating: High to Low</option>
+  </select>
+</div>
 
         <div className='ghl--houses'>
 
@@ -120,6 +117,7 @@ const GuestHousesList = () => {
                 name={house.gName}
                 price={house.price}
                 rating={house.ratings}
+                location={house.location}
                 description={house.description}
               />
             )
