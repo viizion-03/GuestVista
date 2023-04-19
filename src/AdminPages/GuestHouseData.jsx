@@ -445,7 +445,7 @@ const GuestHouseData = () => {
               </div>
             </section>
 
-            <h3>Service Packages</h3>
+            <h3>Service Packages</h3>*
 
             <section className='packages'>
 
@@ -549,7 +549,7 @@ const GuestHouseData = () => {
                     guestHouse.packages.size !== 0 && guestHouse.packages.map(item => {
                       return (
                         <div key={item.package_name} className='preview--card'>
-                          <h4 className='preview-subhead'>Package {guestHouse.packages.indexOf(item)}</h4>
+                          <h4 className='preview-subhead'>Package {guestHouse.packages.indexOf(item) +1}</h4>
 
                           <p><b>Package name:</b> {item.package_name}</p>
 
