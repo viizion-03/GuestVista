@@ -10,7 +10,7 @@ import DashboardOverview from './AdminPages/DashboardOverview'
 import GuestHouses from './AdminPages/GuestHouses'
 import Bookings from './AdminPages/Bookings'
 import MySideNav from './MySideNav';
-import { Authprovider} from './contexts/AuthContext'
+import { Authprovider } from './contexts/AuthContext'
 import { AuthLayout } from './layouts/AuthLayout';
 import GuestHouseData from './AdminPages/GuestHouseData';
 import Subcribers from './AdminPages/Subcribers';
@@ -25,15 +25,15 @@ import AddingGuesthouse from './AdminPages/AddingGueshouse'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-// <<<<<<< HEAD
-//   <Router >
-//     <Routes>
-//       <Route path='/' element={<App />} />
+  // <<<<<<< HEAD
+  //   <Router >
+  //     <Routes>
+  //       <Route path='/' element={<App />} />
 
-//       <Route path='/mysidenav' element={<MySideNav />} />
-//       <Route path='/dashboard-overview' element={<DashboardOverview />} />
-//       <Route path='/guest-houses' element={<GuestHouses />} />
-//       <Route path='/bookings' element={<Bookings />} />
+  //       <Route path='/mysidenav' element={<MySideNav />} />
+  //       <Route path='/dashboard-overview' element={<DashboardOverview />} />
+  //       <Route path='/guest-houses' element={<GuestHouses />} />
+  //       <Route path='/bookings' element={<Bookings />} />
 
   <Authprovider>
     < Router >
@@ -50,15 +50,12 @@ root.render(
           <Route path='/subscribers' element={<Subcribers />} />
           <Route path='/requests' element={<Requests />} />
           <Route path='/admin/settings' element={<Settings />} />
-
-          
-
+          <Route path='/admin/new-guesthouse' element={<GuestHouseData />} />
         </Route>
-        <Route path='/admin/new-guesthouse' element = {<GuestHouseData/>} />
-        
-        <Route path='/new-guesthouse' element = {<AddingGuesthouse />} />
+
+        <Route path='/new-guesthouse' element={<AddingGuesthouse />} />
       </Routes>
-      
+
     </Router >
   </Authprovider>
 );

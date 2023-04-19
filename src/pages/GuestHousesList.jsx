@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faSearch } from '@fortawesome/free-solid-svg-icons';
 import GuestHouseTile from '../components/GuestHouseTile';
 import "./GuestHousesList.css"
+import { h1 } from 'fontawesome';
 
 
 const GuestHousesList = () => {
@@ -13,9 +14,11 @@ const GuestHousesList = () => {
   const [filteredGuestHouses, setFilteredGuestHouses] = useState([]);
   const [searchName, setSearchName] = useState('');
   const [sortBy, setSortBy] = useState('');
+  const [loading, setLoading] = useState(false)
 
 
   useEffect(() => {
+    setLoading(true)
     fetch("https://guestvista-4308f-default-rtdb.firebaseio.com/addGuesthouses.json")
       .then((res) => res.json())
       .then((data) => {
@@ -29,14 +32,15 @@ const GuestHousesList = () => {
         }
 
         setGuesthouses(loadedGuesthouses);
+        setLoading(false)
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => {setLoading(false)})
   }, []);
 
 
   useEffect(() => {
     let tempGuesthouses = [...guesthouses];
-
     // Filter by name
     if (searchName) {
       tempGuesthouses = tempGuesthouses.filter((guestHouse) => guestHouse.gName.toLowerCase().includes(searchName.toLowerCase()));
@@ -73,28 +77,11 @@ const GuestHousesList = () => {
         </ul>
       </nav>
 
-
-
       <div className='ghl--container'>
         <h3 className='ghl--heading'>Guest Houses</h3>
-        {/* Decoration Grid */}
-        {/* <div className='ghl--photos-grid'>
-
-          <div className='ghl--photo-grid-col'>
-            <img src="/images/img1.jpg" alt="guesthouse" />
-            <img src="./images/img2.jpg" alt="guesthouse" />
-          </div>
-
-          <div className='ghl--photo-grid-col'>
-            <img src="./images/img3.jpg" alt="guesthouse" />
-            <img src="./images/img4.jpg" alt="guesthouse" />
-          </div>
-        </div> */}
-
-        {/* Displayin list of guest houses */}
 
         {/* searchbar */}
-        <div className='admin--searchbar'>
+        <div className='ghl--searchbar'>
           <input
             type="text"
             name="searchName"
@@ -105,7 +92,7 @@ const GuestHousesList = () => {
               setSearchName(text.target.value)
             }}
           />
-          <button className="admin--search-button">
+          <button className="ghl--search-button">
             <FontAwesomeIcon icon={faSearch} />
           </button>
         </div>
@@ -126,7 +113,7 @@ const GuestHousesList = () => {
 
         <div className='ghl--houses'>
 
-          {filteredGuestHouses.map((house) => {
+          {filteredGuestHouses.size != 0 &&filteredGuestHouses.map((house) => {
             return (
               <GuestHouseTile
                 img={house.photos[0].src}
@@ -136,7 +123,7 @@ const GuestHousesList = () => {
                 description={house.description}
               />
             )
-          })}
+          })}        
 
         </div>
       </div>

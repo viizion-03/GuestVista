@@ -10,27 +10,15 @@ const AdminNav = () => {
     overflow: "hidden"
   })
 
-  const {authUser} = useContext(AuthContext)
+  const {authUser, setIsLoggedIn} = useContext(AuthContext)
 
   function logout() {
     auth.signOut()
+    setIsLoggedIn(false)
     console.log("signed out")
     console.log(authUser)
     navigate('/')
   }
-
-  // function openNav() {
-  //   setStyle({
-  //     overflow: "visible"
-  //   })
-  // }
-
-  // function closeNav() {
-
-  //   setStyle({
-  //     overflow: "visible"
-  //   })
-  // }
 
   return (
     <>

@@ -9,8 +9,7 @@ export function Authprovider(props){
 
     useEffect( () => {
         auth.onAuthStateChanged( user => {
-            
-            setAuthUser(user)            
+            setAuthUser(user)
             if(user){
                 setIsLoggedIn(true)
             }else {
@@ -21,7 +20,8 @@ export function Authprovider(props){
 
     const value ={
         authUser,
-        isLoggedIn
+        setIsLoggedIn,
+        isLoggedIn,
     }
 
     return(

@@ -12,7 +12,7 @@ const AdminLogin = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const { isLoggedIn, setAuthUser, setIsLoggedIn } = useContext(AuthContext)
+  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext)
 
   const navigate = useNavigate()
   const location = useLocation()

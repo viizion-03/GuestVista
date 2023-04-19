@@ -1,0 +1,201 @@
+.admin--header {
+    margin-bottom: 0px;
+}
+
+.admin--ghd-content {
+    padding: 0px;    
+    /* background: linear-gradient(180deg, #06395621 0%,#063956  100%); */
+}
+
+.admin--header {
+    z-index: 1;
+}
+
+#heading {
+    font-size: 34px;
+    font-weight: bold;
+    color: rgb(2, 46, 77);
+}
+
+#sub-heading {
+    font-size: 25px;
+    font-weight: bold;
+    color: rgb(2, 46, 77);
+}
+
+.gallery--image-container {
+    min-width: 350px;
+    flex-basis: 350px;
+    min-height: 200px;
+    flex-shrink: 0;
+}
+
+.ghd--details {
+    display: flex;
+    flex-direction: column;
+    z-index: 0;
+}
+
+.ghd--gallery {
+    min-width: 350px;
+    flex-basis: 450px;
+    font-weight: bold;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-color: rgba(4, 2, 136, 0.055);
+}
+
+.text-fields {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.text-fields input {
+    height: 50px;
+    display: flex;
+}
+
+.details--col1,
+.details--col2 {
+    flex-basis: 45%;
+    padding: 10px;
+
+}
+
+.input--fields {
+    padding-bottom: 30px;
+    width: 90%
+}
+
+.packages {
+    width: 90%;
+}
+
+.checkbox--amenities {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.checkbox--amenities>input {
+    width: fit-content;
+}
+
+.checkbox--container {
+    display: flex;
+    align-items: center;
+    width: 30%;
+    padding: 4px;
+    flex-basis: 40%;
+}
+
+.checkbox--container>label {
+    margin: 0px;
+    margin-left: 20px;
+    font-size: 22px;
+    margin-right: auto;
+    font-weight: 400;
+}
+
+
+.checkbox--container>input {
+    margin-left: 14px;
+    width: 14px;
+    height: 14px;
+
+}
+
+.packages {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.packages--inputs {
+    flex-basis: 420px;
+}
+
+.packages--inputs>input {
+    background-color: white;
+    border-radius: 3px;
+}
+
+.packages--input-fields {
+    flex-basis: 450px;
+}
+
+.packages--checkbox-amenities {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.packages--preview {
+    flex-grow: 1;
+}
+
+.add-package-btn {
+    background-color: #22CC99;
+}
+
+.preview--card {
+    padding: 20px;
+    margin-left: 30px;
+    margin-top: 10px;
+    background: teal;
+    border-radius: 10px;
+}
+
+.preview--cards {
+    display: flex;
+}
+
+.checkbox--amenities {
+    align-self: flex-start;
+}
+
+.ghd--gallery>h4 {
+    font-weight: bold;
+    padding: 15px;
+}
+
+#displayIcon {
+    margin-left: 5px;
+}
+
+.upload-btn {
+    display: flex;
+    align-items: center;
+    width: 80%
+}
+
+.previews {
+    width: 100%;
+    heigh: 300px;
+    overflow-y: hidden;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.photo {
+    width: 50%;
+    height: 100px;
+    border: 1px solid black;
+    overflow: hidden;
+}
+
+.photo>img {
+    object-fit: cover;
+}
+
+#submit {
+    width: 80%;
+    margin-top: auto;
+
+}

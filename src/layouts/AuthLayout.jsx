@@ -5,7 +5,7 @@ import AdminNav from '../components/AdminNav'
 
 export const AuthLayout = () => {
 
-    const { isLoggedIn } = useContext(AuthContext)
+    const { isLoggedIn, setLoggedIn } = useContext(AuthContext)
 
     if (!isLoggedIn) {
         return (

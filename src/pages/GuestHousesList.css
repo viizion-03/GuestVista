@@ -58,28 +58,36 @@ nav>ul>li {
 
 .ghl--house-card{
     display: flex;
+    border-radius: 15px;
+    padding: 20px;
     align-items: flex-start;
-    width: 70vw;
+    min-width: 900px;
     margin-top: 25px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .house-card-image{
-    background-color: black;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
-    border-radius: 10px;
+    border-radius: 17px;
     align-self: center;
     margin-left: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+
+}
+.house-card-image > img{
+    object-fit: cover;
+    width: 300px;
+    height: 250px;
+    border-radius: 15px;
+    
+    border: 1.4px solid rgba(0, 0, 0, 0.315);    
 }
 
-.house-card-image > img{
-    object-fit: contain;
-    width: 300px;
-    height: 300px;
-
+.ghl--message{
+    text-align: center;
 }
 
 .house-card-header{
@@ -122,6 +130,7 @@ nav>ul>li {
     flex-direction: column;
     padding :20px 20px;
     align-items: flex-start;
+    flex-grow: 1;
 }
 
 .ghl--houses{
@@ -129,8 +138,8 @@ nav>ul>li {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     background-color: white;
     border-radius: 10px;
+    width: 70vw;
 }
-
 
 /* Styling for GuestHouse Details page */
 
