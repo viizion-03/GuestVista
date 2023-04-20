@@ -49,7 +49,7 @@ const AdminNav = () => {
 
           <li className='sn--links'>
             <img src="./icons/subs-ico.svg" />
-            <Link to="/subscribers">
+            <Link to="/admin/administrators">
               Subscribers
             </Link>
           </li>

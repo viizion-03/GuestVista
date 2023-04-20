@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faSearch } from '@fortawesome/free-solid-svg-icons';
 import GuestHouseTile from '../components/GuestHouseTile';
 import "./GuestHousesList.css"
-import { h1 } from 'fontawesome';
 
 
 const GuestHousesList = () => {
@@ -33,6 +32,7 @@ const GuestHousesList = () => {
 
         setGuesthouses(loadedGuesthouses);
         setLoading(false)
+        console.log("data fetched")
       })
       .catch((err) => console.log(err))
       .finally(() => {setLoading(false)})

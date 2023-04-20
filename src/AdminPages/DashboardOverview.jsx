@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import './addingGuesthouse.scss';
-import Chart from 'chart.js/auto';
+// import Chart from 'chart.js/auto';
 
 function DashboardOverview() {
     const [numGuesthouses, setNumGuesthouses] = useState(0);

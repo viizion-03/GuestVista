@@ -13,7 +13,7 @@ import MySideNav from './MySideNav';
 import { Authprovider } from './contexts/AuthContext'
 import { AuthLayout } from './layouts/AuthLayout';
 import GuestHouseData from './AdminPages/GuestHouseData';
-import Subcribers from './AdminPages/Subcribers';
+import Adminitrators from './AdminPages/Adminitrators';
 import Requests from './AdminPages/Requests';
 import Settings from './AdminPages/Settings';
 import GuestHouseDetails from './pages/GuestHouseDetails';
@@ -47,10 +47,11 @@ root.render(
           <Route path='/admin' element={<DashboardOverview />} />
           <Route path='/admin/guest-houses' element={<GuestHouses />} />
           <Route path='/admin/guest-houses/house' element={<GuestHouseData />} />
-          <Route path='/subscribers' element={<Subcribers />} />
+          <Route path='/admin/administrators/' element={<Adminitrators />} />
           <Route path='/requests' element={<Requests />} />
           <Route path='/admin/settings' element={<Settings />} />
           <Route path='/admin/new-guesthouse' element={<GuestHouseData />} />
+          
         </Route>
 
         <Route path='/new-guesthouse' element={<AddingGuesthouse />} />
