@@ -86,3 +86,7 @@ install core:
 get icon packages
 ### `npm i --save @fortawesome/free-solid-svg-icons`
 ### `npm i --save @fortawesome/free-regular-svg-icons`
+
+chart.js
+### `npm install chart.js@3.6.1`
+

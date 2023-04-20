@@ -12,7 +12,7 @@ const GuestHousesList = () => {
 
   const [guesthouses, setGuesthouses] = useState([]);
   const [filteredGuestHouses, setFilteredGuestHouses] = useState([]);
-  const [searchName, setSearchName] = useState('');
+  const [searchLocation, setSearchLocation] = useState('');
   const [sortBy, setSortBy] = useState('');
   const [loading, setLoading] = useState(false)
 
@@ -42,8 +42,8 @@ const GuestHousesList = () => {
   useEffect(() => {
     let tempGuesthouses = [...guesthouses];
     // Filter by name
-    if (searchName) {
-      tempGuesthouses = tempGuesthouses.filter((guestHouse) => guestHouse.gName.toLowerCase().includes(searchName.toLowerCase()));
+    if (searchLocation) {
+      tempGuesthouses = tempGuesthouses.filter((guestHouse) => guestHouse.location.toLowerCase().includes(searchLocation.toLowerCase()));
     }
 
     // Sort by price or rating
@@ -56,7 +56,7 @@ const GuestHousesList = () => {
     }
 
     setFilteredGuestHouses(tempGuesthouses);
-  }, [searchName, sortBy, guesthouses]);
+  }, [searchLocation, sortBy, guesthouses]);
 
   const navigate = useNavigate();
 
@@ -85,12 +85,12 @@ const GuestHousesList = () => {
   <div className='search-bar'>
     <input
       type="text"
-      name="searchName"
+      name="searchLocation"
       placeholder="Search Guesthouses"
       className="search-input"
-      value={searchName}
+      value={searchLocation}
       onChange={(text) => {
-        setSearchName(text.target.value)
+        setSearchLocation(text.target.value)
       }}
     />
   </div>
