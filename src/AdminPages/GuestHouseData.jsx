@@ -76,7 +76,6 @@ const GuestHouseData = () => {
       PostData(e);
       alert("Data sent to the Database")
     }
-    
   }
 
   function handleChange(event) {

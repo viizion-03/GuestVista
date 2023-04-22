@@ -3,7 +3,7 @@ import logo from "./images/logo.jpeg";
 import { AuthContext } from './contexts/AuthContext';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from './config/firebase';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 
 
 const AdminLogin = () => {
@@ -81,10 +81,10 @@ const AdminLogin = () => {
           <button type="submit" disabled={loading}>
             {!loading ? "Login" : "Loggin in"}
           </button>
+          <p>Don't have an Account</p>
+          <Link to={"/signup"} >Sign Up</Link>
           {errorMsg && <p>{errorMsg}</p>}
         </form>
-
-        <button onClick={() => auth.signOut()}>sign out </button>
       </div>
     </>
 

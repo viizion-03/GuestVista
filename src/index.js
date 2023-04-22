@@ -23,6 +23,7 @@ import {UserLayout} from "./layouts/UserLayout";
 // import DashboardOverview  from './Dashboard/DashboardOverview';
 import AddingGuesthouse from './AdminPages/AddingGueshouse'
 import UserHome from './UserPages/UserHome';
+import UserSignUp from './UserPages/UserSignUp';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -44,6 +45,7 @@ root.render(
         <Route path='/view-guesthouses' element={<GuestHousesList />} />
         <Route path='/guesthouse/:id' element={<GuestHouseDetails />} />
         <Route path='/admin-login' element={<AdminLogin />} />
+        <Route path='/signup' element={<UserSignUp/>} />
         
 
         <Route element={<AuthLayout />}>

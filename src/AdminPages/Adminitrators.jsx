@@ -8,7 +8,9 @@ import { createUserWithEmailAndPassword, deleteUser } from '@firebase/auth';
 import { useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDeleteLeft, faMinus } from '@fortawesome/free-solid-svg-icons';
+import { getAuth } from '@firebase/auth';
 import CardHeader from 'react-bootstrap/esm/CardHeader';
+
 
 const Subcribers = () => {
   const db = getDatabase();
@@ -21,7 +23,6 @@ const Subcribers = () => {
     { uName: "", email: "", profilePic: "" }
   )
   const [password, setPassword] = useState({ password: "", confPassword: "" })
-
 
   const postData = (e) => {
     e.preventDefault()
