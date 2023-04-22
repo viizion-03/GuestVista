@@ -11,72 +11,83 @@ const AdminLogin = () => {
   const [pass, setPass] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
+  const [submited, setSubmited] = useState(false)
 
-  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext)
+  const { isLoggedIn, checkIsAdmin, adminUser } = useContext(AuthContext)
 
   const navigate = useNavigate()
   const location = useLocation()
 
-
   function handleSubmit(e) {
     e.preventDefault()
-
     setErrorMsg('')
     setLoading(true)
     signInWithEmailAndPassword(auth, email, pass)
-      .then((user) => {
+      .then((loggedUser) => {
         setLoading(false)
-        console.log("user signed in")
-        console.log(user)
+        setSubmited(true)
+        console.log(loggedUser)
       })
       .catch((e) => {
         setErrorMsg("Wrong email or password")
         console.log(e)
-      }).finally(() =>{
+      }).finally(() => {
         setLoading(false)
       })
   }
 
+  //check if signed user is admin
   useEffect(() => {
-    if (isLoggedIn) {
-      navigate("/admin")
+    if (adminUser != null) {
+      if (adminUser == "none") {
+        navigate("/users")
+      }
+      else {
+        navigate("/admin")
+      }
     }
   })
 
-  return (
-    <div className="auth-form-container">
-      <img src={logo} alt="" />
-      <h1>GuestVista</h1>
-      {
-        location.state?.message && 
-        <h3 className="login-error">{location.state.message}</h3>
-      }
 
-      <form className="login-form" onSubmit={handleSubmit} >
-        <label htmlFor="Email">Email:</label>
-        <input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          type="email"
-          id="email"
-          name="email"
-          placeholder='Email Address'
-        />
-        <label htmlFor="Password">Password:</label>
-        <input
-          value={pass}
-          onChange={(e) => setPass(e.target.value)}
-          type="password"
-          placeholder="Password"
-          id="password"
-          name="password"
-        />
-        <button type="submit" disabled={loading}>
-          {!loading ? "Login" : "Loggin in"}
-        </button>
-        {errorMsg && <p>{errorMsg}</p>}
-      </form>
-    </div>
+  return (
+    <>
+      <div className="auth-form-container">
+        <img src={logo} alt="" />
+        <h1>GuestVista</h1>
+        {
+          location.state?.message &&
+          <h3 className="login-error">{location.state.message}</h3>
+        }
+
+        <form className="login-form" onSubmit={handleSubmit} >
+          <label htmlFor="Email">Email:</label>
+          <input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            type="email"
+            id="email"
+            name="email"
+            placeholder='Email Address'
+          />
+          <label htmlFor="Password">Password:</label>
+          <input
+            value={pass}
+            onChange={(e) => setPass(e.target.value)}
+            type="password"
+            placeholder="Password"
+            id="password"
+            name="password"
+          />
+          <button type="submit" disabled={loading}>
+            {!loading ? "Login" : "Loggin in"}
+          </button>
+          {errorMsg && <p>{errorMsg}</p>}
+        </form>
+
+        <button onClick={() => auth.signOut()}>sign out </button>
+      </div>
+    </>
+
   );
 }
 

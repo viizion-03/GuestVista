@@ -49,8 +49,8 @@ const Subcribers = () => {
           setPassword({ password: "", confPassword: "" })
         }
         if (e.code == "auth/email-already-in-use") {
-          // setErrorMsg("Email is already in Use")
-          // setPassword({ password: "", confPassword: "" })
+          setErrorMsg("Email is already in Use")
+          setPassword({ password: "", confPassword: "" })
         }
 
       })

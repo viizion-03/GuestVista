@@ -4,9 +4,9 @@ import home from './pictures/home.jpeg'
 import { faStar } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+
 const Homepage = () => {
   const [guesthouses, setGuesthouses] = useState([]);
-
   useEffect(() => {
     fetch("https://guestvista-4308f-default-rtdb.firebaseio.com/addGuesthouses.json")
       .then((response) => response.json())
@@ -51,6 +51,7 @@ const Homepage = () => {
           <button style={{ backgroundColor: "blue", color: "white", border: "none", padding: "5px 10px", borderRadius: "5px" }}>Search</button>
         </div>
       </div>
+      
       <div className="popular-guesthouses">
         <h2>POPULAR GUESTHOUSES</h2>
         <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between" }}>

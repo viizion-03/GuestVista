@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 import { storage } from "../config/firebase"
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage"
 import "../components/styles/GuestHouseForm.css"
+import { Alert } from "react-bootstrap"
 
 
 const GuestHouseData = () => {
@@ -15,6 +16,7 @@ const GuestHouseData = () => {
   const logoRef = useRef(null);
   const galleryRef = useRef(null);
 
+  const [errorMsg, setErrorMsg] = useState("")
   const [checkStates, setCheckStates] = useState({
     wifi: false, parking: false, restaurant: false, restaurant: false,
     bar: false, gym: false, coffee: false, tv: false
@@ -70,11 +72,15 @@ const GuestHouseData = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    PostData(e);
-    alert("Data sent to the Database")
+    if(checkImageCount()){
+      PostData(e);
+      alert("Data sent to the Database")
+    }
+    
   }
 
   function handleChange(event) {
+    setErrorMsg("")
     const { name, value, checked, type, id } = event.target;
     if (type === "checkbox") {
       setCheckStates(prevStates => {
@@ -86,6 +92,14 @@ const GuestHouseData = () => {
     setGuestHouse(prevData => {
       return ({ ...prevData, [name]: type === "checkbox" ? checked : value, })
     })
+  }
+
+  function checkImageCount() {
+    if (guestHouse.photos.length <= 7) {
+      setErrorMsg("Please upload 8 or more images")
+      return false
+    }
+    else {return true}
   }
 
 
@@ -149,6 +163,10 @@ const GuestHouseData = () => {
         return ({ ...prevData, packages: prevData.packages.concat(pricePackage) })
       })
       setPricePackage({ package_name: "", beds_available: "", price: "", room_amenities: [] })
+      setPackageCheckStates({
+        toiletries: false, fridge: false, shower: false, coffee: false,
+        towels: false, snacks: false, tv: false, iron: false, selfCare: false
+      })
     }
 
   }
@@ -218,29 +236,6 @@ const GuestHouseData = () => {
 
   }
 
-
-  // listens for logo image changes
-  // useEffect(() => {
-  //   const logoRef = ref(storage, `guesthouses/${guestHouse.gName}/logo`)
-  //   uploadBytes(logoRef, logoImg)
-  //     .then((snapshot) => {
-  //       getDownloadURL(logoRef)
-  //         .then((url) => {
-  //           setLogoUrl(url)
-  //           setGuestHouse(prevData => {
-  //             return ({ ...prevData, logo: url })
-  //           })
-
-  //         })
-  //         .catch((error) => {
-  //           console.log(error)
-  //         })
-  //     }).catch((error) => {
-  //       console.log(error)
-  //     })
-
-  // }, [logoImg])
-
   //listens for display picture changes
   useEffect(() => {
     const displayRef = ref(storage, `guesthouses/${guestHouse.gName}/display`)
@@ -274,8 +269,12 @@ const GuestHouseData = () => {
         <div className='admin--ghd-content'>
           <div className='ghd--details'>
             <h3 id='heading'>Important Details</h3>
+            {errorMsg != "" && <Alert
+              variant='danger'
+              style={{ width: "45%", marginLeft: "auto", marginRight: "30px" }}
+            >{errorMsg}
+            </Alert>}
             <section className='text-fields'>
-
 
               <div className='details--col1'>
                 <div className='input--fields'>
@@ -286,6 +285,7 @@ const GuestHouseData = () => {
                     type="text"
                     placeholder='Name'
                     value={guestHouse.gName}
+                    required
                   />
                 </div>
 
@@ -297,6 +297,7 @@ const GuestHouseData = () => {
                     type="text"
                     placeholder='Email'
                     value={guestHouse.email}
+                    required
                   />
                 </div>
 
@@ -308,6 +309,7 @@ const GuestHouseData = () => {
                     type="text"
                     placeholder='Location'
                     value={guestHouse.location}
+                    required
                   />
                 </div>
 
@@ -319,6 +321,7 @@ const GuestHouseData = () => {
                     type="text"
                     placeholder='Physical Address'
                     value={guestHouse.physical_address}
+                    required
                   />
                 </div>
 
@@ -330,6 +333,7 @@ const GuestHouseData = () => {
                     type="text"
                     placeholder='Co-ordinates'
                     value={guestHouse.coordinates}
+                    required
                   />
                 </div>
 
@@ -341,6 +345,7 @@ const GuestHouseData = () => {
                     type="text"
                     placeholder='Description'
                     value={guestHouse.description}
+                    required
                   />
                 </div>
 
@@ -355,6 +360,7 @@ const GuestHouseData = () => {
                     type="text"
                     placeholder='Contact'
                     value={guestHouse.contacts}
+                    required
                   />
                 </div>
 
@@ -366,6 +372,7 @@ const GuestHouseData = () => {
                     type="text"
                     placeholder='Website'
                     value={guestHouse.website}
+                    required
                   />
                 </div>
 
@@ -374,9 +381,10 @@ const GuestHouseData = () => {
                   <input
                     name="price"
                     onChange={handleChange}
-                    type="text"
+                    type="number"
                     placeholder='Cheapest price/night (P)'
                     value={guestHouse.price}
+                    required
                   />
                 </div>
 
@@ -385,9 +393,10 @@ const GuestHouseData = () => {
                   <input
                     name="ratings"
                     onChange={handleChange}
-                    type="text"
+                    type="number"
                     placeholder='Rating'
                     value={guestHouse.ratings}
+                    required
                   />
                 </div>
 
@@ -549,7 +558,7 @@ const GuestHouseData = () => {
                     guestHouse.packages.size !== 0 && guestHouse.packages.map(item => {
                       return (
                         <div key={item.package_name} className='preview--card'>
-                          <h4 className='preview-subhead'>Package {guestHouse.packages.indexOf(item) +1}</h4>
+                          <h4 className='preview-subhead'>Package {guestHouse.packages.indexOf(item) + 1}</h4>
 
                           <p><b>Package name:</b> {item.package_name}</p>
 

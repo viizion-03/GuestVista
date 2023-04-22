@@ -1,13 +1,12 @@
 import React, { useContext } from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
 import { AuthContext } from '../contexts/AuthContext'
-import AdminNav from '../components/AdminNav'
 
-export const AuthLayout = () => {
+export const UserLayout = () => {
 
-    const { adminUser, isLoggedIn } = useContext(AuthContext)
+    const { isLoggedIn,} = useContext(AuthContext)
 
-    if (!isLoggedIn || adminUser == null) {
+    if (!isLoggedIn) {
         return (
             <Navigate
                 to="admin-login"
@@ -18,7 +17,7 @@ export const AuthLayout = () => {
 
     return (
         <div className='admin--page'>
-            <AdminNav />
+            <nav>Navigation here</nav>
             <main>
                 <Outlet />
             </main>

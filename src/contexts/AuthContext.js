@@ -1,30 +1,62 @@
 import React, { useEffect, useState } from "react";
-import {auth} from "../config/firebase"
+import { auth } from "../config/firebase"
+import { ref, getDatabase, get } from "@firebase/database";
 
 export const AuthContext = React.createContext()
 
-export function Authprovider(props){
+export function Authprovider(props) {
     const [authUser, setAuthUser] = useState(null)
     const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const [adminUser, setAdminUser] = useState(null)
+    const [guesthouses, setGuesthouses] = useState([]);
 
-    useEffect( () => {
-        auth.onAuthStateChanged( user => {
-            setAuthUser(user)
-            if(user){
-                setIsLoggedIn(true)
-            }else {
-                setIsLoggedIn(false)
-            }
-        })
-    }, [])
+    //fetch data and populate GuestHouse list Array
+    useEffect(() => {
+        fetch("https://guestvista-4308f-default-rtdb.firebaseio.com/addGuesthouses.json")
+            .then((res) => res.json())
+            .then((data) => {
+                const loadedGuesthouses = [];
 
-    const value ={
-        authUser,
-        setIsLoggedIn,
-        isLoggedIn,
-    }
+                for (const key in data) {
+                    loadedGuesthouses.push({
+                        id: key,
+                        ...data[key],
+                    });
+                }
 
-    return(
+                setGuesthouses(loadedGuesthouses);
+                console.log("data fetched")
+            })
+            .catch((err) => console.log(err))
+    }, []);
+ 
+    //Checks for Authentications and updates relevant States
+    auth.onAuthStateChanged(user => {
+        setAuthUser(user)
+    })
+    useEffect(() => {
+        if (authUser) {
+            let found = false
+            const dbRef = ref(getDatabase(), "Administrators")
+            get(dbRef).then(snapshot => {
+                snapshot.forEach(admin => {
+                    if (admin.val().userId == authUser.uid) {
+                        setAdminUser(admin.val())
+                        found = true;
+                    }
+                })
+                if (!found) { setAdminUser("none") }
+            }).catch(e => console.log(e.message))
+        }
+        else { setAdminUser(null) }
+
+        (authUser) ? setIsLoggedIn(true) : setIsLoggedIn(false)
+    }, [authUser])
+
+    //exported Variables & States
+    const value = {adminUser,authUser,isLoggedIn, guesthouses, setGuesthouses}
+
+    return (
         <AuthContext.Provider value={value}>
             {props.children}
         </AuthContext.Provider>

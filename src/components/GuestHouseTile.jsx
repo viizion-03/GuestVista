@@ -10,7 +10,7 @@ const GuestHouseTile = (props) => {
   const navigate = useNavigate()
 
   function seeGuestHouses() {
-    navigate('/guesthouse')
+    navigate(`/guesthouse/${props.id}`)
   }
 
   return (

@@ -18,9 +18,11 @@ import Requests from './AdminPages/Requests';
 import Settings from './AdminPages/Settings';
 import GuestHouseDetails from './pages/GuestHouseDetails';
 import GuestHousesList from "./pages/GuestHousesList";
+import {UserLayout} from "./layouts/UserLayout";
 
 // import DashboardOverview  from './Dashboard/DashboardOverview';
 import AddingGuesthouse from './AdminPages/AddingGueshouse'
+import UserHome from './UserPages/UserHome';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -40,8 +42,9 @@ root.render(
       <Routes>
         <Route path='/' element={<App />} />
         <Route path='/view-guesthouses' element={<GuestHousesList />} />
-        <Route path='/guesthouse' element={<GuestHouseDetails />} />
+        <Route path='/guesthouse/:id' element={<GuestHouseDetails />} />
         <Route path='/admin-login' element={<AdminLogin />} />
+        
 
         <Route element={<AuthLayout />}>
           <Route path='/admin' element={<DashboardOverview />} />
@@ -51,7 +54,10 @@ root.render(
           <Route path='/requests' element={<Requests />} />
           <Route path='/admin/settings' element={<Settings />} />
           <Route path='/admin/new-guesthouse' element={<GuestHouseData />} />
-          
+        </Route>
+
+        <Route element={<UserLayout />} >
+          <Route path='/users' element={<UserHome />} />
         </Route>
 
         <Route path='/new-guesthouse' element={<AddingGuesthouse />} />

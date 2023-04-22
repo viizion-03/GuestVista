@@ -1,33 +1,16 @@
 import { faPlus, faPlusSquare, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react'
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect, useContext } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { AuthContext } from '../contexts/AuthContext';
 
 const GuestHouses = () => {
-  const [guesthouses, setGuesthouses] = useState([]);
+  // const [guesthouses, setGuesthouses] = useState([]);
+  const {guesthouses, setGuesthouses} = useContext(AuthContext)
   const [numGuesthouses, setNumGuesthouses] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate()
-
-  useEffect(() => {
-    fetch("https://guestvista-4308f-default-rtdb.firebaseio.com/addGuesthouses.json")
-      .then((res) => res.json())
-      .then((data) => {
-        const loadedGuesthouses = [];
-
-        for (const key in data) {
-          loadedGuesthouses.push({
-            id: key,
-            ...data[key],
-          });
-        }
-
-        setGuesthouses(loadedGuesthouses);
-        setNumGuesthouses(loadedGuesthouses.length);
-      })
-      .catch((err) => console.log(err));
-  }, []);
 
   const filteredGuesthouses = guesthouses.filter((guesthouse) =>
     guesthouse.gName.toLowerCase().includes(searchTerm.toLowerCase())

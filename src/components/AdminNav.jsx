@@ -6,17 +6,11 @@ import "./styles/Sidebar.css"
 
 const AdminNav = () => {
   const navigate = useNavigate()
-  const [style, setStyle] = useState({
-    overflow: "hidden"
-  })
-
-  const {authUser, setIsLoggedIn} = useContext(AuthContext)
-
+  const {adminUser} = useContext(AuthContext)
+  const defaultImg = "./icons/image 1.png"
   function logout() {
     auth.signOut()
-    setIsLoggedIn(false)
     console.log("signed out")
-    console.log(authUser)
     navigate('/')
   }
 
@@ -26,8 +20,8 @@ const AdminNav = () => {
 
         <div className='sn--user'>
           {/* <p src="" alt="x" className='sn--close' >x</p> */}
-          <img src="./icons/image 1.png" alt="User Logo" />
-          <h3 className='sn--username'>Omon Rizu</h3>
+          <img src={adminUser.profilePic == "" ? defaultImg : adminUser.profilePic} alt="User Logo" />
+          <h3 className='sn--username'>{adminUser.uName}</h3>
           <h5>Admin</h5>
         </div>
 
@@ -50,7 +44,7 @@ const AdminNav = () => {
           <li className='sn--links'>
             <img src="./icons/subs-ico.svg" />
             <Link to="/admin/administrators">
-              Subscribers
+              Administrators
             </Link>
           </li>
 
