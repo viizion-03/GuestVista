@@ -1,20 +1,20 @@
 import { useState, useEffect } from 'react';
 import './addingGuesthouse.scss';
-// import Chart from 'chart.js/auto';
+import PieChart from './PieChart';
+import GuestHousesChart from './GuestHousesChart';
 
 function DashboardOverview() {
     const [numGuesthouses, setNumGuesthouses] = useState(0);
     const [recentGuesthouses, setRecentGuesthouses] = useState([]);
-    const [guesthousePrices, setGuesthousePrices] = useState({});
+    const [data, setData] = useState([]);
 
     useEffect(() => {
         fetch("https://guestvista-4308f-default-rtdb.firebaseio.com/addGuesthouses.json?orderBy=\"$key\"")
             .then(response => response.json())
             .then(data => {
-                 
-
                 setRecentGuesthouses(Object.values(data).reverse().slice(0, 3));
                 setNumGuesthouses(Object.keys(data).length);
+                setData(Object.values(data));
             })
             .catch(error => console.log(error));
     }, []);
@@ -27,13 +27,10 @@ function DashboardOverview() {
                     <h4 className={props.ratings ? "card--rated" : "card--created"}>
                         {props.name}</h4>
                     {props.rating && <h4>{props.rating + "⭐"}</h4>}
-
                 </div>
             </div>
-            
         );
     }
-    
 
     return (
         <div>
@@ -45,6 +42,14 @@ function DashboardOverview() {
                         <span className="counter">{numGuesthouses}</span>
                     </div>
 
+                    <div className="charts-container">
+                    <div className="pie-chart-wrapper">
+                    <PieChart data={data} />
+                    </div>
+                      <div className="guesthouses-chart">
+                    <GuestHousesChart />
+                    </div>
+                     </div>
                     <h3 className="dash--header">Recently Created</h3>
                     <div className="dash--cards">
                         {recentGuesthouses.map(guesthouse => (

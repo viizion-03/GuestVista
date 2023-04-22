@@ -12,14 +12,14 @@ const GuestHousesList = () => {
   // const [guesthouses, setGuesthouses] = useState([]);
   const { guesthouses } = useContext(AuthContext)
   const [filteredGuestHouses, setFilteredGuestHouses] = useState([]);
-  const [searchName, setSearchName] = useState('');
+  const [searchLocation, setSearchLocation] = useState('');
   const [sortBy, setSortBy] = useState('');
 
   useEffect(() => {
     let tempGuesthouses = [...guesthouses];
     // Filter by name
-    if (searchName) {
-      tempGuesthouses = tempGuesthouses.filter((guestHouse) => guestHouse.gName.toLowerCase().includes(searchName.toLowerCase()));
+    if (searchLocation) {
+      tempGuesthouses = tempGuesthouses.filter((guestHouse) => guestHouse.location.toLowerCase().includes(searchLocation.toLowerCase()));
     }
 
     // Sort by price or rating
@@ -32,7 +32,7 @@ const GuestHousesList = () => {
     }
 
     setFilteredGuestHouses(tempGuesthouses);
-  }, [searchName, sortBy, guesthouses]);
+  }, [searchLocation, sortBy, guesthouses]);
 
   const navigate = useNavigate();
 
@@ -58,31 +58,31 @@ const GuestHousesList = () => {
 
         {/* searchbar */}
         <div className='search-bar-container'>
-          <div className='search-bar'>
-            <input
-              type="text"
-              name="searchName"
-              placeholder="Search Guesthouses"
-              className="search-input"
-              value={searchName}
-              onChange={(text) => {
-                setSearchName(text.target.value)
-              }}
-            />
-          </div>
-          <select
-            name="sort"
-            id="sort"
-            onChange={(value) => setSortBy(value.target.value)}
-            value={sortBy}
-            className='sort-dropdown'
-          >
-            <option value="default">Sort by</option>
-            <option value="low-price">Price: Low to High</option>
-            <option value="high-price">Price: High to Low</option>
-            <option value="high-rating">Rating: High to Low</option>
-          </select>
-        </div>
+  <div className='search-bar'>
+    <input
+      type="text"
+      name="searchLocation"
+      placeholder="Search Guesthouses"
+      className="search-input"
+      value={searchLocation}
+      onChange={(text) => {
+        setSearchLocation(text.target.value)
+      }}
+    />
+  </div>
+  <select
+    name="sort"
+    id="sort"
+    onChange={(value) => setSortBy(value.target.value)}
+    value={sortBy}
+    className='sort-dropdown'
+  >
+    <option value="default">Sort by</option>
+    <option value="low-price">Price: Low to High</option>
+    <option value="high-price">Price: High to Low</option>
+    <option value="high-rating">Rating: High to Low</option>
+  </select>
+</div>
 
         <div className='ghl--houses'>
 
