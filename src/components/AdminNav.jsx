@@ -3,10 +3,14 @@ import { Link, useNavigate } from 'react-router-dom'
 import { auth } from '../config/firebase'
 import { AuthContext } from '../contexts/AuthContext'
 import "./styles/Sidebar.css"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars, faClose, faExpand } from '@fortawesome/free-solid-svg-icons'
 
 const AdminNav = () => {
+
+  const [visible, setVisible] = useState(true)
   const navigate = useNavigate()
-  const {adminUser} = useContext(AuthContext)
+  const { adminUser } = useContext(AuthContext)
   const defaultImg = "./icons/image 1.png"
   function logout() {
     auth.signOut()
@@ -14,12 +18,22 @@ const AdminNav = () => {
     navigate('/')
   }
 
+  const openNav = () => {
+    setVisible(true)
+  }
+
+  const closeNav = () => {
+    setVisible(false)
+  }
+
   return (
     <>
-      <div id="mySideNav" className="side-nav">
+      {!visible && <FontAwesomeIcon icon={faBars} style={{ fontSize: "40px", margin: "20px", top: "80px", zIndex: "3" }} onClick={() => openNav()} />}
+      {visible && <div id="mySideNav" className="side-nav">
 
         <div className='sn--user'>
           {/* <p src="" alt="x" className='sn--close' >x</p> */}
+          <FontAwesomeIcon icon={faClose} style={{alignSelf: "flex-end", fontSize: "24px"}} onClick={() => closeNav()} />
           <img src={adminUser.profilePic == "" ? defaultImg : adminUser.profilePic} alt="User Logo" />
           <h3 className='sn--username'>{adminUser.uName}</h3>
           <h5>Admin</h5>
@@ -65,10 +79,7 @@ const AdminNav = () => {
 
         <button className="sn--logout" onClick={logout}>Logout</button>
       </div>
-
-      {/* <main>
-        <button className='sn--open' >☰ Open Navbar</button>
-      </main> */}
+      }
     </>
   )
 }

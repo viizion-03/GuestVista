@@ -25,9 +25,11 @@
 
 .gallery--image-container {
     min-width: 350px;
+    max-height: 200px;
     flex-basis: 350px;
     min-height: 200px;
     flex-shrink: 0;
+    object-fit: cover;
 }
 
 .ghd--details {
@@ -44,6 +46,10 @@
     position: sticky;
     top: 0;
     background-color: rgba(4, 2, 136, 0.055);
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+    padding-bottom: 100px;
 }
 
 .text-fields {
@@ -176,10 +182,11 @@
 
 .previews {
     width: 100%;
-    heigh: 300px;
-    overflow-y: hidden;
+    max-height: 300px;
+    overflow-y: scroll;
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: auto;
 
 }
 

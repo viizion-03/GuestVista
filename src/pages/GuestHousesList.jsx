@@ -6,6 +6,7 @@ import GuestHouseTile from '../components/GuestHouseTile';
 import "./GuestHousesList.css"
 import { useContext } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
+import { Card, Container } from 'react-bootstrap';
 const GuestHousesList = () => {
 
 
@@ -54,55 +55,60 @@ const GuestHousesList = () => {
       </nav>
 
       <div className='ghl--container'>
-        <h3 className='ghl--heading'>Guest Houses</h3>
+        <h2 className='ghl--heading'>Guest Houses</h2>
 
         {/* searchbar */}
         <div className='search-bar-container'>
-  <div className='search-bar'>
-    <input
-      type="text"
-      name="searchLocation"
-      placeholder="Search Guesthouses"
-      className="search-input"
-      value={searchLocation}
-      onChange={(text) => {
-        setSearchLocation(text.target.value)
-      }}
-    />
-  </div>
-  <select
-    name="sort"
-    id="sort"
-    onChange={(value) => setSortBy(value.target.value)}
-    value={sortBy}
-    className='sort-dropdown'
-  >
-    <option value="default">Sort by</option>
-    <option value="low-price">Price: Low to High</option>
-    <option value="high-price">Price: High to Low</option>
-    <option value="high-rating">Rating: High to Low</option>
-  </select>
-</div>
-
-        <div className='ghl--houses'>
-
-          {filteredGuestHouses.size != 0 && filteredGuestHouses.map((house) => {
-            return (
-              // <Link to={`/guesthouse/${house.id}`}>
-              <GuestHouseTile key={house.id}
-                id={house.id}
-                img={house.photos[0].src}
-                name={house.gName}
-                price={house.price}
-                rating={house.ratings}
-                location={house.location}
-                description={house.description}
-              />
-              // </Link>
-            )
-          })}
-
+          <div className='search-bar'>
+            <input
+              type="text"
+              name="searchLocation"
+              placeholder="Search Guesthouses"
+              className="search-input"
+              value={searchLocation}
+              onChange={(text) => {
+                setSearchLocation(text.target.value)
+              }}
+            />
+          </div>
+          <select
+            name="sort"
+            id="sort"
+            onChange={(value) => setSortBy(value.target.value)}
+            value={sortBy}
+            className='sort-dropdown'
+          >
+            <option value="default">Sort by</option>
+            <option value="low-price">Price: Low to High</option>
+            <option value="high-price">Price: High to Low</option>
+            <option value="high-rating">Rating: High to Low</option>
+          </select>
         </div>
+
+        <Container>
+          <div className='ghl--houses'>
+
+            {filteredGuestHouses.size != 0 && filteredGuestHouses.map((house) => {
+              return (
+                // <Link to={`/guesthouse/${house.id}`}>
+                // <Card onclick={() => navigate(`/guesthouse/${house.id}`)} style={{cursor:"pointer"}}>
+                  <GuestHouseTile key={house.id}
+                    id={house.id}
+                    img={house.display_picture}
+                    name={house.gName}
+                    price={house.price}
+                    rating={house.ratings}
+                    location={house.location}
+                    description={house.brief}
+                  />
+                // </Card>
+                // </Link>
+              )
+            })}
+
+          </div>
+        </Container>
+
       </div>
     </>
 

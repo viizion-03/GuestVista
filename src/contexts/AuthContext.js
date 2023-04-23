@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { auth } from "../config/firebase"
-import { ref, getDatabase, get } from "@firebase/database";
+import { ref, getDatabase, get, onValue } from "@firebase/database";
 
 export const AuthContext = React.createContext()
 
@@ -9,7 +9,12 @@ export function Authprovider(props) {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [adminUser, setAdminUser] = useState(null)
     const [guesthouses, setGuesthouses] = useState([]);
+    const [refresh, setRefresh] = useState(false)
 
+    function refreshGHList(){
+        setRefresh(prev => !prev)
+    }
+    
     //fetch data and populate GuestHouse list Array
     useEffect(() => {
         fetch("https://guestvista-4308f-default-rtdb.firebaseio.com/addGuesthouses.json")
@@ -28,7 +33,7 @@ export function Authprovider(props) {
                 console.log("data fetched")
             })
             .catch((err) => console.log(err))
-    }, []);
+    }, [refresh]);
  
     //Checks for Authentications and updates relevant States
     auth.onAuthStateChanged(user => {
@@ -54,7 +59,7 @@ export function Authprovider(props) {
     }, [authUser])
 
     //exported Variables & States
-    const value = {adminUser,authUser,isLoggedIn, guesthouses, setGuesthouses}
+    const value = {adminUser,authUser,isLoggedIn, guesthouses, setGuesthouses, refreshGHList}
 
     return (
         <AuthContext.Provider value={value}>

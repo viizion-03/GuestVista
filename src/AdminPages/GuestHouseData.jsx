@@ -7,9 +7,19 @@ import { storage } from "../config/firebase"
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage"
 import "../components/styles/GuestHouseForm.css"
 import { Alert } from "react-bootstrap"
-
+import { useParams } from 'react-router'
+import { useContext } from 'react'
+import { AuthContext } from '../contexts/AuthContext'
+import { getDatabase, set, ref as dbRef } from '@firebase/database'
+import { useNavigate } from 'react-router'
 
 const GuestHouseData = () => {
+  const params = useParams();
+
+  const { guesthouses } = useContext(AuthContext)
+  const [updateView, setUpdateView] = useState(false)
+  const navigate = useNavigate()
+  const { refreshGHList } = useContext(AuthContext)
 
   // Refs to open corresponding file upload choosers
   const displayRef = useRef(null);
@@ -47,36 +57,67 @@ const GuestHouseData = () => {
     {
       gName: "", email: "", contacts: "", website: "", location: "",
       price: "", physical_address: "", ratings: "", coordinates: "",
-      description: "", logo: "", display_picture: "",
+      description: "", logo: "", display_picture: "", brief: "", reviews: [],
       amenities: [], photos: [], packages: []
     }
   );
 
+  useEffect(() => {
+    guesthouses.forEach(element => {
+      if (element.id == params.id) {
+        setGuestHouse(prev => { return ({ ...prev, ...element }) })
+        setUpdateView(true)
+      }
+    })
+  }, [])
+
   const PostData = async (e) => {
     e.preventDefault();
-    const {
-      gName, email, contacts, website, location, price, physical_address, photos,
-      ratings, coordinates, description, logo, display_picture, amenities, packages } = guestHouse
-
-    const res = await fetch('https://guestvista-4308f-default-rtdb.firebaseio.com/addGuesthouses.json', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        gName, email, contacts, website, location, price, physical_address, photos,
-        ratings, coordinates, description, logo, display_picture, amenities, packages
+    if (updateView) {
+      const houseRef = dbRef(getDatabase(), `addGuesthouses/${guestHouse.id}`)
+      set(houseRef, guestHouse).then(() => {
+        alert("Guest House Updated")
+        refreshGHList()
+        navigate("/admin/guest-houses")
       })
-    });
+    }
+    else {
+      const {
+        gName, email, contacts, website, location, price, physical_address, photos, brief, reviews,
+        ratings, coordinates, description, logo, display_picture, amenities, packages } = guestHouse
+
+      const res = await fetch('https://guestvista-4308f-default-rtdb.firebaseio.com/addGuesthouses.json', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          gName, email, contacts, website, location, price, physical_address, photos, brief, reviews,
+          ratings, coordinates, description, logo, display_picture, amenities, packages
+        })
+      });
+      if (res)
+        alert("Data sent to the Database")
+      refreshGHList()
+      navigate("/admin/guest-houses")
+    }
   };
 
   function handleSubmit(e) {
     e.preventDefault();
-    if(checkImageCount()){
+    //check most validations here
+    if (guestHouse.amenities.length == 0)
+      alert("Select at least one Amenity")
+    else if (guestHouse.display_picture == "")
+      alert("Please Upload a display picture")
+    else if (guestHouse.logo == "")
+      alert("Please choose a guest house logo")
+    else if (guestHouse.packages.length == 0)
+      alert("Guest house should include at least 1 service Package")
+    else if (checkImageCount())
       PostData(e);
-      alert("Data sent to the Database")
-    }
   }
+
 
   function handleChange(event) {
     setErrorMsg("")
@@ -98,7 +139,7 @@ const GuestHouseData = () => {
       setErrorMsg("Please upload 8 or more images")
       return false
     }
-    else {return true}
+    else { return true }
   }
 
 
@@ -152,9 +193,13 @@ const GuestHouseData = () => {
 
   const addPackage = () => {
 
-    const { beds_available, package_name, price, packages } = pricePackage
+    const { beds_available, package_name, price, packages, room_amenities } = pricePackage
     if (package_name === "" || beds_available === "" || price === "" || packageCheckStates.size === 0) {
       alert("All package fields must be filled")
+      return
+    }
+    else if (room_amenities.length == 0) {
+      alert("Select at lease one amenity for your packgage")
       return
     }
     else {
@@ -339,6 +384,18 @@ const GuestHouseData = () => {
                 <div className='input--fields'>
                   <FontAwesomeIcon icon={faInfoCircle} className='icon' />
                   <input
+                    name="brief"
+                    onChange={handleChange}
+                    type="text"
+                    placeholder='Brief Summary'
+                    value={guestHouse.brief}
+                    required
+                  />
+                </div>
+
+                <div className='input--fields'>
+                  <FontAwesomeIcon icon={faInfoCircle} className='icon' />
+                  <input
                     name="description"
                     onChange={handleChange}
                     type="text"
@@ -347,7 +404,6 @@ const GuestHouseData = () => {
                     required
                   />
                 </div>
-
 
               </div>
               <div className='details--col2'>
@@ -554,7 +610,7 @@ const GuestHouseData = () => {
 
                 <div className='preview--cards'>
                   {
-                    guestHouse.packages.size !== 0 && guestHouse.packages.map(item => {
+                    guestHouse.packages.length !== 0 && guestHouse.packages.map(item => {
                       return (
                         <div key={item.package_name} className='preview--card'>
                           <h4 className='preview-subhead'>Package {guestHouse.packages.indexOf(item) + 1}</h4>
@@ -575,7 +631,6 @@ const GuestHouseData = () => {
                     })
                   }
                 </div>
-
               </div>
             </section>
 
@@ -606,6 +661,7 @@ const GuestHouseData = () => {
                 ref={displayRef}
                 className='file-chooser'
                 onChange={(e) => uploadImage(e, "display")}
+                disabled = {(guestHouse.gName == "")}
               />
 
             </h4>
@@ -627,14 +683,13 @@ const GuestHouseData = () => {
               {guestHouse.photos.map((photo) => (
                 <div className='photo' key={photo.src}>
                   <img src={photo.src} alt='Guesthouse' />
-                  <p>{photo.file.name}</p>
+                  {/* <p>{photo.file.name}</p> */}
                 </div>
               ))}
             </div>
 
-            <button id='submit' type="submit">submit form</button>
+            <button id='submit' type="submit">{updateView ? "Update" : "submit form"}</button>
           </div>
-
         </div >
 
       </form >

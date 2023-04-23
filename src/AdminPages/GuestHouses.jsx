@@ -7,7 +7,7 @@ import { AuthContext } from '../contexts/AuthContext';
 
 const GuestHouses = () => {
   // const [guesthouses, setGuesthouses] = useState([]);
-  const {guesthouses, setGuesthouses} = useContext(AuthContext)
+  const {guesthouses, setGuesthouses, refreshGHList} = useContext(AuthContext)
   const [numGuesthouses, setNumGuesthouses] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate()
@@ -22,13 +22,13 @@ const GuestHouses = () => {
         <tr className="table-row" key={props.id}>
           <td className='table-data'>
             <div className='ghl--name-container'>
-              <img className='table--logo' src='../icons/house.png' />
+              <img className='table--logo' src={props.logo} />
               <h3>{props.gName}</h3>
             </div>
           </td>
           <td>{props.location}</td>
           <div className='table--actions'>
-            <img src="../icons/edit.svg" alt="edit" />
+            <img src="../icons/edit.svg" alt="edit" onClick={() => navigate(`/admin/guesthouse/${props.id}`)} />
             <img src="../icons/message.svg" alt="message" />
             <img src="../icons/delete.svg" alt="delete" onClick={event => deleteHouse(props.id)} />
           </div>
@@ -48,6 +48,7 @@ const GuestHouses = () => {
         setNumGuesthouses((prevNumGuesthouses) => prevNumGuesthouses - 1);
       })
       .catch((err) => console.log(err));
+      refreshGHList()
   }
 
   function createNew() {
@@ -76,25 +77,25 @@ const GuestHouses = () => {
             <div className='admin--radios'>
               <div className='admin--radio'>
                 <input type="radio" id="name" name='sort' />
-                <label htmlfor="name">Name</label>
+                <label htmlFor="name">Name</label>
               </div>
               {/* <br /> */}
 
               <div className='admin--radio'>
                 <input type="radio" id="price" name='sort' />
-                <label htmlfor="price">Price</label>
+                <label htmlFor="price">Price</label>
               </div>
               {/* <br /> */}
 
               <div className='admin--radio'>
                 <input type="radio" id="rating" name='sort' />
-                <label htmlfor="rating">Rating</label>
+                <label htmlFor="rating">Rating</label>
               </div>
               {/* <br /> */}
 
               <div className='admin--radio'>
                 <input type="radio" id="location" name='sort' />
-                <label htmlfor="location">Location</label>
+                <label htmlFor="location">Location</label>
               </div>
               {/* <br /> */}
             </div>
@@ -131,6 +132,7 @@ const GuestHouses = () => {
                   <tbody>
                     {filteredGuesthouses.map((guesthouse) => (
                       <HouseItem
+                        logo={guesthouse.logo}
                         id={guesthouse.id}
                         gName={guesthouse.gName}
                         location={guesthouse.location}

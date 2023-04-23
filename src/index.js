@@ -56,6 +56,7 @@ root.render(
           <Route path='/requests' element={<Requests />} />
           <Route path='/admin/settings' element={<Settings />} />
           <Route path='/admin/new-guesthouse' element={<GuestHouseData />} />
+          <Route path='/admin/guesthouse/:id' element={<GuestHouseData />} />
         </Route>
 
         <Route element={<UserLayout />} >
