@@ -8,6 +8,7 @@ export const AuthLayout = () => {
     const { adminUser, isLoggedIn } = useContext(AuthContext)
 
     if (!isLoggedIn || adminUser == null) {
+
         return (
             <Navigate
                 to="admin-login"

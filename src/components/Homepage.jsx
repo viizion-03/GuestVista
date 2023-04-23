@@ -34,26 +34,15 @@ const Homepage = () => {
     setCheapestGuesthouses(cheapGuestHs)
   }, [guesthouses])
 
-  useEffect(() => {
-    fetch("https://guestvista-4308f-default-rtdb.firebaseio.com/addGuesthouses.json")
-      .then((response) => response.json())
-      .then((data) => {
-        // const filteredGuesthouses = Object.values(data).filter((guesthouse) => guesthouse.ratings >= 4.5);
-        // setGuesthouses(filteredGuesthouses);
-
-        // const sortedPrice = Object.values(data).sort((a, b) => a.price - b.price);
-        // const cheapGuesthouses = sortedPrice.slice(0,3);
-        // setCheapestGuesthouses(cheapGuesthouses);
-      })
-      .catch((error) => console.error(error));
-  }, []);
 
   const styles = { width: "400px", height: "fit-content", margin: "30px 0px", background: "transparent", padding: "0px" }
 
   const source = "https://firebasestorage.googleapis.com/v0/b/guestvista-4308f.appspot.com/o/carousel%2Fzero-take-QzQe16eKc1I-unsplash%20%5BMConverter.eu%5D.webp?alt=media&token=23abc247-a128-45d4-a412-815f6646d34a"
 
   function seeGuestHouses(id) {
-    navigate(`/guesthouse/${id}`)
+    // navigate(`/guesthouse/${id}`)
+
+    console.log(JSON.stringify(guesthouses))
   }
 
   return (

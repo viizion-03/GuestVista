@@ -11,7 +11,8 @@ function DashboardOverview() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        fetch("https://guestvista-4308f-default-rtdb.firebaseio.com/addGuesthouses.json?orderBy=\"$key\"")
+        // fetch("https://guestvista-4308f-default-rtdb.firebaseio.com/addGuesthouses.json?orderBy=\"$key\"")
+        fetch("https://react-project-5130e-default-rtdb.firebaseio.com/addGuesthouses?orderBy=\"$key\"")
             .then(response => response.json())
             .then(data => {
                 const sortedData = Object.values(data).sort((a, b) => b.ratings - a.ratings);

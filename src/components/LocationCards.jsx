@@ -8,7 +8,7 @@ function LocationCards(props) {
   const [isOneLine, setIsOneLine] = useState(false);
 
   useEffect(() => {
-    fetch(`https://guestvista-4308f-default-rtdb.firebaseio.com/addGuesthouses.json`)
+    fetch(`https://react-project-5130e-default-rtdb.firebaseio.com/addGuesthouses`)
       .then((response) => response.json())
       .then((data) => {
         const guesthousesData = Object.entries(data).map(([id, guesthouse]) => ({ id, ...guesthouse }));

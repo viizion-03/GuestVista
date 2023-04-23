@@ -17,7 +17,9 @@ export function Authprovider(props) {
     
     //fetch data and populate GuestHouse list Array
     useEffect(() => {
-        fetch("https://guestvista-4308f-default-rtdb.firebaseio.com/addGuesthouses.json")
+        // fetch("https://guestvista-4308f-default-rtdb.firebaseio.com/addGuesthouses.json")
+        
+        fetch("https://react-project-5130e-default-rtdb.firebaseio.com/addGuesthouses.json")
             .then((res) => res.json())
             .then((data) => {
                 const loadedGuesthouses = [];

@@ -33,7 +33,8 @@ function PieChart() {
 
   useEffect(() => {
     fetch(
-      "https://guestvista-4308f-default-rtdb.firebaseio.com/addGuesthouses.json?orderBy=\"$key\""
+      // "https://guestvista-4308f-default-rtdb.firebaseio.com/addGuesthouses.json?orderBy=\"$key\""
+      "https://react-project-5130e-default-rtdb.firebaseio.com/addGuesthouses?orderBy=\"$key\""
     )
       .then((response) => response.json())
       .then((data) => setData(Object.values(data)));

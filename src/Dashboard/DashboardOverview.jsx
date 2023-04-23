@@ -8,7 +8,7 @@ function DashboardOverview() {
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    fetch("https://guestvista-4308f-default-rtdb.firebaseio.com/addGuesthouses.json")
+    fetch("https://react-project-5130e-default-rtdb.firebaseio.com/addGuesthouses")
       .then((res) => res.json())
       .then((data) => {
         const loadedGuesthouses = [];

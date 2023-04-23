@@ -7,14 +7,12 @@ import {getStorage} from "firebase/storage"
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAM6XelTYtg4EaKvYM4L6k96FMI3IDSftw",
-  authDomain: "guestvista-4308f.firebaseapp.com",
-  databaseURL: "https://guestvista-4308f-default-rtdb.firebaseio.com",
-  projectId: "guestvista-4308f",
-  storageBucket: "guestvista-4308f.appspot.com",
-  messagingSenderId: "935264390170",
-  appId: "1:935264390170:web:1b74417f1a14f7609f95a3",
-  measurementId: "G-RVEK214LJ7"
+  apiKey: "AIzaSyDWLi5HbMCq3DXCiDDm3wFhvKni3cSd9f8",
+  authDomain: "react-project-5130e.firebaseapp.com",
+  projectId: "react-project-5130e",
+  storageBucket: "react-project-5130e.appspot.com",
+  messagingSenderId: "703952360317",
+  appId: "1:703952360317:web:731eb70d162db44eb17214"
 };
 
 // Initialize Firebase

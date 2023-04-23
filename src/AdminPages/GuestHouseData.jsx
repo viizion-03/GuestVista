@@ -86,7 +86,8 @@ const GuestHouseData = () => {
         gName, email, contacts, website, location, price, physical_address, photos, brief, reviews,
         ratings, coordinates, description, logo, display_picture, amenities, packages } = guestHouse
 
-      const res = await fetch('https://guestvista-4308f-default-rtdb.firebaseio.com/addGuesthouses.json', {
+        // const res = await fetch('https://guestvista-4308f-default-rtdb.firebaseio.com/addGuesthouses.json', {
+          const res = await fetch('https://react-project-5130e-default-rtdb.firebaseio.com/addGuesthouses.json', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
