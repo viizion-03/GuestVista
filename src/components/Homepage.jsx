@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import home from './pictures/home.jpeg'
 import { faStar } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import LocationCards from "./LocationCards";
+
 import HomeCarousel from "./HomeCarousel";
 import { Card } from "react-bootstrap";
 import CardHeader from "react-bootstrap/esm/CardHeader";
@@ -13,24 +15,35 @@ import { AuthContext } from "../contexts/AuthContext";
 
 
 const Homepage = () => {
-  const [filteredGuesthouses, setFilteredGuesthouses] = useState([]);
-  const {guesthouses} = useContext(AuthContext)
+
   const navigate = useNavigate()
+  const [filteredGuesthouses, setFilteredGuesthouses] = useState([]);
+  const { guesthouses } = useContext(AuthContext)
+
+  const [cheapestGuesthouses, setCheapestGuesthouses] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
 
   useEffect(() => {
-    const sorted = guesthouses.sort((a,b) => b.ratings - a.ratings)
-    const filtered = sorted.filter((item) => item.ratings >= 4.0).slice(0,6)
+    const sorted = guesthouses.sort((a, b) => b.ratings - a.ratings)
+    const filtered = sorted.filter((item) => item.ratings >= 4.0).slice(0, 6)
 
+    const sortedPrice = guesthouses.sort((a, b) => a.price - b.price);
+    const cheapGuestHs = sortedPrice.slice(0, 3);
     setFilteredGuesthouses(filtered)
+    setCheapestGuesthouses(cheapGuestHs)
   }, [guesthouses])
 
   useEffect(() => {
     fetch("https://guestvista-4308f-default-rtdb.firebaseio.com/addGuesthouses.json")
       .then((response) => response.json())
       .then((data) => {
-        // const filteredGuesthouses = Object.values(data).filter((guesthouse) => guesthouse.ratings >= 4.0);
-        // const firstSixGuesthouses = filteredGuesthouses.slice(0, 6);
-        // setGuesthouses(firstSixGuesthouses);
+        // const filteredGuesthouses = Object.values(data).filter((guesthouse) => guesthouse.ratings >= 4.5);
+        // setGuesthouses(filteredGuesthouses);
+
+        // const sortedPrice = Object.values(data).sort((a, b) => a.price - b.price);
+        // const cheapGuesthouses = sortedPrice.slice(0,3);
+        // setCheapestGuesthouses(cheapGuesthouses);
       })
       .catch((error) => console.error(error));
   }, []);
@@ -48,6 +61,9 @@ const Homepage = () => {
 
       <HomeCarousel />
 
+      <input type="text" placeholder="Search for your guesthouse here!" style={{ marginRight: "10px", padding: "15px" }}
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)} />
       <div className="popular-guesthouses">
         <h2>POPULAR GUESTHOUSES</h2>
         <Container>
@@ -82,7 +98,7 @@ const Homepage = () => {
                         <FontAwesomeIcon icon={faStar} />
                       </Card.Text>
 
-                      <Card.Text as="h4" style={{ position: "absolute", bottom: "10px", color: "white", margin: "10px", backgroundColor: " rgba(126, 126, 126, 0.4)", cursor: "pointer",  padding: "5px"}}
+                      <Card.Text as="h4" style={{ position: "absolute", bottom: "10px", color: "white", margin: "10px", backgroundColor: " rgba(126, 126, 126, 0.4)", cursor: "pointer", padding: "5px" }}
                         onClick={() => seeGuestHouses(guesthouse.id)}
                       >{guesthouse.gName}
                       </Card.Text>
@@ -94,7 +110,21 @@ const Homepage = () => {
           </Row>
         </Container>
       </div>
-    </div >
+      <div className="cheapest-guesthouses">
+        <h2>CHEAPEST GUESTHOUSES</h2>
+        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between" }}>
+          {cheapestGuesthouses.map((guesthouse) => (
+            <div className="card" key={guesthouse.id} style={{ width: "600px", marginBottom: "40px", marginLeft: "100px", marginRight: "100px", marginTop: "40px" }}>
+              <img src={guesthouse.photos[0].src} alt={guesthouse.name} style={{ width: "100%", height: "200px", objectFit: "cover", borderRadius: "5px" }} />
+              <h3 style={{ fontSize: "1.5rem", marginTop: "10px", marginBottom: "5px" }}>{guesthouse.gName}</h3>
+              <p style={{ fontSize: "1.2rem", marginBottom: "3" }}><FontAwesomeIcon icon={faStar} color='#FFD700' /> {guesthouse.ratings}</p>
+              <p style={{ fontSize: "1.2rem", marginBottom: "0" }}>Location: {guesthouse.location}</p>
+              <p style={{ fontSize: "1.2rem", marginBottom: "0" }}>Price: {guesthouse.price}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 };
 

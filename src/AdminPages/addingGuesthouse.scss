@@ -149,6 +149,9 @@
     margin-top: 50px;
     text-align: center;
   }
+  .cheapest-guesthouses{
+    text-align: center;
+  }
   
   .card-list {
     display: flex;
@@ -221,7 +224,7 @@
   }
 
   .pie-chart-wrapper {
-    max-width: 900px;
+    max-width: 1600px;
     margin: 0 auto;
     text-align: center;
   }
@@ -230,6 +233,37 @@
     flex-wrap: wrap;
     justify-content: space-between;
   }
+  
+  .cards-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+  }
+  
+ 
+  .dashy--card-info {
+    padding: 20px;
+  }
+
+  .card--header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.card--price {
+    margin-top: auto;
+}
+
+
+
+
+
+
+
+
   
   
   

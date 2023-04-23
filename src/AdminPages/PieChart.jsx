@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
 import Chart from "chart.js/auto";
+import './addingGuesthouse.scss';
 
 function createPieChart(data) {
-  const lowPriceCount = data.filter((item) => item.price <= 350).length;
+  const lowPriceCount = data.filter((item) => item.price <= 400).length;
   const mediumPriceCount = data.filter(
-    (item) => item.price > 350 && item.price < 450
+    (item) => item.price > 400 && item.price < 500
   ).length;
-  const highPriceCount = data.filter((item) => item.price >= 450).length;
+  const highPriceCount = data.filter((item) => item.price >= 600).length;
 
   const pieChart = new Chart(document.getElementById("pie-chart"), {
     type: "pie",
     data: {
-      labels: ["Low Prices(<300)", "Medium Prices(<300||>450)", "High Prices(>450)"],
+      labels: ["Low Prices(<400)", "Medium Prices(<400||>=500)", "High Prices(>600)"],
       datasets: [
         {
           label: "Price Ranges",
@@ -46,7 +47,7 @@ function PieChart() {
 
   return (
     <div>
-      <canvas id="pie-chart"></canvas>
+      <canvas id="pie-chart" className="pie-chart-wrapper"></canvas>
     </div>
   );
 }
