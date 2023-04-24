@@ -28,7 +28,7 @@ const GuestHouseData = () => {
 
   const [errorMsg, setErrorMsg] = useState("")
   const [checkStates, setCheckStates] = useState({
-    wifi: false, parking: false, restaurant: false, restaurant: false,
+    wifi: false, parking: false, restaurant: false,
     bar: false, gym: false, coffee: false, tv: false
   })
 

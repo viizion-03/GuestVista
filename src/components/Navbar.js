@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import './styles/Navbar.scss'
 import homelogo from './pictures/homelogo.png'
+import {UserAuthContext} from "../contexts/UserAuthContext";
 
 const Navbar = () => {
     return (
@@ -22,7 +23,7 @@ const Navbar = () => {
                         <Link to='/admin-login'>Admin</Link>
                     </li>
                     <li>
-                        <Link to='/signup'>Sign Up</Link>
+                        <UserAuthContext to='/signup'>Sign Up</UserAuthContext>
                     </li>
                 </ul>
             </nav>
