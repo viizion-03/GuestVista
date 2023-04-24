@@ -4,11 +4,11 @@ import React from 'react'
 import { useState, useEffect, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
+import { ref, getDatabase, remove, child, set } from 'firebase/database';
 
 const GuestHouses = () => {
   // const [guesthouses, setGuesthouses] = useState([]);
-  const {guesthouses, setGuesthouses, refreshGHList} = useContext(AuthContext)
-  const [numGuesthouses, setNumGuesthouses] = useState(0);
+  const { guesthouses, setGuesthouses, refreshGHList } = useContext(AuthContext)
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate()
 
@@ -38,17 +38,11 @@ const GuestHouses = () => {
   }
 
   const deleteHouse = (id) => {
-    fetch(`https://guestvista-4308f-default-rtdb.firebaseio.com/addGuesthouses/${id}.json`, {
-      method: "DELETE",
-    })
-      .then(() => {
-        setGuesthouses((prevGuesthouses) =>
-          prevGuesthouses.filter((g) => g.id !== id)
-        );
-        setNumGuesthouses((prevNumGuesthouses) => prevNumGuesthouses - 1);
-      })
-      .catch((err) => console.log(err));
-      refreshGHList()
+
+    const houseRef = ref(getDatabase(), `/addGuesthouses/${id}`)
+    set(houseRef, null)
+    refreshGHList()
+    alert("Guest House deleted. Changes will be seen shortly")
   }
 
   function createNew() {
@@ -101,7 +95,7 @@ const GuestHouses = () => {
             </div>
           </div>
           <div className='table-section'>
-            
+
             {/* searchbar */}
             <div className='admin--searchbar'>
               <input

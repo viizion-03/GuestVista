@@ -1,18 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Chart } from 'chart.js';
 import './addingGuesthouse.scss';
+import { AuthContext } from "../contexts/AuthContext";
 
 function GuestHousesChart() {
   const [data, setData] = useState([]);
+  const {guesthouses} = useContext(AuthContext)
 
   useEffect(() => {
-    fetch(
-      // "https://guestvista-4308f-default-rtdb.firebaseio.com/addGuesthouses.json?orderBy=\"$key\""
-      "https://react-project-5130e-default-rtdb.firebaseio.com/addGuesthouses?orderBy=\"$key\""
-    )
-      .then((response) => response.json())
-      .then((data) => setData(Object.values(data)));
-  }, []);
+    setData(guesthouses)
+  }, [guesthouses])
+
+  // useEffect(() => {
+  //   fetch(
+  //     // "https://guestvista-4308f-default-rtdb.firebaseio.com/addGuesthouses.json?orderBy=\"$key\""
+  //     "https://react-project-5130e-default-rtdb.firebaseio.com/addGuesthouses?orderBy=\"$key\""
+  //   )
+  //     .then((response) => response.json())
+  //     .then((data) => setData(Object.values(data)));
+  // }, []);
 
   useEffect(() => {
     if (data.length > 0) {

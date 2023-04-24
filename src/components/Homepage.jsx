@@ -7,12 +7,11 @@ import LocationCards from "./LocationCards";
 
 import HomeCarousel from "./HomeCarousel";
 import { Card } from "react-bootstrap";
-import CardHeader from "react-bootstrap/esm/CardHeader";
 import { Col, Row, Container } from "react-bootstrap"
 import { useNavigate } from "react-router";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
-
+import { Placeholder } from "react-bootstrap";
 
 const Homepage = () => {
 
@@ -25,10 +24,10 @@ const Homepage = () => {
 
 
   useEffect(() => {
-    const sorted = guesthouses.sort((a, b) => b.ratings - a.ratings)
+    const sorted = guesthouses.toSorted((a, b) => b.ratings - a.ratings)
     const filtered = sorted.filter((item) => item.ratings >= 4.0).slice(0, 6)
 
-    const sortedPrice = guesthouses.sort((a, b) => a.price - b.price);
+    const sortedPrice = guesthouses.toSorted((a, b) => a.price - b.price);
     const cheapGuestHs = sortedPrice.slice(0, 3);
     setFilteredGuesthouses(filtered)
     setCheapestGuesthouses(cheapGuestHs)
@@ -40,9 +39,25 @@ const Homepage = () => {
   const source = "https://firebasestorage.googleapis.com/v0/b/guestvista-4308f.appspot.com/o/carousel%2Fzero-take-QzQe16eKc1I-unsplash%20%5BMConverter.eu%5D.webp?alt=media&token=23abc247-a128-45d4-a412-815f6646d34a"
 
   function seeGuestHouses(id) {
-    // navigate(`/guesthouse/${id}`)
+    navigate(`/guesthouse/${id}`)
+  }
 
-    console.log(JSON.stringify(guesthouses))
+  function LoadingCard() {
+    return (
+      <Card style={{ width: '18rem' }}>
+        <Card.Img variant="top" src="holder.js/100px180" />
+        <Card.Body>
+          <Placeholder as={Card.Title} animation="glow">
+            <Placeholder xs={6} />
+          </Placeholder>
+          <Placeholder as={Card.Text} animation="glow">
+            <Placeholder xs={7} /> <Placeholder xs={4} /> <Placeholder xs={4} />{' '}
+            <Placeholder xs={6} /> <Placeholder xs={8} />
+          </Placeholder>
+          <Placeholder.Button variant="primary" xs={6} />
+        </Card.Body>
+      </Card>
+    )
   }
 
   return (
@@ -56,9 +71,10 @@ const Homepage = () => {
       <div className="popular-guesthouses">
         <h2>POPULAR GUESTHOUSES</h2>
         <Container>
+          <button onClick={() => navigate('/bookings')}>Go to Bookings Page</button>
           <Row>
             <Col style={{ display: "flex", flexWrap: "wrap", width: "100%", justifyContent: "space-between" }}>
-              {filteredGuesthouses.map((guesthouse) => {
+              {(guesthouses.length != 0) ? filteredGuesthouses.map((guesthouse) => {
                 return (
                   //   {/* // <div className="card" key={guesthouse.id} style={{ width: "600px", marginBottom: "40px" ,marginLeft: "100px", marginRight: "100px", marginTop: "40px"}}>
                   // //   <img src={guesthouse.photos[0].src} alt={guesthouse.name} style={{ width: "100%", height: "200px", objectFit: "cover", borderRadius: "5px" }} />
@@ -77,24 +93,25 @@ const Homepage = () => {
                   //   <Card.Footer>{guesthouse.ratings} Rating</Card.Footer>
                   // </Card> */
 
-                  <Card style={styles}>
-                    <Card.Img src={guesthouse.display_picture} style={{ height: "350px" }} />
+              <Card style={styles}>
+                <Card.Img src={guesthouse.display_picture} style={{ height: "350px" }} />
 
-                    <Card.ImgOverlay style={{ display: "absolute" }}>
-                      <Card.Text as="h3"
-                        style={{ color: "white", backgroundColor: "black", width: "fit-content", float: "right", borderRadius: "10px", padding: "10px", margin: "15px" }}
-                      > {guesthouse.ratings}
-                        <FontAwesomeIcon icon={faStar} />
-                      </Card.Text>
+                <Card.ImgOverlay style={{ display: "absolute" }}>
+                  <Card.Text as="h3"
+                    style={{ color: "white", backgroundColor: "black", width: "fit-content", float: "right", borderRadius: "10px", padding: "10px", margin: "15px" }}
+                  > {guesthouse.ratings}
+                    <FontAwesomeIcon icon={faStar} />
+                  </Card.Text>
 
-                      <Card.Text as="h4" style={{ position: "absolute", bottom: "10px", color: "white", margin: "10px", backgroundColor: " rgba(126, 126, 126, 0.4)", cursor: "pointer", padding: "5px" }}
-                        onClick={() => seeGuestHouses(guesthouse.id)}
-                      >{guesthouse.gName}
-                      </Card.Text>
-                    </Card.ImgOverlay>
-                  </Card>
-                )
-              })}
+                  <Card.Text as="h4" style={{ position: "absolute", bottom: "10px", color: "white", margin: "10px", backgroundColor: " rgba(126, 126, 126, 0.4)", cursor: "pointer", padding: "5px" }}
+                    onClick={() => seeGuestHouses(guesthouse.id)}
+                  >{guesthouse.gName}
+                  </Card.Text>
+                </Card.ImgOverlay>
+              </Card>
+              )
+              }) : <><LoadingCard/> <LoadingCard/></> 
+              }
             </Col>
           </Row>
         </Container>

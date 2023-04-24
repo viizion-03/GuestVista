@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AdminLogin from './AdminLogin'
 import DashboardOverview from './AdminPages/DashboardOverview'
 import GuestHouses from './AdminPages/GuestHouses'
-import Bookings from './AdminPages/Bookings'
+// import {Bookings} from './pages/Bookings'
 import MySideNav from './MySideNav';
 import { Authprovider } from './contexts/AuthContext'
 import { AuthLayout } from './layouts/AuthLayout';
@@ -46,6 +46,7 @@ root.render(
         <Route path='/guesthouse/:id' element={<GuestHouseDetails />} />
         <Route path='/admin-login' element={<AdminLogin />} />
         <Route path='/signup' element={<UserSignUp/>} />
+        {/* <Route path="/bookings" element={<Bookings/>} /> */}
         
 
         <Route element={<AuthLayout />}>

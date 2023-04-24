@@ -25,11 +25,11 @@ const GuestHousesList = () => {
 
     // Sort by price or rating
     if (sortBy === 'high-price') {
-      tempGuesthouses.sort((a, b) => b.price - a.price);
+      tempGuesthouses.toSorted((a, b) => b.price - a.price);
     } else if (sortBy === 'low-price') {
-      tempGuesthouses.sort((a, b) => a.price - b.price);
+      tempGuesthouses.toSorted((a, b) => a.price - b.price);
     } else if (sortBy === 'high-rating') {
-      tempGuesthouses.sort((a, b) => b.ratings - a.ratings);
+      tempGuesthouses.toSorted((a, b) => b.ratings - a.ratings);
     }
 
     setFilteredGuestHouses(tempGuesthouses);

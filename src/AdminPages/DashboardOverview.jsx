@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import './addingGuesthouse.scss';
 import PieChart from './PieChart';
 import GuestHousesChart from './GuestHousesChart';
+import { useContext } from 'react';
+import { AuthContext } from '../contexts/AuthContext'
 
 function DashboardOverview() {
     const [numGuesthouses, setNumGuesthouses] = useState(0);
@@ -10,21 +12,34 @@ function DashboardOverview() {
     const [highPricedGuesthouses, setHighPricedGuesthouses] = useState([]);
     const [data, setData] = useState([]);
 
+    const { guesthouses } = useContext(AuthContext)
+
     useEffect(() => {
-        // fetch("https://guestvista-4308f-default-rtdb.firebaseio.com/addGuesthouses.json?orderBy=\"$key\"")
-        fetch("https://react-project-5130e-default-rtdb.firebaseio.com/addGuesthouses?orderBy=\"$key\"")
-            .then(response => response.json())
-            .then(data => {
-                const sortedData = Object.values(data).sort((a, b) => b.ratings - a.ratings);
-                const sortedPrice = Object.values(data).sort((a, b) => b.price - a.price);
-                setRecentGuesthouses(Object.values(data).reverse().slice(0, 4));
-                setNumGuesthouses(Object.keys(data).length);
-                setData(Object.values(data));
-                setTopRatedGuesthouses(sortedData.slice(0, 4));
-                setHighPricedGuesthouses(sortedPrice.slice(0, 4));
-            })
-            .catch(error => console.log(error));
-    }, []);
+        const sortedData = guesthouses.toSorted((a, b) => b.ratings - a.ratings);
+        const sortedPrice = guesthouses.toSorted((a, b) => b.price - a.price);
+
+        setRecentGuesthouses(guesthouses.reverse().slice(0, 4));
+        setNumGuesthouses(guesthouses.length);
+        setData(guesthouses);
+        setTopRatedGuesthouses(sortedData.slice(0, 4));
+        setHighPricedGuesthouses(sortedPrice.slice(0, 4));
+    }, [guesthouses])
+
+    // useEffect(() => {
+    //     // fetch("https://guestvista-4308f-default-rtdb.firebaseio.com/addGuesthouses.json?orderBy=\"$key\"")
+    //     fetch("https://react-project-5130e-default-rtdb.firebaseio.com/addGuesthouses.?orderBy=\"$key\"")
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             const sortedData = Object.values(data).toSorted((a, b) => b.ratings - a.ratings);
+    //             const sortedPrice = Object.values(data).toSorted((a, b) => b.price - a.price);
+    //             setRecentGuesthouses(Object.values(data).reverse().slice(0, 4));
+    //             setNumGuesthouses(Object.keys(data).length);
+    //             setData(Object.values(data));
+    //             setTopRatedGuesthouses(sortedData.slice(0, 4));
+    //             setHighPricedGuesthouses(sortedPrice.slice(0, 4));
+    //         })
+    //         .catch(error => console.log(error));
+    // }, []);
 
     function HouseCard(props) {
         return (
@@ -53,13 +68,13 @@ function DashboardOverview() {
                     </div>
 
                     <div className="charts-container">
-                    <div className="pie-chart-wrapper">
-                    <PieChart data={data} />
+                        <div className="pie-chart-wrapper">
+                            <PieChart data={data} />
+                        </div>
+                        <div className="guesthouses-chart">
+                            <GuestHousesChart />
+                        </div>
                     </div>
-                      <div className="guesthouses-chart">
-                    <GuestHousesChart />
-                    </div>
-                     </div>
                     <h3 className="dash--header">Recently Created</h3>
                     <div className="dash--cards">
                         {recentGuesthouses.map(guesthouse => (
@@ -74,28 +89,28 @@ function DashboardOverview() {
                     </div>
                     <h3 className="dash--header">Top Rated Guesthouses</h3>
                     <div className="dash--cards">
-                    {topRatedGuesthouses.map(guesthouse => (
-                    <HouseCard
-                    key={guesthouse.id}
-                    img={guesthouse.photos[0].src}
-                    name={guesthouse.gName}
-                    rating={guesthouse.ratings}
-                    price={guesthouse.price}
-                     />
-                     ))}
+                        {topRatedGuesthouses.map(guesthouse => (
+                            <HouseCard
+                                key={guesthouse.id}
+                                img={guesthouse.photos[0].src}
+                                name={guesthouse.gName}
+                                rating={guesthouse.ratings}
+                                price={guesthouse.price}
+                            />
+                        ))}
                     </div>
                     <h3 className="dash--header">Most Expensive Guesthouses</h3>
                     <div className="dash--cards">
-                    {highPricedGuesthouses.map(guesthouse => (
-                    <HouseCard
-                    key={guesthouse.id}
-                    img={guesthouse.photos[0].src}
-                    name={guesthouse.gName}
-                    rating={guesthouse.ratings}
-                    price={guesthouse.price}
-                     />
-                     ))}
-                        </div>
+                        {highPricedGuesthouses.map(guesthouse => (
+                            <HouseCard
+                                key={guesthouse.id}
+                                img={guesthouse.photos[0].src}
+                                name={guesthouse.gName}
+                                rating={guesthouse.ratings}
+                                price={guesthouse.price}
+                            />
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>

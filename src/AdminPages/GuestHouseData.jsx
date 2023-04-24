@@ -1,5 +1,5 @@
 import { faEdit, faEnvelope, faMoneyBillAlt, faStar } from '@fortawesome/free-regular-svg-icons'
-import { faBed, faBeer, faCamera, faContactBook, faEarthAfrica, faInfoCircle, faMapLocation, faMapMarker, faStreetView, faUpload } from '@fortawesome/free-solid-svg-icons'
+import { faBed, faBeer, faCamera, faContactBook, faDeleteLeft, faEarthAfrica, faInfoCircle, faMapLocation, faMapMarker, faStreetView, faUpload } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState, useRef } from 'react'
 import { useEffect } from 'react'
@@ -16,7 +16,7 @@ import { useNavigate } from 'react-router'
 const GuestHouseData = () => {
   const params = useParams();
 
-  const { guesthouses } = useContext(AuthContext)
+  const { guesthouses, setGuesthouses } = useContext(AuthContext)
   const [updateView, setUpdateView] = useState(false)
   const navigate = useNavigate()
   const { refreshGHList } = useContext(AuthContext)
@@ -45,7 +45,6 @@ const GuestHouseData = () => {
 
 
   // Arrays to store data to be sent over
-  const [logoImg, setLogoImg] = useState(null);
   const [displayImg, setDispalyImg] = useState(null)
   const [styles, setStyles] = useState(null)
   const [pricePackage, setPricePackage] = useState(
@@ -67,6 +66,7 @@ const GuestHouseData = () => {
       if (element.id == params.id) {
         setGuestHouse(prev => { return ({ ...prev, ...element }) })
         setUpdateView(true)
+        console.log(element)
       }
     })
   }, [])
@@ -86,8 +86,8 @@ const GuestHouseData = () => {
         gName, email, contacts, website, location, price, physical_address, photos, brief, reviews,
         ratings, coordinates, description, logo, display_picture, amenities, packages } = guestHouse
 
-        // const res = await fetch('https://guestvista-4308f-default-rtdb.firebaseio.com/addGuesthouses.json', {
-          const res = await fetch('https://react-project-5130e-default-rtdb.firebaseio.com/addGuesthouses.json', {
+      // const res = await fetch('https://guestvista-4308f-default-rtdb.firebaseio.com/addGuesthouses.json', {
+      const res = await fetch('https://react-project-5130e-default-rtdb.firebaseio.com/addGuesthouses.json', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -99,6 +99,7 @@ const GuestHouseData = () => {
       });
       if (res)
         alert("Data sent to the Database")
+      // setGuesthouses(prevHouses => {return([...prevHouses, guestHouse])})  
       refreshGHList()
       navigate("/admin/guest-houses")
     }
@@ -216,6 +217,17 @@ const GuestHouseData = () => {
 
   }
 
+  // function removePhoto(src){
+  //   guestHouse.photos.forEach(photo => {
+  //     if(photo.src == src){
+  //       const updatedImgs = guestHouse.photos.toSpliced(guestHouse.photos.indexOf(src), 1) 
+  //       setGuestHouse(prevData => {
+  //         return({...prevData, photos: updatedImgs})
+  //       })
+  //     }
+  //   })
+  // }
+
   const handleFileInputChange = (event) => {
     const files = event.target.files;
     const updatedPhotos = [];
@@ -253,13 +265,33 @@ const GuestHouseData = () => {
       if (type === "logo") {
         const logoImage = e.target.files[0]
         const logoRef = ref(storage, `guesthouses/${guestHouse.gName}/logo`)
-        uploadBytes(logoRef, logoImage)
+        uploadBytes(logoRef, logoImage).then((snapshot) => {
+          getDownloadURL(logoRef).then((url) => {
+            setLogoUrl(url)
+            setGuestHouse(prevData => {
+              return ({ ...prevData, logo: url })
+            })
+          })
+            .catch((error) => {
+              console.log(error)
+            })
+        }).catch((error) => {
+          console.log(error)
+        })
+      }
+      // setLogoImg(e.target.files[0])
+
+      if (type === "display") {
+        const displayImage = e.target.files[0]
+        const displayRef = ref(storage, `guesthouses/${guestHouse.gName}/display`)
+        uploadBytes(displayRef, displayImage)
           .then((snapshot) => {
-            getDownloadURL(logoRef)
+            getDownloadURL(displayRef)
               .then((url) => {
-                setLogoUrl(url)
+                // setDisplayUrl(url)
+                setStyles({ backgroundImage: `url(${displayUrl})` })
                 setGuestHouse(prevData => {
-                  return ({ ...prevData, logo: url })
+                  return ({ ...prevData, display_picture: url })
                 })
               })
               .catch((error) => {
@@ -268,11 +300,10 @@ const GuestHouseData = () => {
           }).catch((error) => {
             console.log(error)
           })
-      }
-      // setLogoImg(e.target.files[0])
 
-      if (type === "display")
-        setDispalyImg(e.target.files[0])
+
+      }
+      setDispalyImg(e.target.files[0])
 
       if (type === "images") {
         handleFileInputChange(e)
@@ -281,28 +312,28 @@ const GuestHouseData = () => {
 
   }
 
-  //listens for display picture changes
-  useEffect(() => {
-    const displayRef = ref(storage, `guesthouses/${guestHouse.gName}/display`)
-    uploadBytes(displayRef, displayImg)
-      .then((snapshot) => {
-        getDownloadURL(displayRef)
-          .then((url) => {
-            setDisplayUrl(url)
-            setStyles({ backgroundImage: `url(${displayUrl})` })
-            setGuestHouse(prevData => {
-              return ({ ...prevData, display_picture: url })
-            })
-          })
-          .catch((error) => {
-            console.log(error)
-          })
-      }).catch((error) => {
-        console.log(error)
-      })
+  // //listens for display picture changes
+  // useEffect(() => {
+  //   const displayRef = ref(storage, `guesthouses/${guestHouse.gName}/display`)
+  //   uploadBytes(displayRef, displayImg)
+  //     .then((snapshot) => {
+  //       getDownloadURL(displayRef)
+  //         .then((url) => {
+  //           setDisplayUrl(url)
+  //           setStyles({ backgroundImage: `url(${displayUrl})` })
+  //           setGuestHouse(prevData => {
+  //             return ({ ...prevData, display_picture: url })
+  //           })
+  //         })
+  //         .catch((error) => {
+  //           console.log(error)
+  //         })
+  //     }).catch((error) => {
+  //       console.log(error)
+  //     })
 
 
-  }, [displayImg])
+  // }, [displayImg])
 
   return (
 
@@ -641,9 +672,9 @@ const GuestHouseData = () => {
 
             <div
               className='gallery--image-container'
-              style={styles}
+              style={{ backgroundImage: (guestHouse.display_picture != "" ? guestHouse.display_picture : defaultDisplayUrl) }}
             >
-              <img src={logoUrl} alt="logo" />
+              <img src={(guestHouse.logo != "") ? guestHouse.logo : logoUrl} alt="logo" />
               <FontAwesomeIcon icon={faCamera} onClick={event => loadFile("logo")} className='change--logo' />
               <input
                 type="file"
@@ -651,6 +682,8 @@ const GuestHouseData = () => {
                 className='file-chooser'
                 onChange={(e) => uploadImage(e, "logo")}
                 accept='image/*'
+                disabled={(guestHouse.gName == "") ? true : false}
+                style={{ cursor: "pointer" }}
               />
             </div>
 
@@ -662,7 +695,9 @@ const GuestHouseData = () => {
                 ref={displayRef}
                 className='file-chooser'
                 onChange={(e) => uploadImage(e, "display")}
-                disabled = {(guestHouse.gName == "")}
+                accept='image/*'
+                disabled={(guestHouse.gName == "") ? true : false}
+                style={{ cursor: "pointer" }}
               />
 
             </h4>
@@ -682,8 +717,10 @@ const GuestHouseData = () => {
             />
             <div className='previews'>
               {guestHouse.photos.map((photo) => (
-                <div className='photo' key={photo.src}>
-                  <img src={photo.src} alt='Guesthouse' />
+                <div className='photo' key={photo.src} style={{maxWidth: "50%", backgroundColor: "red"}}>
+
+                  {/* <FontAwesomeIcon icon={faDeleteLeft} style={{position:"absolute",marginLeft: "140px", color: "white"}} /> */}
+                  <img src={photo.src} alt='Guesthouse' style={{height: "100%", width:"100%", objectFit:"fill"}} />
                   {/* <p>{photo.file.name}</p> */}
                 </div>
               ))}
