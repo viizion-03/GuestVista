@@ -8,13 +8,18 @@ import { useContext, useState } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
 import "./GuestHouseDetails.css"
 import { Row, Col, Container, Spinner, Table, Modal, Button, Form, } from 'react-bootstrap'
-import Bookings from '../pages/Bookings'
+import Bookings from '../components/Bookings'
 
 const GuestHouseDetails = () => {
 
   const navigate = useNavigate();
   const params = useParams()
   const { guesthouses } = useContext(AuthContext)
+  const [selectedPackage, setSelectedPackage] = useState(-1)
+  const [show, setShow] = useState();
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
 
   const gh = {
     amenities: [
@@ -115,31 +120,15 @@ const GuestHouseDetails = () => {
 
   function BookingsModal() {
 
-    const [show, setShow] = useState();
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
     return (
       <>
-        <Button variant="primary" onClick={handleShow}>
-          Launch demo modal
-        </Button>
-
-        <Modal show={show} onHide={handleClose}>
+        <Modal size='md' show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
+            <Modal.Title>New Booking</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Bookings gName={guestHouse.gName} email={guestHouse.email} {...guestHouse.packages[0]} />
+            <Bookings gName={guestHouse.gName} email={guestHouse.email} {...guestHouse.packages[selectedPackage]} />
           </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
-            <Button variant="primary" onClick={() => console.log()}>
-              Save Changes
-            </Button>
-          </Modal.Footer>
         </Modal>
       </>
     );
@@ -165,7 +154,7 @@ const GuestHouseDetails = () => {
 
       {!guestHouse ? <Spinner style={{ position: "absolute", left: "50%", top: "20%", fontSize: "30px", color: "darkblue" }} /> :
         <>
-          <h3 className='ghd--name'>{guestHouse.gName}</h3>
+          <h3 className='ghd--name' style={{marginTop:"60px"}}>{guestHouse.gName}</h3>
           <div className='ghd--photos-grid'>
 
 
@@ -222,7 +211,7 @@ const GuestHouseDetails = () => {
                 <th className='w-10'></th>
               </thead>
               <tbody>
-                {guestHouse.packages.map(item => {
+                {guestHouse.packages.map((item, index) => {
                   return (
                     <tr>
                       <td>
@@ -241,10 +230,12 @@ const GuestHouseDetails = () => {
                         </ul>
                       </td>
                       <td>
-                        <button
-                          className='reservation-btn'
-
-                        >Make Reservation
+                        <button className='reservation-btn'
+                         onClick={() => {
+                          setSelectedPackage(index)
+                          handleShow()
+                         }}>
+                          Make Reservation
                           <FontAwesomeIcon icon={faBookmark} style={{ marginLeft: "10px", }} />
                         </button>
                       </td>

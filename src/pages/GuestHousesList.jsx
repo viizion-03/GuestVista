@@ -6,7 +6,7 @@ import GuestHouseTile from '../components/GuestHouseTile';
 import "./GuestHousesList.css"
 import { useContext } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
-import { Card, Container } from 'react-bootstrap';
+import { Alert, Card, Container, Spinner } from 'react-bootstrap';
 const GuestHousesList = () => {
 
 
@@ -88,6 +88,8 @@ const GuestHousesList = () => {
         <Container>
           <div className='ghl--houses'>
 
+          {guesthouses.length == 0 && <Spinner style={{width:"5rem", height: "5rem", fontSize:"10px", alignSelf:"center" ,color:"#004c6f"}}/>}
+
             {filteredGuestHouses.size != 0 && filteredGuestHouses.map((house) => {
               return (
                 // <Link to={`/guesthouse/${house.id}`}>
@@ -106,6 +108,7 @@ const GuestHousesList = () => {
               )
             })}
 
+            {filteredGuestHouses.length == 0 && <Alert variant='info' style={{width:"30%", textAlign:"center", alignSelf:'center'}}>No Guest Houses Found</Alert>}
           </div>
         </Container>
 

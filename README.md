@@ -90,3 +90,8 @@ get icon packages
 chart.js
 ### `npm install chart.js@3.6.1`
 
+bootstrap 
+### `npm install react react-bootstrap`
+
+Email service (Emailjs)
+### `npm install @emailjs/browser --save`

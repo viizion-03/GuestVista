@@ -12,6 +12,7 @@ import { useNavigate } from "react-router";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import { Placeholder } from "react-bootstrap";
+import { faLocation, faMapPin, faPingPongPaddleBall } from "@fortawesome/free-solid-svg-icons";
 
 const Homepage = () => {
 
@@ -44,17 +45,12 @@ const Homepage = () => {
 
   function LoadingCard() {
     return (
-      <Card style={{ width: '18rem' }}>
-        <Card.Img variant="top" src="holder.js/100px180" />
+      <Card style={{ styles }}>
+        <Card.Img style={{ height: "250px" }} variant="top" src="./images/holder.jpg" />
         <Card.Body>
           <Placeholder as={Card.Title} animation="glow">
-            <Placeholder xs={6} />
+            <Placeholder xs={10} />
           </Placeholder>
-          <Placeholder as={Card.Text} animation="glow">
-            <Placeholder xs={7} /> <Placeholder xs={4} /> <Placeholder xs={4} />{' '}
-            <Placeholder xs={6} /> <Placeholder xs={8} />
-          </Placeholder>
-          <Placeholder.Button variant="primary" xs={6} />
         </Card.Body>
       </Card>
     )
@@ -93,24 +89,29 @@ const Homepage = () => {
                   //   <Card.Footer>{guesthouse.ratings} Rating</Card.Footer>
                   // </Card> */
 
-              <Card style={styles}>
-                <Card.Img src={guesthouse.display_picture} style={{ height: "350px" }} />
+                  <Card style={styles}>
+                    <Card.Img src={guesthouse.display_picture} style={{ height: "350px" }} />
 
-                <Card.ImgOverlay style={{ display: "absolute" }}>
-                  <Card.Text as="h3"
-                    style={{ color: "white", backgroundColor: "black", width: "fit-content", float: "right", borderRadius: "10px", padding: "10px", margin: "15px" }}
-                  > {guesthouse.ratings}
-                    <FontAwesomeIcon icon={faStar} />
-                  </Card.Text>
+                    <Card.ImgOverlay style={{ display: "absolute" }}>
+                      <Card.Text as="h3"
+                        style={{ color: "white", backgroundColor: "black", width: "fit-content", float: "right", borderRadius: "10px", padding: "10px", margin: "10px" }}
+                      > {guesthouse.ratings}
+                        <FontAwesomeIcon icon={faStar} />
+                      </Card.Text>
 
-                  <Card.Text as="h4" style={{ position: "absolute", bottom: "10px", color: "white", margin: "10px", backgroundColor: " rgba(126, 126, 126, 0.4)", cursor: "pointer", padding: "5px" }}
-                    onClick={() => seeGuestHouses(guesthouse.id)}
-                  >{guesthouse.gName}
-                  </Card.Text>
-                </Card.ImgOverlay>
-              </Card>
-              )
-              }) : <><LoadingCard/> <LoadingCard/></> 
+                      <Card.Text as="h4" style={{ position: "absolute", bottom: "40px", color: "white", margin: "10px", backgroundColor: " rgba(126, 126, 126, 0.4)", cursor: "pointer", padding: "5px", textShadow:"2px 2px black" }}
+                        onClick={() => seeGuestHouses(guesthouse.id)}
+                      >{guesthouse.gName}
+                      </Card.Text>
+                      
+                      <Card.Text style={{position: "absolute", bottom: "10px",left:"40px",textAlign:"start", color:"ButtonShadow", textShadow:"2px 2px black", display:"flex", marginTop:"15px", borderRadius:"10px"}}>
+                        <FontAwesomeIcon icon={faLocation} style={{color: "yellow", fontSize:"14px",padding:"5px", marginRight:"7px"}}/>
+                        <span style={{fontSize:"18px", alignSelf:"center"}}>{guesthouse.location}</span>
+                        </Card.Text>
+                    </Card.ImgOverlay>
+                  </Card>
+                )
+              }) : <><LoadingCard /> <LoadingCard /><LoadingCard /><LoadingCard /></>
               }
             </Col>
           </Row>
