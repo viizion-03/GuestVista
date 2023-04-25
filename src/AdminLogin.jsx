@@ -4,6 +4,9 @@ import { AuthContext } from './contexts/AuthContext';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from './config/firebase';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
+
 
 
 const AdminLogin = () => {
@@ -40,7 +43,7 @@ const AdminLogin = () => {
   useEffect(() => {
     if (adminUser != null) {
       if (adminUser == "none") {
-        navigate("/users")
+        navigate("/view-guesthouses")
       }
       else {
         navigate("/admin")
@@ -51,6 +54,9 @@ const AdminLogin = () => {
 
   return (
     <>
+          <nav >
+        <FontAwesomeIcon icon={faHome} size='2x' className='ghl--home-icon' onClick={() =>  navigate('/')} />
+      </nav>
       <div className="auth-form-container">
         <img src={logo} alt="" />
         <h1>GuestVista</h1>
