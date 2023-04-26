@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faSearch } from '@fortawesome/free-solid-svg-icons';
 import GuestHouseTile from '../components/GuestHouseTile';
@@ -36,7 +36,11 @@ const GuestHousesList = () => {
   }, [searchLocation, sortBy, guesthouses]);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
+  useEffect(() => {
+    location.state?.searchKey && setSearchLocation(location.state.searchKey)
+  }, [])
   function goHome() {
     navigate('/')
   }
@@ -108,7 +112,7 @@ const GuestHousesList = () => {
               )
             })}
             {filteredGuestHouses.length == 0 && guesthouses.length != 0
-            && <Alert variant='info' style={{ width: "30%", textAlign: "center", alignSelf: 'center' }}>No Guest Houses Found</Alert>}
+              && <Alert variant='info' style={{ width: "30%", textAlign: "center", alignSelf: 'center' }}>No Guest Houses Found</Alert>}
           </div>
         </Container>
 

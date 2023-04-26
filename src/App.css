@@ -7,6 +7,45 @@
   font-family: 'Segoe UI', sans-serif;
 }
 
+.home--searchbar{
+  margin:0px;
+  height:50px;
+  width: 100%;
+  border-radius: 190px;
+  text-align:center;
+  background-color: #02334faf;
+  color:white;
+  font-weight: bold;
+  z-index: 1;
+  position:absolute;
+  width: 35%;
+  left: 32%;
+  top:50%;
+  box-shadow: 0 0 3px 3px rgba(0, 89, 255, 0.504);
+}
+
+
+.home--search-ico{
+  position:absolute;
+  color: white;
+  text-shadow: "2px 2px black";
+  font-size: 27px;
+  font-weight: bold;
+  left:64%;
+  top: 51%;
+  z-index: 1;
+
+}
+.home--searchbar::placeholder{
+  color: #e8e8e8;
+  text-shadow: #02334f6f;
+}
+
+
+.home--search-ico:hover{
+  cursor: pointer;
+}
+
 .go-to-guesthouses {
   width: auto;
   padding: 15px 40px;

@@ -13,6 +13,7 @@ import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import { Placeholder } from "react-bootstrap";
 import { faLocation, faMapPin, faPingPongPaddleBall } from "@fortawesome/free-solid-svg-icons";
+import GuestHouseCard from "./GuestHouseCard";
 
 const Homepage = () => {
 
@@ -21,7 +22,6 @@ const Homepage = () => {
   const { guesthouses } = useContext(AuthContext)
 
   const [cheapestGuesthouses, setCheapestGuesthouses] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
 
 
   useEffect(() => {
@@ -61,38 +61,16 @@ const Homepage = () => {
 
       <HomeCarousel />
 
-      <input type="text" placeholder="Search for your guesthouse here!" style={{ marginRight: "10px", padding: "15px" }}
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)} />
-      <div className="popular-guesthouses">
+      <div className="popular-guesthouses" style={{ marginTop: "80px" }}>
         <h2>POPULAR GUESTHOUSES</h2>
-        <Container>
-          <button onClick={() => navigate('/bookings')}>Go to Bookings Page</button>
+        <button onClick={() => navigate('/view-guesthouses')} style={{width:"25.4rem"}}>View All Guest Houses</button>
+
+        <Container style={{ marginTop: "30px", backgroundColor: "whitesmoke", padding: "30px", borderRadius: "20px" }}>
           <Row>
             <Col style={{ display: "flex", flexWrap: "wrap", width: "100%", justifyContent: "space-between" }}>
               {(guesthouses.length != 0) ? filteredGuesthouses.map((guesthouse) => {
                 return (
-                  <Card style={styles}>
-                    <Card.Img src={guesthouse.display_picture} style={{ height: "350px" }} />
-
-                    <Card.ImgOverlay style={{ display: "absolute" }}>
-                      <Card.Text as="h3"
-                        style={{ color: "white", backgroundColor: "black", width: "fit-content", float: "right", borderRadius: "10px", padding: "10px", margin: "10px" }}
-                      > {guesthouse.ratings}
-                        <FontAwesomeIcon icon={faStar} />
-                      </Card.Text>
-
-                      <Card.Text as="h4" style={{ position: "absolute", bottom: "40px", color: "white", margin: "10px", backgroundColor: " rgba(126, 126, 126, 0.4)", cursor: "pointer", padding: "5px", textShadow:"2px 2px black" }}
-                        onClick={() => seeGuestHouses(guesthouse.id)}
-                      >{guesthouse.gName}
-                      </Card.Text>
-                      
-                      <Card.Text style={{position: "absolute", bottom: "10px",left:"40px",textAlign:"start", color:"ButtonShadow", textShadow:"2px 2px black", display:"flex", marginTop:"15px", borderRadius:"10px"}}>
-                        <FontAwesomeIcon icon={faLocation} style={{color: "yellow", fontSize:"14px",padding:"5px", marginRight:"7px"}}/>
-                        <span style={{fontSize:"18px", alignSelf:"center"}}>{guesthouse.location}</span>
-                        </Card.Text>
-                    </Card.ImgOverlay>
-                  </Card>
+                  <GuestHouseCard {...guesthouse} />
                 )
               }) : <><LoadingCard /> <LoadingCard /><LoadingCard /><LoadingCard /></>
               }
@@ -100,19 +78,20 @@ const Homepage = () => {
           </Row>
         </Container>
       </div>
-      <div className="cheapest-guesthouses">
+      <div className="cheapest-guesthouses" style={{ marginTop: "50px" }}>
         <h2>CHEAPEST GUESTHOUSES</h2>
-        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between" }}>
-          {cheapestGuesthouses.map((guesthouse) => (
-            <div className="card" key={guesthouse.id} style={{ width: "600px", marginBottom: "40px", marginLeft: "100px", marginRight: "100px", marginTop: "40px" }}>
-              <img src={guesthouse.photos[0].src} alt={guesthouse.name} style={{ width: "100%", height: "200px", objectFit: "cover", borderRadius: "5px" }} />
-              <h3 style={{ fontSize: "1.5rem", marginTop: "10px", marginBottom: "5px" }}>{guesthouse.gName}</h3>
-              <p style={{ fontSize: "1.2rem", marginBottom: "3" }}><FontAwesomeIcon icon={faStar} color='#FFD700' /> {guesthouse.ratings}</p>
-              <p style={{ fontSize: "1.2rem", marginBottom: "0" }}>Location: {guesthouse.location}</p>
-              <p style={{ fontSize: "1.2rem", marginBottom: "0" }}>Price: {guesthouse.price}</p>
-            </div>
-          ))}
-        </div>
+
+        <Container style={{ marginTop: "30px", backgroundColor: "whitesmoke", padding: "30px", borderRadius: "20px" }}>
+          <Row>
+            
+          <Col style={{ display: "flex", flexWrap: "wrap", width: "100%", justifyContent: "space-between" }}>
+            {(guesthouses.length != 0) ? cheapestGuesthouses.map((guesthouse) => (
+              <Col><GuestHouseCard {...guesthouse} /></Col>
+            )) : <><LoadingCard /> <LoadingCard /><LoadingCard /><LoadingCard /></>
+            }
+            </Col>
+          </Row>
+        </Container>
       </div>
     </div>
   );

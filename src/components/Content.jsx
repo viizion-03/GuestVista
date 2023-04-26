@@ -22,8 +22,7 @@ function Content (){
        
         <div>
 
-<button className="go-to-guesthouses" onClick={seeGuestHouses} style={{position: "fixed", bottom: "0", right: "0"}}>see all guest houses</button>
-      <section className="my-5" id="about">
+     <section className="my-5" id="about">
         <div className="container">
         <div class="row">
               <div class="col-sm-12 col-md-12">

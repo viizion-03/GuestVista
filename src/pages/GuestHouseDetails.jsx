@@ -133,7 +133,12 @@ const GuestHouseDetails = () => {
             <Modal.Title>New Booking</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Bookings gName={guestHouse.gName} email={guestHouse.email} {...guestHouse.packages[selectedPackage]} />
+            <Bookings
+             gName={guestHouse.gName}
+              gEmail={guestHouse.email} 
+              {...guestHouse.packages[selectedPackage]}
+              hideFunction = {handleClose}
+              />
           </Modal.Body>
         </Modal>
       </>
