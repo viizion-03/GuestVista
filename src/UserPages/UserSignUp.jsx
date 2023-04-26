@@ -121,10 +121,10 @@ const UserSignUp = () => {
           <input type="text" placeholder="Email" value={user.email} name='email' onChange={UserHandler} />
         </div>
         <div className="input--fields">
-          <input type="text" placeholder="Password" value={user.password} name='password' onChange={UserHandler} />
+          <input type="password" placeholder="Password" value={user.password} name='password' onChange={UserHandler} />
         </div>
         <div className="input--fields">
-          <input type="text" placeholder="ConfirmPassword" value={user.confirmPassword} name='confirmPassword' onChange={UserHandler} />
+          <input type="password" placeholder="ConfirmPassword" value={user.confirmPassword} name='confirmPassword' onChange={UserHandler} />
         </div>
         <div className="input--fields">
           <input type="submit" />

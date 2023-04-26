@@ -17,7 +17,6 @@ export const UserLayout = () => {
 
     return (
         <div className='admin--page'>
-            <nav>Navigation here</nav>
             <main>
                 <Outlet />
             </main>

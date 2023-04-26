@@ -1,16 +1,17 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faSearch } from '@fortawesome/free-solid-svg-icons';
 import GuestHouseTile from '../components/GuestHouseTile';
 import "./GuestHousesList.css"
-import { useContext } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
 import { Card, Container } from 'react-bootstrap';
+import { faUser } from '@fortawesome/free-regular-svg-icons';
 const GuestHousesList = () => {
 
 
   // const [guesthouses, setGuesthouses] = useState([]);
+  const { isLoggedIn } = useContext(AuthContext)
   const { guesthouses } = useContext(AuthContext)
   const [filteredGuestHouses, setFilteredGuestHouses] = useState([]);
   const [searchLocation, setSearchLocation] = useState('');
@@ -47,8 +48,17 @@ const GuestHousesList = () => {
         <FontAwesomeIcon icon={faHome} size='2x' className='ghl--home-icon' onClick={goHome} />
 
         <ul>
-          <li>Sign In</li>
-          <li>Sign Up</li>
+          {!isLoggedIn &&
+            <>
+              <li>Sign In</li>
+              <li>Sign Up</li></>
+
+          }
+          {isLoggedIn &&
+          <Link to='/users'>
+            <FontAwesomeIcon icon={faUser} />
+          </Link>}
+
           <li>About</li>
           <li>Contact Us</li>
         </ul>
@@ -92,15 +102,15 @@ const GuestHousesList = () => {
               return (
                 // <Link to={`/guesthouse/${house.id}`}>
                 // <Card onclick={() => navigate(`/guesthouse/${house.id}`)} style={{cursor:"pointer"}}>
-                  <GuestHouseTile key={house.id}
-                    id={house.id}
-                    img={house.display_picture}
-                    name={house.gName}
-                    price={house.price}
-                    rating={house.ratings}
-                    location={house.location}
-                    description={house.brief}
-                  />
+                <GuestHouseTile key={house.id}
+                  id={house.id}
+                  img={house.display_picture}
+                  name={house.gName}
+                  price={house.price}
+                  rating={house.ratings}
+                  location={house.location}
+                  description={house.brief}
+                />
                 // </Card>
                 // </Link>
               )
