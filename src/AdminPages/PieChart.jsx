@@ -55,9 +55,9 @@ function PieChart() {
 
   return (
     <div>
-      <canvas id="pie-chart" className="pie-chart-wrapper"></canvas>
+      <canvas id="pie-chart" width="500" height="500" className="pie-chart-wrapper"></canvas>
     </div>
   );
-}
+  }
 
 export default PieChart;

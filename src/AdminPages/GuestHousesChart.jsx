@@ -55,7 +55,7 @@ function GuestHousesChart() {
     }
   }, [data]);
 
-  return <canvas id="guesthousesChart" className="guesthouses-chart" />;
+  return <canvas id="guesthousesChart" width="600" height="600" className="guesthouses-chart" />;
 }
 
 export default GuestHousesChart;
