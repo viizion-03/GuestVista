@@ -6,6 +6,7 @@ import { auth } from './config/firebase';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 
 
+
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
@@ -43,7 +44,7 @@ const AdminLogin = () => {
         navigate("/users")
       }
       else {
-        navigate("/admin")
+        navigate("/admin") 
       }
     }
   })

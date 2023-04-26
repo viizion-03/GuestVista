@@ -72,23 +72,6 @@ const Homepage = () => {
             <Col style={{ display: "flex", flexWrap: "wrap", width: "100%", justifyContent: "space-between" }}>
               {(guesthouses.length != 0) ? filteredGuesthouses.map((guesthouse) => {
                 return (
-                  //   {/* // <div className="card" key={guesthouse.id} style={{ width: "600px", marginBottom: "40px" ,marginLeft: "100px", marginRight: "100px", marginTop: "40px"}}>
-                  // //   <img src={guesthouse.photos[0].src} alt={guesthouse.name} style={{ width: "100%", height: "200px", objectFit: "cover", borderRadius: "5px" }} />
-                  // //   <h3 style={{ fontSize: "1.5rem", marginTop: "10px", marginBottom: "5px" }}>{guesthouse.gName}</h3>
-                  // //   <p style={{ fontSize: "1.2rem", marginBottom: "10px" }}>{guesthouse.description}</p>
-                  // //   <p style={{ fontSize: "1.2rem", marginBottom: "3" }}><FontAwesomeIcon icon={faStar} color='#FFD700' /> {guesthouse.ratings}</p>
-                  // //   <p style={{ fontSize: "1.2rem", marginBottom: "0" }}>Location: {guesthouse.location}</p>
-                  // // </div> */}
-
-
-                  // <Card style={{}}>
-                  //   <Card.Img src={guesthouse.display_picture} />
-                  //   <Card.Title>{guesthouse.gName}</Card.Title>
-                  //   <Card.Text>{guesthouse.brief}</Card.Text>
-                  //   <Card.Subtitle></Card.Subtitle>
-                  //   <Card.Footer>{guesthouse.ratings} Rating</Card.Footer>
-                  // </Card> */
-
                   <Card style={styles}>
                     <Card.Img src={guesthouse.display_picture} style={{ height: "350px" }} />
 

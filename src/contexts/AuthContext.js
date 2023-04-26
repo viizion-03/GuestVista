@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { auth } from "../config/firebase"
 import { ref, getDatabase, get, onValue } from "@firebase/database";
 
+
 export const AuthContext = React.createContext()
 
 export function Authprovider(props) {
@@ -15,7 +16,7 @@ export function Authprovider(props) {
         setRefresh(prev => !prev)
     }
     
-    //fetch data and populate GuestHouse list Array
+    // fetch data and populate GuestHouse list Array
     useEffect(() => {
         // fetch("https://guestvista-4308f-default-rtdb.firebaseio.com/addGuesthouses.json")
         
@@ -30,7 +31,6 @@ export function Authprovider(props) {
                         ...data[key],
                     });
                 }
-
                 setGuesthouses(loadedGuesthouses);
                 console.log("data fetched")
             })

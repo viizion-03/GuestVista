@@ -11,6 +11,7 @@ const GuestHouses = () => {
   const { guesthouses, setGuesthouses, refreshGHList } = useContext(AuthContext)
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate()
+  const [visibleGuestHouses, setVisibleGuestHouses] = useState(guesthouses)
 
   const filteredGuesthouses = guesthouses.filter((guesthouse) =>
     guesthouse.gName.toLowerCase().includes(searchTerm.toLowerCase())
@@ -38,11 +39,22 @@ const GuestHouses = () => {
   }
 
   const deleteHouse = (id) => {
-
-    const houseRef = ref(getDatabase(), `/addGuesthouses/${id}`)
-    set(houseRef, null)
-    refreshGHList()
-    alert("Guest House deleted. Changes will be seen shortly")
+    let houseIndex = -1;
+    console.log(visibleGuestHouses)
+    for(let i = 0; i < guesthouses.length; i++){
+      if(guesthouses[i].id == id){
+        setVisibleGuestHouses(prevData => {
+          return prevData.toSpliced(i,1)
+        })
+        console.log("guesthouse deleted")
+        console.log(visibleGuestHouses)
+      }
+    }
+    // setGuesthouses(prevStud => {
+    //   return guesthouses.filter()
+    // })
+    // const houseRef = ref(getDatabase(), `/addGuesthouses/${id}`)
+    // set(houseRef, null)
   }
 
   function createNew() {

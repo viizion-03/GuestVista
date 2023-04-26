@@ -117,7 +117,7 @@ const Bookings = (props) => {
     const sendEmail = (e) => {
         e.preventDefault()
         
-        emailjs.sendForm('service_na2y2rw', 'YOUR_TEMPLATE_ID', templateParams, 'YOUR_PUBLIC_KEY')
+        emailjs.sendForm('service_na2y2rw', 'template_4lyzwqt', templateParams, "c8lekbrbjBwLVGGw0")
         .then((result) => {
             console.log(result.text);
         }, (error) => {

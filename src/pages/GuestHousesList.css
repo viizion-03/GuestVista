@@ -28,7 +28,9 @@ nav {
     padding: 20px 0px;
     text-indent:120px;
     font-weight: bold;
-    color:#004c6f
+    color:#004c6f;
+    text-align: center;
+    width: 100%;
 }
 
 nav>ul {

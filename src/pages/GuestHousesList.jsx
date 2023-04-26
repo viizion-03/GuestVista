@@ -88,27 +88,27 @@ const GuestHousesList = () => {
         <Container>
           <div className='ghl--houses'>
 
-          {guesthouses.length == 0 && <Spinner style={{width:"5rem", height: "5rem", fontSize:"10px", alignSelf:"center" ,color:"#004c6f"}}/>}
+            {guesthouses.length == 0 && <Spinner style={{ width: "5rem", height: "5rem", fontSize: "10px", alignSelf: "center", color: "#004c6f" }} />}
 
             {filteredGuestHouses.size != 0 && filteredGuestHouses.map((house) => {
               return (
                 // <Link to={`/guesthouse/${house.id}`}>
                 // <Card onclick={() => navigate(`/guesthouse/${house.id}`)} style={{cursor:"pointer"}}>
-                  <GuestHouseTile key={house.id}
-                    id={house.id}
-                    img={house.display_picture}
-                    name={house.gName}
-                    price={house.price}
-                    rating={house.ratings}
-                    location={house.location}
-                    description={house.brief}
-                  />
+                <GuestHouseTile key={house.id}
+                  id={house.id}
+                  img={house.display_picture}
+                  name={house.gName}
+                  price={house.price}
+                  rating={house.ratings}
+                  location={house.location}
+                  description={house.brief}
+                />
                 // </Card>
                 // </Link>
               )
             })}
-
-            {filteredGuestHouses.length == 0 && <Alert variant='info' style={{width:"30%", textAlign:"center", alignSelf:'center'}}>No Guest Houses Found</Alert>}
+            {filteredGuestHouses.length == 0 && guesthouses.length != 0
+            && <Alert variant='info' style={{ width: "30%", textAlign: "center", alignSelf: 'center' }}>No Guest Houses Found</Alert>}
           </div>
         </Container>
 

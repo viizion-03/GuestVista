@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 import { storage } from "../config/firebase"
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage"
 import "../components/styles/GuestHouseForm.css"
-import { Alert } from "react-bootstrap"
+import { Alert, Spinner } from "react-bootstrap"
 import { useParams } from 'react-router'
 import { useContext } from 'react'
 import { AuthContext } from '../contexts/AuthContext'
@@ -20,6 +20,7 @@ const GuestHouseData = () => {
   const [updateView, setUpdateView] = useState(false)
   const navigate = useNavigate()
   const { refreshGHList } = useContext(AuthContext)
+  const [isPosting, setIsPosting] = useState(false)
 
   // Refs to open corresponding file upload choosers
   const displayRef = useRef(null);
@@ -73,13 +74,15 @@ const GuestHouseData = () => {
 
   const PostData = async (e) => {
     e.preventDefault();
+    setIsPosting(true)
     if (updateView) {
       const houseRef = dbRef(getDatabase(), `addGuesthouses/${guestHouse.id}`)
       set(houseRef, guestHouse).then(() => {
+        setIsPosting(false)
         alert("Guest House Updated")
         refreshGHList()
         navigate("/admin/guest-houses")
-      })
+      }).catch(error => setErrorMsg("Data Upload Failed")).finally(() => setIsPosting(false))
     }
     else {
       const {
@@ -97,11 +100,16 @@ const GuestHouseData = () => {
           ratings, coordinates, description, logo, display_picture, amenities, packages
         })
       });
-      if (res)
+      if (res) {
+        setIsPosting(false)
         alert("Data sent to the Database")
-      // setGuesthouses(prevHouses => {return([...prevHouses, guestHouse])})  
-      refreshGHList()
-      navigate("/admin/guest-houses")
+        // setGuesthouses(prevHouses => {return([...prevHouses, guestHouse])})  
+        refreshGHList()
+        navigate("/admin/guest-houses")
+      }else{
+        setIsPosting(false)
+        setErrorMsg("Data Upload Failed")
+      }
     }
   };
 
@@ -312,35 +320,13 @@ const GuestHouseData = () => {
 
   }
 
-  // //listens for display picture changes
-  // useEffect(() => {
-  //   const displayRef = ref(storage, `guesthouses/${guestHouse.gName}/display`)
-  //   uploadBytes(displayRef, displayImg)
-  //     .then((snapshot) => {
-  //       getDownloadURL(displayRef)
-  //         .then((url) => {
-  //           setDisplayUrl(url)
-  //           setStyles({ backgroundImage: `url(${displayUrl})` })
-  //           setGuestHouse(prevData => {
-  //             return ({ ...prevData, display_picture: url })
-  //           })
-  //         })
-  //         .catch((error) => {
-  //           console.log(error)
-  //         })
-  //     }).catch((error) => {
-  //       console.log(error)
-  //     })
-
-
-  // }, [displayImg])
 
   return (
 
     <>
       <h1 className='admin--header'>Guest House Details</h1>
 
-
+      {isPosting && <Spinner style={{position: "absolute",zIndex:"1", left:"50%", top:"50%", width:"50px" ,height:"50px", fontSize:"25px"}}/>}
       <form onSubmit={handleSubmit} >
         <div className='admin--ghd-content'>
           <div className='ghd--details'>
@@ -459,7 +445,6 @@ const GuestHouseData = () => {
                     type="text"
                     placeholder='Website'
                     value={guestHouse.website}
-                    required
                   />
                 </div>
 
@@ -717,10 +702,10 @@ const GuestHouseData = () => {
             />
             <div className='previews'>
               {guestHouse.photos.map((photo) => (
-                <div className='photo' key={photo.src} style={{maxWidth: "50%", backgroundColor: "red"}}>
+                <div className='photo' key={photo.src} style={{ maxWidth: "50%", backgroundColor: "red" }}>
 
                   {/* <FontAwesomeIcon icon={faDeleteLeft} style={{position:"absolute",marginLeft: "140px", color: "white"}} /> */}
-                  <img src={photo.src} alt='Guesthouse' style={{height: "100%", width:"100%", objectFit:"fill"}} />
+                  <img src={photo.src} alt='Guesthouse' style={{ height: "100%", width: "100%", objectFit: "fill" }} />
                   {/* <p>{photo.file.name}</p> */}
                 </div>
               ))}

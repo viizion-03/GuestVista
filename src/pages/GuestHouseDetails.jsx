@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark, faHome } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
@@ -9,6 +9,8 @@ import { AuthContext } from '../contexts/AuthContext';
 import "./GuestHouseDetails.css"
 import { Row, Col, Container, Spinner, Table, Modal, Button, Form, } from 'react-bootstrap'
 import Bookings from '../components/Bookings'
+import { faStar } from '@fortawesome/free-regular-svg-icons';
+import GuestHouseCard from '../components/GuestHouseCard';
 
 const GuestHouseDetails = () => {
 
@@ -17,6 +19,7 @@ const GuestHouseDetails = () => {
   const { guesthouses } = useContext(AuthContext)
   const [selectedPackage, setSelectedPackage] = useState(-1)
   const [show, setShow] = useState();
+  const [guesthousesNear, setGuesthousesNear] = useState([])
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -34,7 +37,7 @@ const GuestHouseDetails = () => {
     display_picture: "https://firebasestorage.googleapis.com/v0/b/guestvista-4308f.appspot.com/o/guesthouses%2FSerenity%20Lodge%20Guest%20House%2Fdisplay?alt=media&token=b1449484-6ece-4b26-847a-d18585b7171d",
     email: "serenitylodge@gh.com",
     gName: "Serenity Lodge Guest House",
-    location: " Francistown, Botswana",
+    location: " Gaborone, Botswana",
     logo: "https://firebasestorage.googleapis.com/v0/b/guestvista-4308f.appspot.com/o/guesthouses%2FSerenity%20Lodge%20Guest%20House%2Flogo?alt=media&token=39b09a7e-2393-45bd-b82f-3b48b9998b13",
     packages: [
       {
@@ -102,7 +105,10 @@ const GuestHouseDetails = () => {
     ratings: "4.5",
     website: "www.serenitylodgegh.com"
   }
-
+  useEffect(() => {
+    setGuesthousesNear(guesthouses.filter((item) =>
+      item.location.includes(guestHouse.location) && item.gName != guestHouse.gName))
+  }, [])
   let guestHouse = gh
 
   guesthouses.forEach(element => {
@@ -139,6 +145,7 @@ const GuestHouseDetails = () => {
   }
 
 
+
   return (
     <div>
       <nav >
@@ -154,7 +161,7 @@ const GuestHouseDetails = () => {
 
       {!guestHouse ? <Spinner style={{ position: "absolute", left: "50%", top: "20%", fontSize: "30px", color: "darkblue" }} /> :
         <>
-          <h3 className='ghd--name' style={{marginTop:"60px"}}>{guestHouse.gName}</h3>
+          <h3 className='ghd--name' onClick={() => console.log(guestHouse)} style={{ marginTop: "60px" }}>{guestHouse.gName}</h3>
           <div className='ghd--photos-grid'>
 
 
@@ -231,10 +238,10 @@ const GuestHouseDetails = () => {
                       </td>
                       <td>
                         <button className='reservation-btn'
-                         onClick={() => {
-                          setSelectedPackage(index)
-                          handleShow()
-                         }}>
+                          onClick={() => {
+                            setSelectedPackage(index)
+                            handleShow()
+                          }}>
                           Make Reservation
                           <FontAwesomeIcon icon={faBookmark} style={{ marginLeft: "10px", }} />
                         </button>
@@ -247,47 +254,36 @@ const GuestHouseDetails = () => {
             </Table>
             {/* </Row> */}
 
+
             <Row>
-
+              <h4 className='ghd--subheading'>Other Information</h4>
+              <Col>
+                <h5>Contact Information</h5>
+                <ul>
+                  {guestHouse.website !== "" && <li>View their website: {guestHouse.website}</li>}
+                  <li>Email: {guestHouse.email}</li>
+                  <li>Mobile: {guestHouse.contacts}</li>
+                  <li>Address:{guestHouse.physical_address}</li>
+                  <li>Location:{guestHouse.location}</li>
+                  <li><a href='#'>View {guestHouse.gName} on Google Maps</a></li>
+                </ul>
+              </Col>
+              <Col>
+                <h5>Guest Reviews</h5>
+                <h6>Overall Rating: {guestHouse.ratings} <FontAwesomeIcon icon={faStar} style={{ color: "gold" }} /></h6>
+                {/* Reviews will go here */}
+              </Col>
             </Row>
-            <section className='ghd--reviews-section'>
-              <h3>Guest Reviews</h3>
-              <div className='ghd--reviews'>
 
-                <div className='ghd--review-card'>
-                  <span className='review-card-name'>
-                    <FontAwesomeIcon icon={faUser} />
-                    <h4>Thato Sebape</h4>
-                  </span>
-                  <p>
-                    "Very nice hotel with really good food"
-                  </p>
-                </div>
-
-                <div className='ghd--review-card'>
-                  <span className='review-card-name'>
-                    <FontAwesomeIcon icon={faUser} />
-                    <h4>Jose Morinuo</h4>
-                  </span>
-                  <p>
-                    "Very nice hotel with really good food"
-                  </p>
-                </div>
-
-                <div className='ghd--review-card'>
-                  <span className='review-card-name'>
-                    <FontAwesomeIcon icon={faUser} />
-                    <h4>Samoxa</h4>
-                  </span>
-                  <p>
-                    "The Bar is top class"
-                  </p>
-                </div>
-
-
-              </div>
-              <button className='ghd--more-reviews-btn'>Read all Reviews</button>
-            </section>
+            <Container>
+              <Row>
+                {guesthousesNear.length > 0 &&
+                  <h4 className='ghd--subheading'>Guest Houses in the Same Area</h4>}
+                {guesthousesNear.length > 0 && guesthousesNear.map(house => {
+                  return (<Col><GuestHouseCard {...house} size="small" /></Col>)
+                })}
+              </Row>
+            </Container>
           </div>
 
         </Container>

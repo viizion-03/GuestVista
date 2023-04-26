@@ -18,12 +18,13 @@ import Requests from './AdminPages/Requests';
 import Settings from './AdminPages/Settings';
 import GuestHouseDetails from './pages/GuestHouseDetails';
 import GuestHousesList from "./pages/GuestHousesList";
-import {UserLayout} from "./layouts/UserLayout";
+import { UserLayout } from "./layouts/UserLayout";
 
 // import DashboardOverview  from './Dashboard/DashboardOverview';
 import AddingGuesthouse from './AdminPages/AddingGueshouse'
 import UserHome from './UserPages/UserHome';
 import UserSignUp from './UserPages/UserSignUp';
+import ScrollToTop from './components/ScrollToTop';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -40,14 +41,15 @@ root.render(
 
   <Authprovider>
     < Router >
+      <ScrollToTop />
       <Routes>
         <Route path='/' element={<App />} />
         <Route path='/view-guesthouses' element={<GuestHousesList />} />
         <Route path='/guesthouse/:id' element={<GuestHouseDetails />} />
         <Route path='/admin-login' element={<AdminLogin />} />
-        <Route path='/signup' element={<UserSignUp/>} />
+        <Route path='/signup' element={<UserSignUp />} />
         {/* <Route path="/bookings" element={<Bookings/>} /> */}
-        
+
 
         <Route element={<AuthLayout />}>
           <Route path='/admin' element={<DashboardOverview />} />
