@@ -124,7 +124,7 @@ const Bookings = (props) => {
     const sendEmail = (e) => {
         e.preventDefault()
         setErrorAlert(null)
-        emailjs.send('service_na2y2rw', 'template_4lyzwqt', templateParams)
+        emailjs.send('service_na2y2rw', 'template_4lyzwqt', templateParams, 'c8lekbrbjBwLVGGw0')
         .then((result) => {
             console.log(result.text);
             setEmailSent(true)

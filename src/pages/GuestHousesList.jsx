@@ -1,16 +1,19 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useContext } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faSearch } from '@fortawesome/free-solid-svg-icons';
 import GuestHouseTile from '../components/GuestHouseTile';
 import "./GuestHousesList.css"
-import { useContext } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
-import { Alert, Card, Container, Spinner } from 'react-bootstrap';
+import { Card, Container } from 'react-bootstrap';
+import { faUser } from '@fortawesome/free-regular-svg-icons';
+import { Alert, Spinner } from 'react-bootstrap';
+import NomalNav from '../components/NomalNav';
 const GuestHousesList = () => {
 
 
   // const [guesthouses, setGuesthouses] = useState([]);
+  const { isLoggedIn } = useContext(AuthContext)
   const { guesthouses } = useContext(AuthContext)
   const [filteredGuestHouses, setFilteredGuestHouses] = useState([]);
   const [searchLocation, setSearchLocation] = useState('');
@@ -47,16 +50,27 @@ const GuestHousesList = () => {
   return (
 
     <>
-      <nav >
+      {/* <nav >
         <FontAwesomeIcon icon={faHome} size='2x' className='ghl--home-icon' onClick={goHome} />
 
         <ul>
-          <li>Sign In</li>
-          <li>Sign Up</li>
+          {!isLoggedIn &&
+            <>
+              <li>Sign In</li>
+              <li>Sign Up</li></>
+
+          }
+          {isLoggedIn &&
+          <Link to='/users'>
+            <FontAwesomeIcon icon={faUser} />
+          </Link>}
+
           <li>About</li>
           <li>Contact Us</li>
         </ul>
-      </nav>
+      </nav> */}
+
+      <NomalNav/>
 
       <div className='ghl--container'>
         <h2 className='ghl--heading'>Guest Houses</h2>

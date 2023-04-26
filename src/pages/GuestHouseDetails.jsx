@@ -11,11 +11,14 @@ import { Row, Col, Container, Spinner, Table, Modal, Button, Form, } from 'react
 import Bookings from '../components/Bookings'
 import { faStar } from '@fortawesome/free-regular-svg-icons';
 import GuestHouseCard from '../components/GuestHouseCard';
+import { Link } from 'react-router-dom';
+import NomalNav from '../components/NomalNav';
 
 const GuestHouseDetails = () => {
 
   const navigate = useNavigate();
   const params = useParams()
+  const {isLoggedIn} = useContext(AuthContext)
   const { guesthouses } = useContext(AuthContext)
   const [selectedPackage, setSelectedPackage] = useState(-1)
   const [show, setShow] = useState();
@@ -153,15 +156,26 @@ const GuestHouseDetails = () => {
 
   return (
     <div>
-      <nav >
+{/* <nav >
         <FontAwesomeIcon icon={faHome} size='2x' className='ghl--home-icon' onClick={goHome} />
+
         <ul>
-          <li>Sign In</li>
-          <li>Sign Up</li>
+          {!isLoggedIn &&
+            <>
+              <li>Sign In</li>
+              <li>Sign Up</li></>
+
+          }
+          {isLoggedIn &&
+          <Link to='/users'>
+            <FontAwesomeIcon icon={faUser} />
+          </Link>}
+
           <li>About</li>
           <li>Contact Us</li>
         </ul>
-      </nav>
+      </nav> */}
+      <NomalNav/>
       <BookingsModal />
 
       {!guestHouse ? <Spinner style={{ position: "absolute", left: "50%", top: "20%", fontSize: "30px", color: "darkblue" }} /> :

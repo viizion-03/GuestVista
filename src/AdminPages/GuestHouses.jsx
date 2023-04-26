@@ -13,10 +13,13 @@ const GuestHouses = () => {
   const navigate = useNavigate()
   const [visibleGuestHouses, setVisibleGuestHouses] = useState(guesthouses)
 
-  const filteredGuesthouses = guesthouses.filter((guesthouse) =>
+  const filteredGuesthouses = visibleGuestHouses.filter((guesthouse) =>
     guesthouse.gName.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  useEffect(()=>{
+    setVisibleGuestHouses(guesthouses)
+  },[guesthouses])
   const HouseItem = (props) => {
     return (
       <>
@@ -53,8 +56,8 @@ const GuestHouses = () => {
     // setGuesthouses(prevStud => {
     //   return guesthouses.filter()
     // })
-    // const houseRef = ref(getDatabase(), `/addGuesthouses/${id}`)
-    // set(houseRef, null)
+    const houseRef = ref(getDatabase(), `/addGuesthouses/${id}`)
+    set(houseRef, null)
   }
 
   function createNew() {
