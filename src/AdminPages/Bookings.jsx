@@ -1,3 +1,4 @@
+import React from 'react'
 import MySideNav from "../MySideNav";
 
 function Bookings() {
