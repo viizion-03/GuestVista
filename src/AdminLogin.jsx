@@ -43,7 +43,7 @@ const AdminLogin = () => {
   //check if signed user is admin
   useEffect(() => {
     if (adminUser != null) {
-      if (adminUser == "none") {
+      if (adminUser === "none") {
         navigate("/view-guesthouses")
       }
       else {

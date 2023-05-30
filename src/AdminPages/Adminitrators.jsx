@@ -45,11 +45,11 @@ const Subcribers = () => {
           .catch(error => { console.log(error) })
       }).catch((e) => {
         console.log(e)
-        if (e.code == "auth/weak-password") {
+        if (e.code === "auth/weak-password") {
           setErrorMsg("Enter a password at least 6 characters long")
           setPassword({ password: "", confPassword: "" })
         }
-        if (e.code == "auth/email-already-in-use") {
+        if (e.code === "auth/email-already-in-use") {
           setErrorMsg("Email is already in Use")
           setPassword({ password: "", confPassword: "" })
         }
@@ -70,7 +70,7 @@ const Subcribers = () => {
       .then(snapshot => {
         snapshot.forEach(childItem => {
           adminList.forEach(admin => {
-            if (admin.userId == childItem.val().userId)
+            if (admin.userId === childItem.val().userId)
               return
           })
 
@@ -87,7 +87,7 @@ const Subcribers = () => {
     get(adminListRef)
       .then(snapshot => {
         snapshot.forEach(item => {
-          if (item.val().userId == admin.userId) {
+          if (item.val().userId === admin.userId) {
             itemKey = item.key
             const myRef = ref(getDatabase(), `Administrators/${itemKey}`)
             if (myRef) { remove(myRef) }
